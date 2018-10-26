@@ -1,0 +1,199 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Enemy/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://imgs/hp_bg.jpg" type="Texture" id=2]
+[ext_resource path="res://imgs/hp.jpg" type="Texture" id=3]
+
+[sub_resource type="BoxShape" id=1]
+
+extents = Vector3( 3, 6, 3 )
+
+[sub_resource type="CubeMesh" id=2]
+
+custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+size = Vector3( 4, 4, 4 )
+subdivide_width = 0
+subdivide_height = 0
+subdivide_depth = 0
+
+[sub_resource type="SphereMesh" id=3]
+
+custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+radius = 1.0
+height = 2.0
+radial_segments = 64
+rings = 32
+is_hemisphere = false
+
+[sub_resource type="CubeMesh" id=4]
+
+custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+size = Vector3( 6, 12, 6 )
+subdivide_width = 0
+subdivide_height = 0
+subdivide_depth = 0
+
+[node name="Enemy" type="KinematicBody"]
+
+input_ray_pickable = true
+input_capture_on_drag = false
+collision_layer = 2
+collision_mask = 2
+axis_lock_linear_x = false
+axis_lock_linear_y = false
+axis_lock_linear_z = false
+axis_lock_angular_x = false
+axis_lock_angular_y = false
+axis_lock_angular_z = false
+collision/safe_margin = 0.001
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="BodyCollisionShape" type="CollisionShape" parent="." index="0"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0 )
+shape = SubResource( 1 )
+disabled = false
+_sections_unfolded = [ "Transform" ]
+
+[node name="RotationHelper" type="Spatial" parent="." index="1"]
+
+editor/display_folded = true
+
+[node name="Model" type="Spatial" parent="RotationHelper" index="0"]
+
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Head" type="MeshInstance" parent="RotationHelper/Model" index="0"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.66917, 0 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 2 )
+skeleton = NodePath("..")
+material/0 = null
+
+[node name="EyeLeft" type="MeshInstance" parent="RotationHelper/Model/Head" index="0"]
+
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.8, 1, -2 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 3 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "Transform" ]
+
+[node name="EyeRight" type="MeshInstance" parent="RotationHelper/Model/Head" index="1"]
+
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.8, 1, -2 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 3 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "Transform" ]
+
+[node name="Body" type="MeshInstance" parent="RotationHelper/Model" index="1"]
+
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 4 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "Transform" ]
+
+[node name="HpBg" type="Sprite3D" parent="RotationHelper/Model" index="2"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0.01 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+centered = false
+offset = Vector2( -250, 0 )
+flip_h = false
+flip_v = false
+modulate = Color( 1, 1, 1, 1 )
+opacity = 1.0
+pixel_size = 0.01
+axis = 2
+transparent = true
+shaded = false
+double_sided = true
+alpha_cut = 0
+texture = ExtResource( 2 )
+vframes = 1
+hframes = 1
+frame = 0
+region_enabled = true
+region_rect = Rect2( 0, 0, 500, 40 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="HpBar" type="Sprite3D" parent="RotationHelper/Model" index="3"]
+
+transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 11, 0 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+centered = false
+offset = Vector2( -250, 0 )
+flip_h = false
+flip_v = false
+modulate = Color( 1, 1, 1, 1 )
+opacity = 1.0
+pixel_size = 0.01
+axis = 2
+transparent = true
+shaded = false
+double_sided = true
+alpha_cut = 0
+texture = ExtResource( 3 )
+vframes = 1
+hframes = 1
+frame = 0
+region_enabled = true
+region_rect = Rect2( 0, 0, 500, 40 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+

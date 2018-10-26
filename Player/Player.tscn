@@ -1,0 +1,311 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Player/WeaponRay.gd" type="Script" id=2]
+[ext_resource path="res://Player/WeaponMelee.gd" type="Script" id=3]
+[ext_resource path="res://Player/WeaponBullet.gd" type="Script" id=4]
+[ext_resource path="res://imgs/dot.png" type="Texture" id=5]
+[ext_resource path="res://NotoSans-Regular.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="CapsuleShape" id=1]
+
+radius = 1.2
+height = 9.0
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="BoxShape" id=2]
+
+extents = Vector3( 0.8, 0.2, 0.8 )
+
+[sub_resource type="CubeMesh" id=3]
+
+custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+size = Vector3( 2, 2, 2 )
+subdivide_width = 0
+subdivide_height = 0
+subdivide_depth = 0
+
+[sub_resource type="BoxShape" id=4]
+
+extents = Vector3( 1.5, 2, 1.5 )
+
+[sub_resource type="DynamicFont" id=5]
+
+size = 40
+use_mipmaps = true
+use_filter = false
+font_data = ExtResource( 6 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[node name="Player" type="KinematicBody" index="0"]
+
+input_ray_pickable = true
+input_capture_on_drag = false
+collision_layer = 1
+collision_mask = 1
+axis_lock_linear_x = false
+axis_lock_linear_y = false
+axis_lock_linear_z = false
+axis_lock_angular_x = false
+axis_lock_angular_y = false
+axis_lock_angular_z = false
+collision/safe_margin = 0.001
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="BodyCollisionShape" type="CollisionShape" parent="." index="0"]
+
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 5.8, 0 )
+shape = SubResource( 1 )
+disabled = false
+_sections_unfolded = [ "Pause", "Transform", "Visibility" ]
+
+[node name="FeetCollisionShape" type="CollisionShape" parent="." index="1"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0 )
+shape = SubResource( 2 )
+disabled = false
+_sections_unfolded = [ "Transform" ]
+
+[node name="RotationHelper" type="Spatial" parent="." index="2"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Model" type="Spatial" parent="RotationHelper" index="0"]
+
+editor/display_folded = true
+
+[node name="BulletGun" type="Spatial" parent="RotationHelper/Model" index="0"]
+
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.25, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Body" type="MeshInstance" parent="RotationHelper/Model/BulletGun" index="0"]
+
+transform = Transform( 0.0622149, 0, 0, 0, 0.102193, 0, 0, 0, 0.0790326, -0.788539, 0, 0.415878 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 3 )
+skeleton = NodePath("..")
+material/0 = null
+
+[node name="Fire" type="MeshInstance" parent="RotationHelper/Model/BulletGun" index="1"]
+
+transform = Transform( 0.0386668, 0, 0, 0, 0.0424247, 0, 0, 0, 0.0791514, -0.804504, 0.0290308, 0.56829 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 3 )
+skeleton = NodePath("..")
+material/0 = null
+
+[node name="FirePos" type="Spatial" parent="RotationHelper/Model/BulletGun" index="2"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.782728, 0.0310287, 1.34489 )
+
+[node name="Camera" type="Camera" parent="RotationHelper" index="1"]
+
+transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 0, 0 )
+keep_aspect = 1
+cull_mask = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+doppler_tracking = 0
+projection = 0
+current = false
+fov = 90.0
+size = 1.0
+near = 0.05
+far = 180.0
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="Flashlight" type="SpotLight" parent="RotationHelper" index="2"]
+
+transform = Transform( 1, 0, 0, 0, -1, -8.74228e-008, 0, 8.74228e-008, -1, 0, 0, 0 )
+layers = 1
+light_color = Color( 0.768627, 0.989154, 1, 1 )
+light_energy = 0.8
+light_indirect_energy = 1.0
+light_negative = false
+light_specular = 0.5
+light_bake_mode = 1
+light_cull_mask = -1
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_bias = 1.0
+shadow_contact = 0.0
+shadow_reverse_cull_face = false
+editor_only = false
+spot_range = 30.0
+spot_attenuation = 2.0
+spot_angle = 50.0
+spot_angle_attenuation = 1.0
+_sections_unfolded = [ "Light", "Shadow", "Spot", "Transform" ]
+
+[node name="GunFirePoints" type="Spatial" parent="RotationHelper" index="3"]
+
+[node name="RayFire" type="Spatial" parent="RotationHelper/GunFirePoints" index="0"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5 )
+script = ExtResource( 2 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="RayCast" type="RayCast" parent="RotationHelper/GunFirePoints/RayFire" index="0"]
+
+enabled = false
+exclude_parent = true
+cast_to = Vector3( 0, 0, 80 )
+collision_mask = 2
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="MeleeFire" type="Spatial" parent="RotationHelper/GunFirePoints" index="1"]
+
+editor/display_folded = true
+script = ExtResource( 3 )
+
+[node name="Area" type="Area" parent="RotationHelper/GunFirePoints/MeleeFire" index="0"]
+
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.3, 5 )
+input_ray_pickable = false
+input_capture_on_drag = false
+space_override = 0
+gravity_point = false
+gravity_distance_scale = 0.0
+gravity_vec = Vector3( 0, -1, 0 )
+gravity = 9.8
+linear_damp = 0.1
+angular_damp = 1.0
+priority = 0.0
+monitoring = true
+monitorable = true
+collision_layer = 2
+collision_mask = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+reverb_bus_enable = false
+reverb_bus_name = "Master"
+reverb_bus_amount = 0.0
+reverb_bus_uniformity = 0.0
+_sections_unfolded = [ "Audio Bus", "Collision", "Reverb Bus", "Transform", "Visibility" ]
+
+[node name="CollisionShape" type="CollisionShape" parent="RotationHelper/GunFirePoints/MeleeFire/Area" index="0"]
+
+shape = SubResource( 4 )
+disabled = false
+
+[node name="BulletFire" type="Spatial" parent="RotationHelper/GunFirePoints" index="2"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5 )
+script = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Hud" type="Control" parent="." index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Theme" ]
+
+[node name="Crosshair" type="Control" parent="Hud" index="0"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Anchor", "Material", "Rect", "Visibility" ]
+
+[node name="Dot" type="TextureRect" parent="Hud/Crosshair" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 5.0
+margin_bottom = 5.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 5 )
+stretch_mode = 0
+_sections_unfolded = [ "Anchor", "Rect" ]
+
+[node name="Panel" type="Panel" parent="Hud" index="1"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 920.0
+margin_right = 370.0
+margin_bottom = 1080.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Rect" ]
+
+[node name="GunLabel" type="Label" parent="Hud/Panel" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 10.0
+margin_top = 20.0
+margin_right = 380.0
+margin_bottom = 155.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 5 )
+text = "Health: 100
+Ammo: 000/000"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+
