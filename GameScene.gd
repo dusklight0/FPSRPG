@@ -4,7 +4,7 @@ var _player
 var _enemy = preload("Enemy/EnemyScene.tscn")
 var _spawn_point
 var _spawn_time = 0
-var _spawn_count = 1
+var _spawn_count = 10
 
 var _navigation
 
@@ -27,8 +27,8 @@ func _process(delta):
     
     var _spawn_point_pos = _spawn_point.transform.origin
     
-    #_spawn_point_pos.z += rand_range(0, 50)
-    #_spawn_point_pos.x += rand_range(-50, 50)
+    _spawn_point_pos.z += rand_range(0, 10)
+    _spawn_point_pos.x += rand_range(-50, 50)
     
     var spawn_enemy = _enemy.instance()
     spawn_enemy._player = _player

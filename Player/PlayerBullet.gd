@@ -7,12 +7,13 @@ const KILL_TIMER = 4
 var timer = 0
 var hit_something = false
 var direction = Vector3()
+var _bullet_particle
 
 func _ready():
     $Area.connect("body_entered", self, "collided")
 
 
-func _physics_process(delta):    
+func _physics_process(delta):
     global_translate(direction * BULLET_SPEED * delta)
 
     timer += delta
@@ -21,9 +22,25 @@ func _physics_process(delta):
 
 
 func collided(body):
-    if hit_something == false:
-        if body.has_method("bullet_hit"):
-            body.bullet_hit(BULLET_DAMAGE, self.global_transform.origin)
+    if hit_something:
+        return
+        
+    if body.has_method("bullet_hit"):
+        body.bullet_hit(BULLET_DAMAGE, self.global_transform.origin)
 
     hit_something = true
+    
+    var body_name = body.get_name()
+    #if body_name.find('Enemy') > 0:
+    if _bullet_particle == null:
+        _bullet_particle = load("res://Effect/bullet_mark.scn")
+    
+    if _bullet_particle:
+        var particle_node = _bullet_particle.instance()
+        get_tree().root.add_child(particle_node)
+        #particle_node.global_translate(self.global_transform.origin)
+        particle_node.global_transform = self.global_transform
+        particle_node.rotate(Vector3(0, 1, 0), deg2rad(180))
+        particle_node.restart()
+    
     queue_free()

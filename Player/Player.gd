@@ -6,7 +6,7 @@ const MAX_SPEED = 20
 const JUMP_SPEED = 18
 const ACCEL= 4.5
 
-const MAX_SPRINT_SPEED = 30
+const MAX_SPRINT_SPEED = 40
 const SPRINT_ACCEL = 18
 var is_spriting = false
 
@@ -34,6 +34,7 @@ var health = 100
 var UI_status_label
 
 var gun_model
+var gun_ray
 
 
 func _ready():
@@ -41,6 +42,8 @@ func _ready():
     rotation_helper = $RotationHelper
     gun_model = $RotationHelper/Model/BulletGun
     gun_model.hide()
+    
+    gun_ray = $RotationHelper/GunFirePoints/RayFire/RayCast
 
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
     
@@ -97,10 +100,10 @@ func process_input(delta):
 #            vel.y = JUMP_SPEED
     
     # Sprinting
-#    if Input.is_action_pressed("movement_sprint"):
-#        is_spriting = true
-#    else:
-#        is_spriting = false
+    if Input.is_action_pressed("movement_sprint"):
+        is_spriting = true
+    else:
+        is_spriting = false
     
     # Turning the flashlight on/off
 #    if Input.is_action_just_pressed("flashlight"):
@@ -128,10 +131,10 @@ func process_input(delta):
     if Input.is_key_pressed(KEY_4):
         weapon_change_number = 3
 
-    if Input.is_action_just_pressed("shift_weapon_positive"):
-        weapon_change_number += 1
-    if Input.is_action_just_pressed("shift_weapon_negative"):
-        weapon_change_number -= 1
+#    if Input.is_action_just_pressed("shift_weapon_positive"):
+#        weapon_change_number += 1
+#    if Input.is_action_just_pressed("shift_weapon_negative"):
+#        weapon_change_number -= 1
 
     weapon_change_number = clamp(weapon_change_number, 0, WEAPON_NUMBER_TO_NAME.size()-1)
 
@@ -148,6 +151,29 @@ func process_input(delta):
                 fire_bullet()
 #                if animation_manager.current_state == current_weapon.IDLE_ANIM_NAME:
 #                    animation_manager.set_animation(current_weapon.FIRE_ANIM_NAME)
+
+    if Input.is_action_just_pressed("use_key"):
+        on_input_use()
+
+
+func on_input_use():
+    gun_ray.force_raycast_update()
+    if false == gun_ray.is_colliding():
+        return
+        
+    var body = gun_ray.get_collider()
+    if body.get_name() == "Door" and body.transform.origin.distance_to(self.transform.origin) < 30.0:
+        var direction = self.transform.origin - body.transform.origin
+        direction = direction.normalized()
+        
+        var move_pos = body.transform.origin
+        move_pos.y = 0
+        if direction.z < 0:
+            move_pos.z = move_pos.z + 20
+        else:
+            move_pos.z = move_pos.z - 20
+        
+        self.transform.origin = move_pos
 
 
 func process_changing_weapons(delta):

@@ -1,7 +1,7 @@
 extends KinematicBody
 
 var _player
-var _enemy_speed = 4
+var _enemy_speed = 8
 var _hp_bar
 var _hp = 500
 var _max_hp = 500
@@ -76,24 +76,20 @@ func process_movement(delta):
             else:
                 _path[_path.size() - 1] = pfrom.linear_interpolate(pto, to_walk/d)
                 to_walk = 0
-        
+
         var atpos = _path[_path.size() - 1]
         var atdir = to_watch
         atdir.y = 0
-        
+
         var t = Transform()
-        t.origin = atpos
-        t = t.looking_at(atpos + atdir, Vector3(0, 1, 0))
+        t.origin = self.transform.origin
+        t = t.looking_at(self.transform.origin + atdir, Vector3(0, 1, 0))
         self.set_transform(t)
         
+        move_and_slide(atdir * 3, Vector3(0,1,0), false, 4, deg2rad(40))
+
         if _path.size() < 2:
             _path = []
-        
-#    var dir = _player.global_transform.origin - global_transform.origin
-#    dir.y = 0
-
-#    move_and_slide(dir * 3 * delta, Vector3(0,1,0), 0.05, 4, deg2rad(40))    
-#    look_at(_player.global_transform.origin, Vector3(0, 1, 0))
     
     
 func _attack_enemy(delta):

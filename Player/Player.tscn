@@ -42,7 +42,7 @@ _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 6
 axis_lock_linear_x = false
 axis_lock_linear_y = false
 axis_lock_linear_z = false
@@ -69,6 +69,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="RotationHelper" type="Spatial" parent="." index="2"]
 
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0 )
 _sections_unfolded = [ "Transform" ]
 
@@ -129,10 +130,10 @@ v_offset = 0.0
 doppler_tracking = 0
 projection = 0
 current = false
-fov = 90.0
+fov = 60.0
 size = 1.0
 near = 0.05
-far = 180.0
+far = 1000.0
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Flashlight" type="SpotLight" parent="RotationHelper" index="2"]
@@ -160,8 +161,11 @@ _sections_unfolded = [ "Light", "Shadow", "Spot", "Transform" ]
 
 [node name="GunFirePoints" type="Spatial" parent="RotationHelper" index="3"]
 
+editor/display_folded = true
+
 [node name="RayFire" type="Spatial" parent="RotationHelper/GunFirePoints" index="0"]
 
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Transform", "Visibility" ]
@@ -170,13 +174,12 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 enabled = false
 exclude_parent = true
-cast_to = Vector3( 0, 0, 80 )
-collision_mask = 2
+cast_to = Vector3( 0, 0, 200 )
+collision_mask = 6
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="MeleeFire" type="Spatial" parent="RotationHelper/GunFirePoints" index="1"]
 
-editor/display_folded = true
 script = ExtResource( 3 )
 
 [node name="Area" type="Area" parent="RotationHelper/GunFirePoints/MeleeFire" index="0"]
@@ -195,8 +198,8 @@ angular_damp = 1.0
 priority = 0.0
 monitoring = true
 monitorable = true
-collision_layer = 2
-collision_mask = 2
+collision_layer = 8
+collision_mask = 6
 audio_bus_override = false
 audio_bus_name = "Master"
 reverb_bus_enable = false
@@ -218,6 +221,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Hud" type="Control" parent="." index="3"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0

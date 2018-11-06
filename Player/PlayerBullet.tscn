@@ -74,7 +74,7 @@ uv2_triplanar_sharpness = 1.0
 proximity_fade_enable = false
 distance_fade_enable = false
 
-[node name="PlayerBullet" type="Spatial" index="0"]
+[node name="PlayerBullet" type="Spatial"]
 
 script = ExtResource( 1 )
 
@@ -93,8 +93,8 @@ angular_damp = 1.0
 priority = 0.0
 monitoring = true
 monitorable = true
-collision_layer = 2
-collision_mask = 2
+collision_layer = 8
+collision_mask = 6
 audio_bus_override = false
 audio_bus_name = "Master"
 reverb_bus_enable = false
@@ -108,7 +108,11 @@ _sections_unfolded = [ "Collision" ]
 shape = SubResource( 1 )
 disabled = false
 
-[node name="MeshInstance" type="MeshInstance" parent="." index="1"]
+[node name="BulletMesh" type="Spatial" parent="." index="1"]
+
+editor/display_folded = true
+
+[node name="MeshInstance" type="MeshInstance" parent="BulletMesh" index="0"]
 
 layers = 1
 material_override = null
@@ -123,7 +127,7 @@ mesh = SubResource( 2 )
 skeleton = NodePath("..")
 material/0 = null
 
-[node name="MeshInstance2" type="MeshInstance" parent="." index="2"]
+[node name="MeshInstance2" type="MeshInstance" parent="BulletMesh" index="1"]
 
 transform = Transform( 0.1, 0, 0, 0, -8.74228e-009, -0.1, 0, 0.2, -4.37114e-009, 0, 0, -0.196967 )
 layers = 1
