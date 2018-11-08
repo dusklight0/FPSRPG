@@ -1,7 +1,7 @@
 extends Spatial
 
 var _enemy
-var _spawn_point
+var _spawn_points
 
 var _navigation
 var _doors = []
@@ -12,12 +12,12 @@ var _room_info = {
     # U,R,D,L
     door = [0, 0, 0, 0],
     navi_transform = Vector3(0, 0, 0),
-    enemy_spawn = 0
+    enemy_spawn = false
     }
 
 func _ready():
     _doors = [$DoorU, $DoorR, $DoorD, $DoorL]
-    _spawn_point = $EnemySpawn
+    _spawn_points = $SpawnPoints
     _navigation = $Navigation
     _enemy = load("Enemy/EnemyScene.tscn")
     
@@ -39,17 +39,18 @@ func collided(body):
         
     _player_enter = true
     
-    if _room_info.enemy_spawn <= 0:
+    if _room_info.enemy_spawn == false:
         return
         
-    var spawn_point_pos = _spawn_point.transform.origin
+    for spawn_point in _spawn_points.get_children():
+        var spawn_point_pos = spawn_point.transform.origin
     
-    for v in range(_room_info.enemy_spawn):
-        spawn_point_pos.z += rand_range(-5, 5)
-        spawn_point_pos.x += rand_range(-20, 20)
+        for v in range(rand_range(spawn_point._min_enemy_count, spawn_point._max_enemy_count)):
+            spawn_point_pos.z += rand_range(-5, 5)
+            spawn_point_pos.x += rand_range(-10, 10)
     
-        var spawn_enemy = _enemy.instance()
-        spawn_enemy._navigation = _navigation
-        spawn_enemy._nav_transform = _room_info.navi_transform
-        spawn_enemy.global_transform.origin = spawn_point_pos
-        add_child(spawn_enemy)
+            var spawn_enemy = _enemy.instance()
+            spawn_enemy._navigation = _navigation
+            spawn_enemy._nav_transform = _room_info.navi_transform
+            spawn_enemy.global_transform.origin = spawn_point_pos
+            add_child(spawn_enemy)

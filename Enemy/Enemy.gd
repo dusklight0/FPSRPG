@@ -6,8 +6,11 @@ var _hp_bar
 var _hp = 100
 var _max_hp = 100
 
-var _bullet = preload("EnemyBullet.tscn")
-var _bullet_time = 0
+var _stop_time = 0.0
+
+var _bullet
+var _attack_time = 0.0
+var _attack_stop_time = 0.0
 
 var _destroy = false
 
@@ -20,6 +23,7 @@ func _ready():
     var scene_root = get_tree().root.get_children()[0]
     _player = scene_root._player
     _hp_bar = $RotationHelper/Model/HpBar
+    _bullet = load("res://Enemy/EnemyBullet.tscn")
 
 
 func bullet_hit(damage, bullet_hit_pos):
@@ -29,17 +33,17 @@ func bullet_hit(damage, bullet_hit_pos):
     _hp -= damage
     _hp_bar.region_rect = Rect2(0, 0, 500 * _hp/_max_hp, 40)
     
+    var enemy_stop = rand_range(0, 100)
+    if enemy_stop < 20:
+        _stop_time = 1.0
+    
     if _hp <= 0:        
         destroy_enemy()
     
     
 func destroy_enemy():
     _destroy = true
-    queue_free()
-    
-
-func _process(delta):
-    _attack_enemy(delta)
+    queue_free()    
     
     
 func _update_path():
@@ -52,6 +56,16 @@ func _update_path():
     
 func _physics_process(delta):
     if _destroy:
+        return
+        
+    if _stop_time > 0.0:
+        _stop_time -= delta
+        return
+        
+    _attack_enemy(delta)
+        
+    if _attack_stop_time > 0.0:
+        _attack_stop_time -= delta
         return
         
     _navigation_update_time += delta
@@ -100,15 +114,23 @@ func _attack_enemy(delta):
     if _bullet == null:
         return
         
-    _bullet_time += delta
-    if _bullet_time < 5:
+    if _attack_stop_time > 0.0:
         return
         
-    _bullet_time = 0
+    _attack_time += delta
+    if _attack_time < rand_range(2, 5):
+        return
+        
+    _attack_stop_time = 1.5
+    _attack_time = 0
     
-#    var bullet_instance = _bullet.instance()
-#    get_parent().add_child(bullet_instance)
-#    bullet_instance.global_translate(get_global_transform().origin)
-#    var bullet_target_pos = _player.get_global_transform().origin
-#    bullet_instance.look_at(bullet_target_pos, Vector3(0, 1, 0)) 
-#    bullet_instance._init_bullet(bullet_target_pos)
+    var bullet_instance = _bullet.instance()
+    bullet_instance._direction = (_player.global_transform.origin - self.global_transform.origin).normalized()
+    
+    var t = Transform()
+    t.origin = self.global_transform.origin
+    t.origin.y = 10
+    t = t.looking_at(t.origin + bullet_instance._direction, Vector3(0, 1, 0))
+    bullet_instance.set_global_transform(t)
+    
+    get_tree().root.add_child(bullet_instance)

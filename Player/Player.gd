@@ -24,15 +24,19 @@ var _weapons = {"UNARMED":null, "MELEE":null, "BULLET":null, "RAY":null}
 var _changing_weapon = false
 var _changing_weapon_name = "UNARMED"
 
-var _health = 100
+var _hp = 100
+var _max_hp = 100
 var _is_spriting = false
 
 # object ref
 var _camera
 var _rotation_helper
-var _lb_player_status
 var _gun_model
 var _gun_ray
+
+# ui ref
+var _lb_player_status
+var _ui_hp_bar
 
 var _game_scene
 
@@ -66,6 +70,9 @@ func _ready():
     _changing_weapon_name = "UNARMED"
 
     _lb_player_status = $Hud/Panel/GunLabel
+    _ui_hp_bar = $Hud/HpBar
+    
+    _lb_player_status.text = _current_weapon_name
     
 
 func _physics_process(delta):
@@ -240,6 +247,13 @@ func fire_bullet():
     _weapons[_current_weapon_name].fire_weapon()
     
     
-func bullet_hit(damage, bullet_hit_pos):
-    print('----------> Player hit!')
+func _on_attacked(damage, bullet_hit_pos):
+    if _hp <= 0:
+        return
+        
+    _hp -= damage
+    _ui_hp_bar.rect_size = Vector2(700 * _hp/_max_hp, 20)
+    
+    if _hp <= 0:
+        print('-------- game over')
     

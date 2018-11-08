@@ -4,8 +4,8 @@ var _player
 
 
 func _ready():
-    _make_room("Rooms/StartRoom.tscn", [1, 0, 0, 0], 0, Vector3(0, 0, 0))
-    _make_room("Rooms/Room1.tscn", [1, 0, 1, 0], 10, Vector3(0, 0, 200))
+    _make_room("Rooms/StartRoom.tscn", [1, 0, 0, 0], false, Vector3(0, 0, 0))
+    _make_room("Rooms/Room1.tscn", [1, 0, 1, 0], true, Vector3(0, 0, 200))
     
     _player = $Player
     _player.global_transform.origin = Vector3(0, 0, 0)

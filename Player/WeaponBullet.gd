@@ -1,6 +1,6 @@
 extends Spatial
 
-const DAMAGE = 15
+const _damage = 15
 
 var _is_weapon_enabled = false
 var _player_node = null
@@ -16,9 +16,9 @@ func fire_weapon():
     var scene_root = get_tree().root.get_children()[0]
     scene_root.add_child(clone)
 
-    clone.BULLET_DAMAGE = DAMAGE
     clone.global_transform = _fire_pos.global_transform
-    clone.direction = _fire_pos.global_transform.basis.z.normalized()
+    clone._bullet_damage = _damage
+    clone._direction = _fire_pos.global_transform.basis.z.normalized()
     clone._player = _player_node
     
 

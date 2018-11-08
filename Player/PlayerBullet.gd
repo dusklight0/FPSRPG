@@ -1,40 +1,39 @@
 extends Spatial
 
-var BULLET_SPEED = 90
-var BULLET_DAMAGE = 15
-
 const KILL_TIMER = 4
-var timer = 0
-var hit_something = false
-var direction = Vector3()
+
+var _bullet_speed = 90
+var _bullet_damage = 15
+
+var _timer = 0
+var _hit_something = false
+var _direction = Vector3()
 var _bullet_particle
 var _player
 
 func _ready():
+    _bullet_particle = load("res://Effect/bullet_mark.scn")
     $Area.connect("body_entered", self, "collided")
 
 
 func _physics_process(delta):
-    global_translate(direction * BULLET_SPEED * delta)
+    global_translate(_direction * _bullet_speed * delta)
 
-    timer += delta
-    if timer >= KILL_TIMER:
+    _timer += delta
+    if _timer >= KILL_TIMER:
         queue_free()
 
 
 func collided(body):
-    if hit_something:
+    if _hit_something:
         return
         
     if body.has_method("bullet_hit"):
-        body.bullet_hit(BULLET_DAMAGE, self.global_transform.origin)
+        body.bullet_hit(_bullet_damage, self.global_transform.origin)
 
-    hit_something = true
+    _hit_something = true
     
-    var body_name = body.get_name()
-    #if body_name.find('Enemy') > 0:
-    if _bullet_particle == null:
-        _bullet_particle = load("res://Effect/bullet_mark.scn")
+    #var body_name = body.get_name()
     
     #if _bullet_particle:
         #var particle_node = _bullet_particle.instance()
