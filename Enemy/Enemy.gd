@@ -68,6 +68,10 @@ func _physics_process(delta):
         _attack_stop_time -= delta
         return
         
+    var distance = self.transform.origin.distance_to(_player.transform.origin - _nav_transform)    
+    if distance < 50:
+        return
+        
     _navigation_update_time += delta
     if _navigation_update_time > 0.1:
         _update_path()

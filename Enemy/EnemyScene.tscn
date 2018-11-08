@@ -113,17 +113,13 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="RotationHelper" type="Spatial" parent="." index="1"]
 
-editor/display_folded = true
-
 [node name="Model" type="Spatial" parent="RotationHelper" index="0"]
 
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Head" type="MeshInstance" parent="RotationHelper/Model" index="0"]
 
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.66917, 0 )
 layers = 1
 material_override = null
@@ -137,6 +133,7 @@ lod_max_hysteresis = 0.0
 mesh = SubResource( 2 )
 skeleton = NodePath("..")
 material/0 = null
+_sections_unfolded = [ "material" ]
 
 [node name="EyeLeft" type="MeshInstance" parent="RotationHelper/Model/Head" index="0"]
 
@@ -174,6 +171,7 @@ _sections_unfolded = [ "Transform", "material" ]
 
 [node name="Body" type="MeshInstance" parent="RotationHelper/Model" index="1"]
 
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0111599, -0.0604286, -0.0307636 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -186,7 +184,7 @@ lod_max_hysteresis = 0.0
 mesh = SubResource( 5 )
 skeleton = NodePath("..")
 material/0 = null
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Transform", "material" ]
 
 [node name="HpBg" type="Sprite3D" parent="RotationHelper/Model" index="2"]
 

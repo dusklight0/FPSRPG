@@ -3,11 +3,11 @@
 [ext_resource path="res://Rooms/Room.gd" type="Script" id=1]
 [ext_resource path="res://Rooms/Door.gd" type="Script" id=2]
 
-[sub_resource type="BoxShape" id=19]
+[sub_resource type="BoxShape" id=1]
 
 extents = Vector3( 1, 50, 100 )
 
-[sub_resource type="CubeMesh" id=20]
+[sub_resource type="CubeMesh" id=2]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector3( 1, 100, 200 )
@@ -15,11 +15,11 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="BoxShape" id=21]
+[sub_resource type="BoxShape" id=3]
 
 extents = Vector3( 1, 100, 100 )
 
-[sub_resource type="CubeMesh" id=22]
+[sub_resource type="CubeMesh" id=4]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector3( 1, 200, 200 )
@@ -27,11 +27,11 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="BoxShape" id=23]
+[sub_resource type="BoxShape" id=5]
 
 extents = Vector3( 100, 0.1, 100 )
 
-[sub_resource type="CubeMesh" id=24]
+[sub_resource type="CubeMesh" id=6]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector3( 200, 1, 200 )
@@ -39,7 +39,7 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="CubeMesh" id=25]
+[sub_resource type="CubeMesh" id=7]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector3( 16, 26, 1 )
@@ -47,7 +47,7 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="SpatialMaterial" id=26]
+[sub_resource type="SpatialMaterial" id=8]
 
 render_priority = 0
 flags_transparent = false
@@ -99,11 +99,11 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Albedo" ]
 
-[sub_resource type="BoxShape" id=27]
+[sub_resource type="BoxShape" id=9]
 
 extents = Vector3( 8, 13, 1 )
 
-[sub_resource type="CubeMesh" id=18]
+[sub_resource type="CubeMesh" id=10]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector3( 2, 2, 1 )
@@ -111,7 +111,7 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="BoxShape" id=28]
+[sub_resource type="BoxShape" id=11]
 
 extents = Vector3( 100, 50, 100 )
 
@@ -126,7 +126,7 @@ editor/display_folded = true
 [node name="Wall1" type="StaticBody" parent="Walls" index="0"]
 
 editor/display_folded = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 50, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 99, 50, 0 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
@@ -139,7 +139,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="Walls/Wall1" index="0"]
 
-shape = SubResource( 19 )
+shape = SubResource( 1 )
 disabled = false
 
 [node name="MeshInstance" type="MeshInstance" parent="Walls/Wall1" index="1"]
@@ -153,14 +153,14 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 20 )
+mesh = SubResource( 2 )
 skeleton = NodePath("..")
 material/0 = null
 
 [node name="Wall2" type="StaticBody" parent="Walls" index="1"]
 
 editor/display_folded = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 50, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -99, 50, 0 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
@@ -173,7 +173,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="Walls/Wall2" index="0"]
 
-shape = SubResource( 19 )
+shape = SubResource( 1 )
 disabled = false
 
 [node name="MeshInstance" type="MeshInstance" parent="Walls/Wall2" index="1"]
@@ -187,14 +187,14 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 20 )
+mesh = SubResource( 2 )
 skeleton = NodePath("..")
 material/0 = null
 
 [node name="Wall3" type="StaticBody" parent="Walls" index="2"]
 
 editor/display_folded = true
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0, 50, 100 )
+transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0, 50, 99 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
@@ -207,7 +207,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="Walls/Wall3" index="0"]
 
-shape = SubResource( 19 )
+shape = SubResource( 1 )
 disabled = false
 
 [node name="MeshInstance" type="MeshInstance" parent="Walls/Wall3" index="1"]
@@ -221,14 +221,14 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 20 )
+mesh = SubResource( 2 )
 skeleton = NodePath("..")
 material/0 = null
 
 [node name="Wall4" type="StaticBody" parent="Walls" index="3"]
 
 editor/display_folded = true
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0, 50, -100 )
+transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0, 50, -99 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
@@ -241,7 +241,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="Walls/Wall4" index="0"]
 
-shape = SubResource( 19 )
+shape = SubResource( 1 )
 disabled = false
 
 [node name="MeshInstance" type="MeshInstance" parent="Walls/Wall4" index="1"]
@@ -255,7 +255,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 20 )
+mesh = SubResource( 2 )
 skeleton = NodePath("..")
 material/0 = null
 
@@ -275,7 +275,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="Walls/Ceiling" index="0"]
 
-shape = SubResource( 21 )
+shape = SubResource( 3 )
 disabled = false
 
 [node name="MeshInstance" type="MeshInstance" parent="Walls/Ceiling" index="1"]
@@ -289,7 +289,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 22 )
+mesh = SubResource( 4 )
 skeleton = NodePath("..")
 material/0 = null
 
@@ -308,7 +308,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="Walls/Floor" index="0"]
 
-shape = SubResource( 23 )
+shape = SubResource( 5 )
 disabled = false
 _sections_unfolded = [ "Transform", "Visibility" ]
 
@@ -323,14 +323,14 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 24 )
+mesh = SubResource( 6 )
 skeleton = NodePath("..")
 material/0 = null
 
 [node name="DoorD" type="StaticBody" parent="." index="1"]
 
 editor/display_folded = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, -99 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, -98 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
@@ -353,14 +353,14 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 25 )
+mesh = SubResource( 7 )
 skeleton = NodePath("..")
-material/0 = SubResource( 26 )
+material/0 = SubResource( 8 )
 _sections_unfolded = [ "Transform", "material" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="DoorD" index="1"]
 
-shape = SubResource( 27 )
+shape = SubResource( 9 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
@@ -376,15 +376,20 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 18 )
+mesh = SubResource( 10 )
 skeleton = NodePath("..")
 material/0 = null
+_sections_unfolded = [ "Transform" ]
+
+[node name="MovePos" type="Position3D" parent="DoorD" index="3"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13, -10 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="DoorU" type="StaticBody" parent="." index="2"]
 
 editor/display_folded = true
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 13, 99 )
+transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 13, 98 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
@@ -407,14 +412,14 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 25 )
+mesh = SubResource( 7 )
 skeleton = NodePath("..")
-material/0 = SubResource( 26 )
+material/0 = SubResource( 8 )
 _sections_unfolded = [ "Transform", "material" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="DoorU" index="1"]
 
-shape = SubResource( 27 )
+shape = SubResource( 9 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
@@ -430,15 +435,20 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 18 )
+mesh = SubResource( 10 )
 skeleton = NodePath("..")
 material/0 = null
+_sections_unfolded = [ "Transform" ]
+
+[node name="MovePos" type="Position3D" parent="DoorU" index="3"]
+
+transform = Transform( -1, 0, 8.74228e-008, 0, 1, 0, -8.74228e-008, 0, -1, 0, -13, -10 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="DoorL" type="StaticBody" parent="." index="3"]
 
 editor/display_folded = true
-transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, 99, 13, 0 )
+transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, 98, 13, 0 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
@@ -461,14 +471,14 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 25 )
+mesh = SubResource( 7 )
 skeleton = NodePath("..")
-material/0 = SubResource( 26 )
+material/0 = SubResource( 8 )
 _sections_unfolded = [ "Transform", "material" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="DoorL" index="1"]
 
-shape = SubResource( 27 )
+shape = SubResource( 9 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
@@ -484,15 +494,20 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 18 )
+mesh = SubResource( 10 )
 skeleton = NodePath("..")
 material/0 = null
+_sections_unfolded = [ "Transform" ]
+
+[node name="MovePos" type="Position3D" parent="DoorL" index="3"]
+
+transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0, -13, -10 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="DoorR" type="StaticBody" parent="." index="4"]
 
 editor/display_folded = true
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, -99, 13, 0 )
+transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, -98, 13, 0 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
@@ -515,14 +530,14 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 25 )
+mesh = SubResource( 7 )
 skeleton = NodePath("..")
-material/0 = SubResource( 26 )
+material/0 = SubResource( 8 )
 _sections_unfolded = [ "Transform", "material" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="DoorR" index="1"]
 
-shape = SubResource( 27 )
+shape = SubResource( 9 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
@@ -538,9 +553,14 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 18 )
+mesh = SubResource( 10 )
 skeleton = NodePath("..")
 material/0 = null
+_sections_unfolded = [ "Transform" ]
+
+[node name="MovePos" type="Position3D" parent="DoorR" index="3"]
+
+transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, 0, -13, -10 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Area" type="Area" parent="." index="5"]
@@ -571,23 +591,23 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="Area" index="0"]
 
-shape = SubResource( 28 )
+shape = SubResource( 11 )
 disabled = false
 
 [node name="OmniLight" type="OmniLight" parent="." index="6"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 80, 0 )
 layers = 1
-light_color = Color( 1, 1, 1, 1 )
-light_energy = 1.0
+light_color = Color( 0.545098, 0.533333, 0.466667, 1 )
+light_energy = 0.2
 light_indirect_energy = 1.0
 light_negative = false
-light_specular = 0.5
+light_specular = 0.6
 light_bake_mode = 1
 light_cull_mask = -1
 shadow_enabled = true
 shadow_color = Color( 0, 0, 0, 1 )
-shadow_bias = 3.0
+shadow_bias = 5.0
 shadow_contact = 0.0
 shadow_reverse_cull_face = false
 editor_only = false
