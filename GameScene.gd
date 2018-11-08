@@ -1,39 +1,21 @@
 extends Node
 
 var _player
-var _enemy = preload("Enemy/EnemyScene.tscn")
-var _spawn_point
-var _spawn_time = 0
-var _spawn_count = 10
-
-var _navigation
 
 
 func _ready():
+    _make_room("Rooms/StartRoom.tscn", [1, 0, 0, 0], 0, Vector3(0, 0, 0))
+    _make_room("Rooms/Room1.tscn", [1, 0, 1, 0], 10, Vector3(0, 0, 200))
+    
     _player = $Player
-    _spawn_point = $SpawnPoint
-    _navigation = $World/Navigation
-
-
-func _process(delta):
-    if _spawn_count <= 0:
-        return
-        
-    _spawn_time += delta
-    if _spawn_time < 0.5:
-        return
-        
-    _spawn_time = 0
+    _player.global_transform.origin = Vector3(0, 0, 0)
     
-    var _spawn_point_pos = _spawn_point.transform.origin
     
-    _spawn_point_pos.z += rand_range(0, 10)
-    _spawn_point_pos.x += rand_range(-50, 50)
-    
-    var spawn_enemy = _enemy.instance()
-    spawn_enemy._player = _player
-    spawn_enemy._navigation = _navigation
-    add_child(spawn_enemy)
-    spawn_enemy.global_translate(_spawn_point_pos)
-    
-    _spawn_count -= 1
+func _make_room(room_name, door_info, enemy_spawn, room_pos):
+    var room = load(room_name)
+    var room_instance = room.instance()
+    room_instance._room_info.door = door_info
+    room_instance._room_info.enemy_spawn = enemy_spawn
+    room_instance._room_info.navi_transform = room_pos
+    room_instance.global_transform.origin = (room_pos)
+    add_child(room_instance)

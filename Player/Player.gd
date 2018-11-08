@@ -1,70 +1,71 @@
 extends KinematicBody
 
 const GRAVITY = -24.8
-var vel = Vector3()
 const MAX_SPEED = 20
 const JUMP_SPEED = 18
 const ACCEL= 4.5
 
 const MAX_SPRINT_SPEED = 40
 const SPRINT_ACCEL = 18
-var is_spriting = false
-
-var flashlight
-
-var dir = Vector3()
-
 const DEACCEL= 16
 const MAX_SLOPE_ANGLE = 40
-
-var camera
-var rotation_helper
-
-var MOUSE_SENSITIVITY = 0.1
 
 const WEAPON_NUMBER_TO_NAME = {0:"UNARMED", 1:"MELEE", 2:"BULLET", 3:"RAY"}
 const WEAPON_NAME_TO_NUMBER = {"UNARMED":0, "MELEE":1, "BULLET":2, "RAY":3}
 
-var current_weapon_name = "UNARMED"
-var weapons = {"UNARMED":null, "MELEE":null, "BULLET":null, "RAY":null}
-var changing_weapon = false
-var changing_weapon_name = "UNARMED"
+# player infos
+var _vel = Vector3()
+var _dir = Vector3()
 
-var health = 100
-var UI_status_label
+var _mouse_sensitivity = 0.1
 
-var gun_model
-var gun_ray
+var _current_weapon_name = "UNARMED"
+var _weapons = {"UNARMED":null, "MELEE":null, "BULLET":null, "RAY":null}
+var _changing_weapon = false
+var _changing_weapon_name = "UNARMED"
+
+var _health = 100
+var _is_spriting = false
+
+# object ref
+var _camera
+var _rotation_helper
+var _lb_player_status
+var _gun_model
+var _gun_ray
+
+var _game_scene
 
 
 func _ready():
-    camera = $RotationHelper/Camera
-    rotation_helper = $RotationHelper
-    gun_model = $RotationHelper/Model/BulletGun
-    gun_model.hide()
+    _game_scene = get_tree().root.get_children()[0]
     
-    gun_ray = $RotationHelper/GunFirePoints/RayFire/RayCast
+    _camera = $RotationHelper/Camera
+    _rotation_helper = $RotationHelper
+    _gun_model = $RotationHelper/Model/BulletGun
+    _gun_model.hide()
+    
+    _gun_ray = $RotationHelper/GunFirePoints/RayFire/RayCast
 
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
     
-    weapons["MELEE"] = $RotationHelper/GunFirePoints/MeleeFire
-    weapons["BULLET"] = $RotationHelper/GunFirePoints/BulletFire
-    weapons["RAY"] = $RotationHelper/GunFirePoints/RayFire
+    _weapons["MELEE"] = $RotationHelper/GunFirePoints/MeleeFire
+    _weapons["BULLET"] = $RotationHelper/GunFirePoints/BulletFire
+    _weapons["RAY"] = $RotationHelper/GunFirePoints/RayFire
 
     var gun_aim_point_pos = $RotationHelper/GunFirePoints.global_transform.origin
 
-    for weapon in weapons:
-        var weapon_node = weapons[weapon]
+    for weapon in _weapons:
+        var weapon_node = _weapons[weapon]
         if weapon_node != null:
-            weapon_node.player_node = self
+            weapon_node._player_node = self
             #weapon_node.look_at(gun_aim_point_pos, Vector3(0, 1, 0))
             #weapon_node.rotate_object_local(Vector3(0, 1, 0), deg2rad(180))
 
-    current_weapon_name = "UNARMED"
-    changing_weapon_name = "UNARMED"
+    _current_weapon_name = "UNARMED"
+    _changing_weapon_name = "UNARMED"
 
-    UI_status_label = $Hud/Panel/GunLabel
-    flashlight = $Rotation_Helper/Flashlight
+    _lb_player_status = $Hud/Panel/GunLabel
     
 
 func _physics_process(delta):
@@ -75,8 +76,8 @@ func _physics_process(delta):
 
 func process_input(delta):
     # Walking
-    dir = Vector3()
-    var cam_xform = camera.get_global_transform()
+    _dir = Vector3()
+    var cam_xform = _camera.global_transform
 
     var input_movement_vector = Vector2()
 
@@ -91,8 +92,8 @@ func process_input(delta):
 
     input_movement_vector = input_movement_vector.normalized()
 
-    dir += -cam_xform.basis.z.normalized() * input_movement_vector.y
-    dir += cam_xform.basis.x.normalized() * input_movement_vector.x
+    _dir += -cam_xform.basis.z.normalized() * input_movement_vector.y
+    _dir += cam_xform.basis.x.normalized() * input_movement_vector.x
     
     # Jumping
 #    if is_on_floor():
@@ -100,27 +101,17 @@ func process_input(delta):
 #            vel.y = JUMP_SPEED
     
     # Sprinting
-    if Input.is_action_pressed("movement_sprint"):
-        is_spriting = true
-    else:
-        is_spriting = false
-    
-    # Turning the flashlight on/off
-#    if Input.is_action_just_pressed("flashlight"):
-#        if flashlight.is_visible_in_tree():
-#            flashlight.hide()
-#        else:
-#            flashlight.show()
+    _is_spriting = Input.is_action_pressed("movement_sprint")
     
     # Capturing/Freeing the cursor
-    if Input.is_action_just_pressed("ui_cancel"):
-        if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
-            Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-        else:
-            Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+#    if Input.is_action_just_pressed("ui_cancel"):
+#        if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+#            Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+#        else:
+#            Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
             
     # Changing weapons.
-    var weapon_change_number = WEAPON_NAME_TO_NUMBER[current_weapon_name]
+    var weapon_change_number = WEAPON_NAME_TO_NUMBER[_current_weapon_name]
 
     if Input.is_key_pressed(KEY_1):
         weapon_change_number = 0
@@ -138,129 +129,115 @@ func process_input(delta):
 
     weapon_change_number = clamp(weapon_change_number, 0, WEAPON_NUMBER_TO_NAME.size()-1)
 
-    if changing_weapon == false:
-        if WEAPON_NUMBER_TO_NAME[weapon_change_number] != current_weapon_name:
-            changing_weapon_name = WEAPON_NUMBER_TO_NAME[weapon_change_number]
-            changing_weapon = true
+    if _changing_weapon == false:
+        if WEAPON_NUMBER_TO_NAME[weapon_change_number] != _current_weapon_name:
+            _changing_weapon_name = WEAPON_NUMBER_TO_NAME[weapon_change_number]
+            _changing_weapon = true
             
     # Firing the weapons
     if Input.is_action_pressed("fire"):
-        if changing_weapon == false:
-            var current_weapon = weapons[current_weapon_name]
+        if _changing_weapon == false:
+            var current_weapon = _weapons[_current_weapon_name]
             if current_weapon != null:
                 fire_bullet()
 #                if animation_manager.current_state == current_weapon.IDLE_ANIM_NAME:
 #                    animation_manager.set_animation(current_weapon.FIRE_ANIM_NAME)
 
-    if Input.is_action_just_pressed("use_key"):
+    if Input.is_action_just_pressed("action_use"):
         on_input_use()
 
 
 func on_input_use():
-    gun_ray.force_raycast_update()
-    if false == gun_ray.is_colliding():
+    _gun_ray.force_raycast_update()
+    if false == _gun_ray.is_colliding():
         return
         
-    var body = gun_ray.get_collider()
-    if body.get_name() == "Door" and body.transform.origin.distance_to(self.transform.origin) < 30.0:
-        var direction = self.transform.origin - body.transform.origin
-        direction = direction.normalized()
-        
-        var move_pos = body.transform.origin
-        move_pos.y = 0
-        if direction.z < 0:
-            move_pos.z = move_pos.z + 20
-        else:
-            move_pos.z = move_pos.z - 20
-        
-        self.transform.origin = move_pos
+    var body = _gun_ray.get_collider()
+    if body.has_method("_on_action_use"):
+        body._on_action_use()
 
 
 func process_changing_weapons(delta):
-    if changing_weapon == false:
+    if _changing_weapon == false:
         return
 
     var weapon_unequipped = false
-    var current_weapon = weapons[current_weapon_name]
+    var current_weapon = _weapons[_current_weapon_name]
 
     if current_weapon == null:
         weapon_unequipped = true
     else:
-        if current_weapon.is_weapon_enabled == true:
+        if current_weapon._is_weapon_enabled == true:
             weapon_unequipped = current_weapon.unequip_weapon()
         else:
             weapon_unequipped = true
 
     if weapon_unequipped == true:
         var weapon_equiped = false
-        var weapon_to_equip = weapons[changing_weapon_name]
+        var weapon_to_equip = _weapons[_changing_weapon_name]
 
         if weapon_to_equip == null:
             weapon_equiped = true
         else:
-            if weapon_to_equip.is_weapon_enabled == false:
+            if weapon_to_equip._is_weapon_enabled == false:
                 weapon_equiped = weapon_to_equip.equip_weapon()
             else:
                 weapon_equiped = true
 
         if weapon_equiped == true:
-            changing_weapon = false
-            current_weapon_name = changing_weapon_name
-            changing_weapon_name = ""
+            _changing_weapon = false
+            _current_weapon_name = _changing_weapon_name
+            _changing_weapon_name = ""
             
-            if current_weapon_name == "BULLET" or current_weapon_name == "RAY":
-                gun_model.show()
+            if _current_weapon_name == "BULLET" or _current_weapon_name == "RAY":
+                _gun_model.show()
             else:
-                gun_model.hide()
+                _gun_model.hide()
             
-            UI_status_label.text = current_weapon_name
+            _lb_player_status.text = _current_weapon_name
     
 
 func process_movement(delta):
-    dir.y = 0
-    dir = dir.normalized()
+    _dir.y = 0
+    _dir = _dir.normalized()
 
-    vel.y += delta*GRAVITY
+    _vel.y += delta * GRAVITY
 
-    var hvel = vel
+    var hvel = _vel
     hvel.y = 0
 
-    var target = dir
-    if is_spriting:
-        target *= MAX_SPRINT_SPEED
-    else:
-        target *= MAX_SPEED
+    var target = _dir * MAX_SPEED if false == _is_spriting else _dir * MAX_SPRINT_SPEED
 
     var accel
-    if dir.dot(hvel) > 0:
-        if is_spriting:
+    if _dir.dot(hvel) > 0:
+        if _is_spriting:
             accel = SPRINT_ACCEL
         else:
             accel = ACCEL
     else:
         accel = DEACCEL
 
-    hvel = hvel.linear_interpolate(target, accel*delta)
-    vel.x = hvel.x
-    vel.z = hvel.z
-    vel = move_and_slide(vel,Vector3(0,1,0), 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
+    hvel = hvel.linear_interpolate(target, accel * delta)
+    _vel.x = hvel.x
+    _vel.z = hvel.z
+    _vel = move_and_slide(_vel, Vector3(0, 1, 0), 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
     
 
 func _input(event):
     if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-        rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY))
-        self.rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
+        _rotation_helper.rotate_x(deg2rad(event.relative.y * _mouse_sensitivity))
+        self.rotate_y(deg2rad(event.relative.x * _mouse_sensitivity * -1))
 
-        var camera_rot = rotation_helper.rotation_degrees
+        var camera_rot = _rotation_helper.rotation_degrees
         camera_rot.x = clamp(camera_rot.x, -70, 70)
-        rotation_helper.rotation_degrees = camera_rot
+        _rotation_helper.rotation_degrees = camera_rot
         
 
 func fire_bullet():
-    if changing_weapon == true:
+    if _changing_weapon == true:
         return
 
-    weapons[current_weapon_name].fire_weapon()
+    _weapons[_current_weapon_name].fire_weapon()
     
     
 func bullet_hit(damage, bullet_hit_pos):

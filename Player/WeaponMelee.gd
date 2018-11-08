@@ -2,8 +2,8 @@ extends Spatial
 
 const DAMAGE = 40
 
-var is_weapon_enabled = false
-var player_node = null
+var _is_weapon_enabled = false
+var _player_node = null
 
 func _ready():
     pass
@@ -13,14 +13,14 @@ func fire_weapon():
     var bodies = area.get_overlapping_bodies()
 
     for body in bodies:
-        if body == player_node:
+        if body == _player_node:
             continue
 
         if body.has_method("bullet_hit"):
             body.bullet_hit(DAMAGE, area.global_transform.origin)
 
 func equip_weapon():
-    is_weapon_enabled = true
+    _is_weapon_enabled = true
     return true
 #	if player_node.animation_manager.current_state == IDLE_ANIM_NAME:
 #		is_weapon_enabled = true
@@ -32,7 +32,7 @@ func equip_weapon():
 #	return false
 
 func unequip_weapon():
-    is_weapon_enabled = false
+    _is_weapon_enabled = false
     return true
 #	if player_node.animation_manager.current_state == IDLE_ANIM_NAME:
 #		player_node.animation_manager.set_animation("Knife_unequip")

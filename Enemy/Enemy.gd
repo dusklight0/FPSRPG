@@ -1,21 +1,24 @@
 extends KinematicBody
 
 var _player
-var _enemy_speed = 8
+var _enemy_speed = 12
 var _hp_bar
-var _hp = 500
-var _max_hp = 500
+var _hp = 100
+var _max_hp = 100
 
 var _bullet = preload("EnemyBullet.tscn")
 var _bullet_time = 0
 
-var destroy = false
+var _destroy = false
 
 var _navigation
 var _path = []
 var _navigation_update_time = 0.0
+var _nav_transform = Vector3(0, 0, 0)
 
 func _ready():
+    var scene_root = get_tree().root.get_children()[0]
+    _player = scene_root._player
     _hp_bar = $RotationHelper/Model/HpBar
 
 
@@ -31,9 +34,7 @@ func bullet_hit(damage, bullet_hit_pos):
     
     
 func destroy_enemy():
-    destroy = true
-    _bullet = null 
-    _player = null
+    _destroy = true
     queue_free()
     
 
@@ -43,14 +44,14 @@ func _process(delta):
     
 func _update_path():
     var begin = _navigation.get_closest_point(self.transform.origin)
-    var end = _navigation.get_closest_point(_player.transform.origin)
+    var end = _navigation.get_closest_point(_player.transform.origin - _nav_transform)
     var p =_navigation.get_simple_path(begin, end, true)
     _path = Array(p)
     _path.invert()
     
     
 func _physics_process(delta):
-    if destroy:
+    if _destroy:
         return
         
     _navigation_update_time += delta
@@ -86,14 +87,14 @@ func process_movement(delta):
         t = t.looking_at(self.transform.origin + atdir, Vector3(0, 1, 0))
         self.set_transform(t)
         
-        move_and_slide(atdir * 3, Vector3(0,1,0), false, 4, deg2rad(40))
+        move_and_slide(atdir * _enemy_speed, Vector3(0,1,0), false, 4, deg2rad(40))
 
         if _path.size() < 2:
             _path = []
     
     
 func _attack_enemy(delta):
-    if destroy:
+    if _destroy:
         return
         
     if _bullet == null:

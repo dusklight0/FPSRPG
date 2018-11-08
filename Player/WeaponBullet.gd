@@ -2,28 +2,29 @@ extends Spatial
 
 const DAMAGE = 15
 
-var is_weapon_enabled = false
-var player_node = null
-var bullet_scene = preload("PlayerBullet.tscn")
-var fire_pos
+var _is_weapon_enabled = false
+var _player_node = null
+var _bullet_scene = preload("PlayerBullet.tscn")
+var _fire_pos
 
 func _ready():
-    fire_pos = get_parent().get_parent().get_node("Model/BulletGun/FirePos")
+    _fire_pos = get_parent().get_parent().get_node("Model/BulletGun/FirePos")
     
 
 func fire_weapon():
-    var clone = bullet_scene.instance()
+    var clone = _bullet_scene.instance()
     var scene_root = get_tree().root.get_children()[0]
     scene_root.add_child(clone)
 
     clone.BULLET_DAMAGE = DAMAGE
-    clone.global_transform = fire_pos.global_transform
-    clone.direction = fire_pos.global_transform.basis.z.normalized()
+    clone.global_transform = _fire_pos.global_transform
+    clone.direction = _fire_pos.global_transform.basis.z.normalized()
+    clone._player = _player_node
     
 
 func equip_weapon():
-    fire_pos = get_parent().get_parent().get_node("Model/BulletGun/FirePos")
-    is_weapon_enabled = true
+    _fire_pos = get_parent().get_parent().get_node("Model/BulletGun/FirePos")
+    _is_weapon_enabled = true
     return true
 #	if player_node.animation_manager.current_state == IDLE_ANIM_NAME:
 #		is_weapon_enabled = true
@@ -35,7 +36,7 @@ func equip_weapon():
 #	return false
 
 func unequip_weapon():
-    is_weapon_enabled = false
+    _is_weapon_enabled = false
     return true
 #	if player_node.animation_manager.current_state == IDLE_ANIM_NAME:
 #		if player_node.animation_manager.current_state != "Pistol_unequip":
