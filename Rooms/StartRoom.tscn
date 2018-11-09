@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Rooms/Room.gd" type="Script" id=1]
 [ext_resource path="res://Rooms/Door.gd" type="Script" id=2]
@@ -7,39 +7,29 @@
 
 extents = Vector3( 1, 50, 100 )
 
-[sub_resource type="CubeMesh" id=2]
+[sub_resource type="PlaneMesh" id=2]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
-size = Vector3( 1, 100, 200 )
+size = Vector2( 100, 200 )
 subdivide_width = 0
-subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape" id=4]
 
 extents = Vector3( 1, 100, 100 )
 
-[sub_resource type="CubeMesh" id=4]
+[sub_resource type="PlaneMesh" id=13]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
-size = Vector3( 1, 200, 200 )
+size = Vector2( 200, 200 )
 subdivide_width = 0
-subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="BoxShape" id=5]
+[sub_resource type="BoxShape" id=6]
 
 extents = Vector3( 100, 0.1, 100 )
 
-[sub_resource type="CubeMesh" id=6]
-
-custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
-size = Vector3( 200, 1, 200 )
-subdivide_width = 0
-subdivide_height = 0
-subdivide_depth = 0
-
-[sub_resource type="CubeMesh" id=7]
+[sub_resource type="CubeMesh" id=8]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector3( 16, 26, 1 )
@@ -47,7 +37,7 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="SpatialMaterial" id=8]
+[sub_resource type="SpatialMaterial" id=9]
 
 render_priority = 0
 flags_transparent = false
@@ -99,11 +89,11 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Albedo" ]
 
-[sub_resource type="BoxShape" id=9]
+[sub_resource type="BoxShape" id=10]
 
 extents = Vector3( 8, 13, 1 )
 
-[sub_resource type="CubeMesh" id=10]
+[sub_resource type="CubeMesh" id=11]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector3( 2, 2, 1 )
@@ -111,11 +101,11 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="BoxShape" id=11]
+[sub_resource type="BoxShape" id=12]
 
 extents = Vector3( 100, 50, 100 )
 
-[node name="Room" type="Spatial"]
+[node name="Room" type="Spatial" index="0"]
 
 script = ExtResource( 1 )
 
@@ -141,9 +131,11 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 shape = SubResource( 1 )
 disabled = false
+_sections_unfolded = [ "Transform" ]
 
 [node name="MeshInstance" type="MeshInstance" parent="Walls/Wall1" index="1"]
 
+transform = Transform( -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0, 1, 0, 0, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -156,6 +148,7 @@ lod_max_hysteresis = 0.0
 mesh = SubResource( 2 )
 skeleton = NodePath("..")
 material/0 = null
+_sections_unfolded = [ "Transform", "material" ]
 
 [node name="Wall2" type="StaticBody" parent="Walls" index="1"]
 
@@ -178,6 +171,7 @@ disabled = false
 
 [node name="MeshInstance" type="MeshInstance" parent="Walls/Wall2" index="1"]
 
+transform = Transform( -4.37114e-008, 1, 0, -1, -4.37114e-008, 0, 0, 0, 1, 0, 0, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -190,6 +184,7 @@ lod_max_hysteresis = 0.0
 mesh = SubResource( 2 )
 skeleton = NodePath("..")
 material/0 = null
+_sections_unfolded = [ "Transform", "material" ]
 
 [node name="Wall3" type="StaticBody" parent="Walls" index="2"]
 
@@ -209,9 +204,11 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 shape = SubResource( 1 )
 disabled = false
+_sections_unfolded = [ "Transform" ]
 
 [node name="MeshInstance" type="MeshInstance" parent="Walls/Wall3" index="1"]
 
+transform = Transform( -4.37114e-008, 1, 0, -1, -4.37114e-008, 0, 0, 0, 1, 0, 0, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -224,6 +221,7 @@ lod_max_hysteresis = 0.0
 mesh = SubResource( 2 )
 skeleton = NodePath("..")
 material/0 = null
+_sections_unfolded = [ "Transform" ]
 
 [node name="Wall4" type="StaticBody" parent="Walls" index="3"]
 
@@ -246,6 +244,7 @@ disabled = false
 
 [node name="MeshInstance" type="MeshInstance" parent="Walls/Wall4" index="1"]
 
+transform = Transform( -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0, 1, 0, 0, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -258,6 +257,7 @@ lod_max_hysteresis = 0.0
 mesh = SubResource( 2 )
 skeleton = NodePath("..")
 material/0 = null
+_sections_unfolded = [ "Transform" ]
 
 [node name="Ceiling" type="StaticBody" parent="Walls" index="4"]
 
@@ -275,11 +275,12 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="Walls/Ceiling" index="0"]
 
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 disabled = false
 
 [node name="MeshInstance" type="MeshInstance" parent="Walls/Ceiling" index="1"]
 
+transform = Transform( -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0, 1, 0, 0, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -289,9 +290,10 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 4 )
+mesh = SubResource( 13 )
 skeleton = NodePath("..")
 material/0 = null
+_sections_unfolded = [ "Transform" ]
 
 [node name="Floor" type="StaticBody" parent="Walls" index="5"]
 
@@ -308,7 +310,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="Walls/Floor" index="0"]
 
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 disabled = false
 _sections_unfolded = [ "Transform", "Visibility" ]
 
@@ -323,9 +325,10 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 6 )
+mesh = SubResource( 13 )
 skeleton = NodePath("..")
 material/0 = null
+_sections_unfolded = [ "material" ]
 
 [node name="DoorD" type="StaticBody" parent="." index="1"]
 
@@ -353,14 +356,14 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 7 )
+mesh = SubResource( 8 )
 skeleton = NodePath("..")
-material/0 = SubResource( 8 )
+material/0 = SubResource( 9 )
 _sections_unfolded = [ "Transform", "material" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="DoorD" index="1"]
 
-shape = SubResource( 9 )
+shape = SubResource( 10 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
@@ -376,7 +379,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 10 )
+mesh = SubResource( 11 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
@@ -412,14 +415,14 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 7 )
+mesh = SubResource( 8 )
 skeleton = NodePath("..")
-material/0 = SubResource( 8 )
+material/0 = SubResource( 9 )
 _sections_unfolded = [ "Transform", "material" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="DoorU" index="1"]
 
-shape = SubResource( 9 )
+shape = SubResource( 10 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
@@ -435,7 +438,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 10 )
+mesh = SubResource( 11 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
@@ -471,14 +474,14 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 7 )
+mesh = SubResource( 8 )
 skeleton = NodePath("..")
-material/0 = SubResource( 8 )
+material/0 = SubResource( 9 )
 _sections_unfolded = [ "Transform", "material" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="DoorL" index="1"]
 
-shape = SubResource( 9 )
+shape = SubResource( 10 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
@@ -494,7 +497,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 10 )
+mesh = SubResource( 11 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
@@ -530,14 +533,14 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 7 )
+mesh = SubResource( 8 )
 skeleton = NodePath("..")
-material/0 = SubResource( 8 )
+material/0 = SubResource( 9 )
 _sections_unfolded = [ "Transform", "material" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="DoorR" index="1"]
 
-shape = SubResource( 9 )
+shape = SubResource( 10 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
@@ -553,7 +556,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 10 )
+mesh = SubResource( 11 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
@@ -591,7 +594,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="Area" index="0"]
 
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 disabled = false
 
 [node name="OmniLight" type="OmniLight" parent="." index="6"]
