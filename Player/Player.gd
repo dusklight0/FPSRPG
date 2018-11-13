@@ -1,12 +1,12 @@
 extends KinematicBody
 
 const GRAVITY = -24.8
-const MAX_SPEED = 20
+const MAX_SPEED = 40
 const JUMP_SPEED = 18
 const ACCEL= 4.5
 
-const MAX_SPRINT_SPEED = 40
-const SPRINT_ACCEL = 18
+const MAX_SPRINT_SPEED = 60
+const SPRINT_ACCEL = 20
 const DEACCEL= 16
 const MAX_SLOPE_ANGLE = 40
 
@@ -227,7 +227,7 @@ func process_movement(delta):
     hvel = hvel.linear_interpolate(target, accel * delta)
     _vel.x = hvel.x
     _vel.z = hvel.z
-    _vel = move_and_slide(_vel, Vector3(0, 1, 0), 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
+    _vel = move_and_slide(_vel, Vector3(0, 1 ,0), false, 4, deg2rad(40))
     
 
 func _input(event):

@@ -73,7 +73,7 @@ func _physics_process(delta):
         return
         
     _navigation_update_time += delta
-    if _navigation_update_time > 0.1:
+    if _navigation_update_time > 0.5:
         _update_path()
         _navigation_update_time = 0
         
@@ -105,7 +105,7 @@ func process_movement(delta):
         t = t.looking_at(self.transform.origin + atdir, Vector3(0, 1, 0))
         self.set_transform(t)
         
-        move_and_slide(atdir * _enemy_speed, Vector3(0,1,0), false, 4, deg2rad(40))
+        move_and_slide(atdir * _enemy_speed, Vector3(0, 1 ,0), false, 4, deg2rad(40))
 
         if _path.size() < 2:
             _path = []

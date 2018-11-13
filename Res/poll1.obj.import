@@ -1,0 +1,17 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/poll1.obj-61bc82b8e62f513eb20ebd330194e040.mesh"
+
+[deps]
+
+files=[ "res://.import/poll1.obj-61bc82b8e62f513eb20ebd330194e040.mesh" ]
+
+source_file="res://Res/poll1.obj"
+dest_files=[ "res://.import/poll1.obj-61bc82b8e62f513eb20ebd330194e040.mesh", "res://.import/poll1.obj-61bc82b8e62f513eb20ebd330194e040.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )

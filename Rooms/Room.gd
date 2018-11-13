@@ -16,7 +16,7 @@ var _room_info = {
     }
 
 func _ready():
-    _doors = [$DoorU, $DoorR, $DoorD, $DoorL]
+    _doors = [$Doors/DoorU, $Doors/DoorR, $Doors/DoorD, $Doors/DoorL]
     _spawn_points = $SpawnPoints
     _navigation = $Navigation
     _enemy = load("Enemy/EnemyScene.tscn")
