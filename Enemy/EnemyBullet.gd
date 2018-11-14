@@ -26,6 +26,9 @@ func collided(body):
         return
         
     var body_name = body.get_name()
+    
+    print('------>', body_name)
+    
     if body_name.find("Enemy") > 0:
         return
         

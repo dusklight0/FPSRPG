@@ -7,11 +7,24 @@ var _player_node = null
 var _bullet_scene = preload("PlayerBullet.tscn")
 var _fire_pos
 
+var _attack_rate = 0.5
+var _last_attack_rate = 0.0
+
 func _ready():
     _fire_pos = get_parent().get_parent().get_node("Model/BulletGun/FirePos")
     
+    
+func _process(delta):
+    if _last_attack_rate > 0.0:
+        _last_attack_rate -= delta
+    
 
 func fire_weapon():
+    if _last_attack_rate > 0.0:
+        return
+        
+    _last_attack_rate = _attack_rate
+    
     var clone = _bullet_scene.instance()
     var scene_root = get_tree().root.get_children()[0]
     scene_root.add_child(clone)

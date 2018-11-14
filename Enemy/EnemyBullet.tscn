@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Enemy/EnemyBullet.gd" type="Script" id=1]
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape" id=1]
 
 extents = Vector3( 0.05, 0.05, 0.5 )
 
@@ -14,7 +14,7 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=3]
 
 render_priority = 0
 flags_transparent = false
@@ -66,7 +66,7 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Albedo" ]
 
-[node name="EnemyBullet" type="Spatial"]
+[node name="EnemyBullet" type="Spatial" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "Visibility" ]
@@ -86,7 +86,7 @@ angular_damp = 1.0
 priority = 0.0
 monitoring = true
 monitorable = true
-collision_layer = 8
+collision_layer = 16
 collision_mask = 1
 audio_bus_override = false
 audio_bus_name = "Master"
@@ -98,7 +98,7 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="Area" index="0"]
 
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 disabled = false
 
 [node name="BulletMesh" type="Spatial" parent="." index="1"]
@@ -118,7 +118,7 @@ lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
 mesh = SubResource( 2 )
 skeleton = NodePath("..")
-material/0 = SubResource( 4 )
+material/0 = SubResource( 3 )
 _sections_unfolded = [ "material" ]
 
 

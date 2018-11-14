@@ -20,11 +20,25 @@ var _path = []
 var _navigation_update_time = 0.0
 var _nav_transform = Vector3(0, 0, 0)
 
+var _hit_dir
+var _impact_delta = 0.0
+
 func _ready():
     var scene_root = get_tree().root.get_children()[0]
     _player = scene_root._player
     _hp_bar = $RotationHelper/Model/HpBar
     _bullet = load("res://Enemy/EnemyBullet.tscn")
+    
+    
+func impact_enemy(delta):
+    move_and_slide(_hit_dir * 40, Vector3(0, 1 ,0), 0.05, 4, deg2rad(40))
+    
+    if _impact_delta < 0.07:
+        self.transform.origin.y = lerp(0.0, 1.0, (_impact_delta * 100)/70)
+    else:
+        self.transform.origin.y = lerp(1.0, 0.0, (_impact_delta * 100)/200)
+        
+    _impact_delta += delta
 
 
 func bullet_hit(damage, bullet_hit_pos):
@@ -35,8 +49,11 @@ func bullet_hit(damage, bullet_hit_pos):
     _hp_bar.region_rect = Rect2(0, 0, 500 * _hp/_max_hp, 40)
     
     var enemy_stop = rand_range(0, 100)
-    if enemy_stop < 20 and _stop_time <= 0.0:        
-        _stop_time = 1.0
+    if enemy_stop < 20 and _stop_time <= 0.0:
+        _stop_time = 0.2
+        _impact_delta = 0.0
+        _hit_dir = (bullet_hit_pos - _player.transform.origin).normalized()
+        _hit_dir.y = 0
     
     if _hp <= 0:        
         destroy_enemy()
@@ -63,17 +80,19 @@ func _process(delta):
         return
         
     if _stop_time > 0.0:
+        impact_enemy(delta)
         _stop_time -= delta
         return
         
     _attack_enemy(delta)
-        
+
     if _attack_stop_time > 0.0:
         _attack_stop_time -= delta
         return
         
     var distance = self.transform.origin.distance_to(_player.transform.origin - _nav_transform)    
     if distance < 50:
+        lookat_enemy()
         return
         
     _navigation_update_time += delta
@@ -82,6 +101,10 @@ func _process(delta):
         _navigation_update_time = 0
         
     process_movement(delta)
+    
+    
+func lookat_enemy():
+    look_at(_player.transform.origin, Vector3(0, 1, 0))
     
     
 func process_movement(delta):

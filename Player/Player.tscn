@@ -71,6 +71,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="RotationHelper" type="Spatial" parent="." index="2"]
 
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0 )
 _sections_unfolded = [ "Transform" ]
 
@@ -149,7 +150,7 @@ light_bake_mode = 1
 light_cull_mask = -1
 shadow_enabled = false
 shadow_color = Color( 0, 0, 0, 1 )
-shadow_bias = 5.0
+shadow_bias = 8.0
 shadow_contact = 0.0
 shadow_reverse_cull_face = false
 editor_only = false
@@ -160,6 +161,8 @@ spot_angle_attenuation = 1.0
 _sections_unfolded = [ "Spot", "Transform" ]
 
 [node name="GunFirePoints" type="Spatial" parent="RotationHelper" index="3"]
+
+editor/display_folded = true
 
 [node name="RayFire" type="Spatial" parent="RotationHelper/GunFirePoints" index="0"]
 
