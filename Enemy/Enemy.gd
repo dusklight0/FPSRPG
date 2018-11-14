@@ -1,5 +1,6 @@
 extends KinematicBody
 
+var _room
 var _player
 var _enemy_speed = 12
 var _hp_bar
@@ -34,7 +35,7 @@ func bullet_hit(damage, bullet_hit_pos):
     _hp_bar.region_rect = Rect2(0, 0, 500 * _hp/_max_hp, 40)
     
     var enemy_stop = rand_range(0, 100)
-    if enemy_stop < 20:
+    if enemy_stop < 20 and _stop_time <= 0.0:        
         _stop_time = 1.0
     
     if _hp <= 0:        
@@ -54,8 +55,11 @@ func _update_path():
     _path.invert()
     
     
-func _physics_process(delta):
+func _process(delta):
     if _destroy:
+        return
+        
+    if _room._player_enter == false:
         return
         
     if _stop_time > 0.0:
@@ -105,7 +109,7 @@ func process_movement(delta):
         t = t.looking_at(self.transform.origin + atdir, Vector3(0, 1, 0))
         self.set_transform(t)
         
-        move_and_slide(atdir * _enemy_speed, Vector3(0, 1 ,0), false, 4, deg2rad(40))
+        move_and_slide(atdir * _enemy_speed, Vector3(0, 1 ,0), 0.05, 4, deg2rad(40))
 
         if _path.size() < 2:
             _path = []

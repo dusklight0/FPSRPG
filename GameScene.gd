@@ -4,13 +4,13 @@ var _player
 
 
 func _ready():
+    _player = $Player
+    _player.global_transform.origin = Vector3(0, 0, 0)
+    
     # U,R,D,L
     _make_room("Rooms/StartRoom.tscn", [1, 0, 0, 0], false, Vector3(0, 0, 0))
     _make_room("Rooms/Room1.tscn", [0, 0, 1, 1], true, Vector3(0, 0, 210))
     _make_room("Rooms/Room1.tscn", [0, 1, 0, 0], true, Vector3(210, 0, 210))
-    
-    _player = $Player
-    _player.global_transform.origin = Vector3(0, 0, 0)
     
     
 func _make_room(room_name, door_info, enemy_spawn, room_pos):

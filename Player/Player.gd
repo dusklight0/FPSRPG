@@ -74,8 +74,8 @@ func _ready():
     
     _lb_player_status.text = _current_weapon_name
     
-
-func _physics_process(delta):
+    
+func _process(delta):
     process_input(delta)
     process_movement(delta)
     process_changing_weapons(delta)
@@ -227,16 +227,16 @@ func process_movement(delta):
     hvel = hvel.linear_interpolate(target, accel * delta)
     _vel.x = hvel.x
     _vel.z = hvel.z
-    _vel = move_and_slide(_vel, Vector3(0, 1 ,0), false, 4, deg2rad(40))
+    _vel = move_and_slide(_vel, Vector3(0, 1 ,0), 0.05, 4, deg2rad(40))
     
 
 func _input(event):
-    if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+    if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:        
         _rotation_helper.rotate_x(deg2rad(event.relative.y * _mouse_sensitivity))
         self.rotate_y(deg2rad(event.relative.x * _mouse_sensitivity * -1))
 
         var camera_rot = _rotation_helper.rotation_degrees
-        camera_rot.x = clamp(camera_rot.x, -70, 70)
+        camera_rot.x = clamp(camera_rot.x, -60, 60)
         _rotation_helper.rotation_degrees = camera_rot
         
 

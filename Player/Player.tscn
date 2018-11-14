@@ -80,7 +80,6 @@ editor/display_folded = true
 
 [node name="BulletGun" type="Spatial" parent="RotationHelper/Model" index="0"]
 
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.25, 0 )
 _sections_unfolded = [ "Transform" ]
 
@@ -130,7 +129,7 @@ h_offset = 0.0
 v_offset = 0.0
 doppler_tracking = 0
 projection = 0
-current = false
+current = true
 fov = 60.0
 size = 1.0
 near = 0.05
@@ -161,8 +160,6 @@ spot_angle_attenuation = 1.0
 _sections_unfolded = [ "Spot", "Transform" ]
 
 [node name="GunFirePoints" type="Spatial" parent="RotationHelper" index="3"]
-
-editor/display_folded = true
 
 [node name="RayFire" type="Spatial" parent="RotationHelper/GunFirePoints" index="0"]
 
