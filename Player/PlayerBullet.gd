@@ -16,7 +16,7 @@ func _ready():
     $Area.connect("body_entered", self, "collided")
 
 
-func _physics_process(delta):
+func _process(delta):
     global_translate(_direction * _bullet_speed * delta)
 
     _timer += delta

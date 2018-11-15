@@ -13,7 +13,7 @@ func _ready():
     $Area.connect("body_entered", self, "collided")
 
 
-func _physics_process(delta):
+func _process(delta):
     global_translate(_direction * _bullet_speed * delta)
 
     _timer += delta
@@ -32,8 +32,8 @@ func collided(body):
     if body_name.find("Enemy") > 0:
         return
         
-    if body.has_method("_on_attacked"):
-        body._on_attacked(_bullet_damage, self.global_transform.origin)
+    if body.has_method("on_attacked"):
+        body.on_attacked(_bullet_damage, self.global_transform.origin)
         
     _hit_something = true
     

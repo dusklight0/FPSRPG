@@ -160,8 +160,8 @@ func on_input_use():
         return
         
     var body = _gun_ray.get_collider()
-    if body.has_method("_on_action_use"):
-        body._on_action_use()
+    if body.has_method("on_action_use"):
+        body.on_action_use()
 
 
 func process_changing_weapons(delta):
@@ -247,7 +247,7 @@ func fire_bullet():
     _weapons[_current_weapon_name].fire_weapon()
     
     
-func _on_attacked(damage, bullet_hit_pos):
+func on_attacked(damage, bullet_hit_pos):
     if _hp <= 0:
         return
         

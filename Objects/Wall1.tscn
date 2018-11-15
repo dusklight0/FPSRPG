@@ -123,8 +123,6 @@ distance_fade_enable = false
 
 [node name="Walls" type="Spatial"]
 
-editor/display_folded = true
-
 [node name="Wall1" type="StaticBody" parent="." index="0"]
 
 editor/display_folded = true
@@ -309,7 +307,6 @@ _sections_unfolded = [ "Transform", "material" ]
 
 [node name="Floor" type="StaticBody" parent="." index="5"]
 
-editor/display_folded = true
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4

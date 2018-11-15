@@ -7,7 +7,7 @@ func _ready():
     _move_pos = $MovePos
 
 
-func _on_action_use():
+func on_action_use():
     var scene_root = get_tree().root.get_children()[0]
     var player = scene_root._player
     

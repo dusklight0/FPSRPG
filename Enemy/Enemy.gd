@@ -64,7 +64,7 @@ func destroy_enemy():
     queue_free()    
     
     
-func _update_path():
+func update_path():
     var begin = _navigation.get_closest_point(self.transform.origin)
     var end = _navigation.get_closest_point(_player.transform.origin - _nav_transform)
     var p =_navigation.get_simple_path(begin, end, true)
@@ -84,7 +84,7 @@ func _process(delta):
         _stop_time -= delta
         return
         
-    _attack_enemy(delta)
+    attack_enemy(delta)
 
     if _attack_stop_time > 0.0:
         _attack_stop_time -= delta
@@ -92,18 +92,18 @@ func _process(delta):
         
     var distance = self.transform.origin.distance_to(_player.transform.origin - _nav_transform)    
     if distance < 50:
-        lookat_enemy()
+        lookat_player()
         return
         
     _navigation_update_time += delta
     if _navigation_update_time > 0.5:
-        _update_path()
+        update_path()
         _navigation_update_time = 0
         
     process_movement(delta)
     
     
-func lookat_enemy():
+func lookat_player():
     look_at(_player.transform.origin, Vector3(0, 1, 0))
     
     
@@ -138,7 +138,7 @@ func process_movement(delta):
             _path = []
     
     
-func _attack_enemy(delta):
+func attack_enemy(delta):
     if _destroy:
         return
         
