@@ -121,7 +121,7 @@ uv2_triplanar_sharpness = 1.0
 proximity_fade_enable = false
 distance_fade_enable = false
 
-[node name="Walls" type="Spatial"]
+[node name="Walls" type="Spatial" index="0"]
 
 [node name="Wall1" type="StaticBody" parent="." index="0"]
 
