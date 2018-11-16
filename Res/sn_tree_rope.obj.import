@@ -1,0 +1,17 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/sn_tree_rope.obj-2c14d8f1af418c00475c5471a383cc46.mesh"
+
+[deps]
+
+files=[ "res://.import/sn_tree_rope.obj-2c14d8f1af418c00475c5471a383cc46.mesh" ]
+
+source_file="res://Res/sn_tree_rope.obj"
+dest_files=[ "res://.import/sn_tree_rope.obj-2c14d8f1af418c00475c5471a383cc46.mesh", "res://.import/sn_tree_rope.obj-2c14d8f1af418c00475c5471a383cc46.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
