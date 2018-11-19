@@ -154,12 +154,12 @@ func process_input(delta):
         on_input_use()
 
 
-func on_input_use():
+func on_input_use():    
     _gun_ray.force_raycast_update()
     if false == _gun_ray.is_colliding():
         return
         
-    var body = _gun_ray.get_collider()
+    var body = _gun_ray.get_collider()    
     if body.has_method("on_action_use"):
         body.on_action_use()
 
