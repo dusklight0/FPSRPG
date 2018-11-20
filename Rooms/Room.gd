@@ -17,11 +17,10 @@ var _room_info = {
 func _ready():
     _doors = [$Doors/DoorU, $Doors/DoorR, $Doors/DoorD, $Doors/DoorL]
     _spawn_points = $SpawnPoints
-    _navigation = $Navigation
+    _navigation = $Navigation    
     
-    
-    $Area.connect("body_entered", self, "room_enter")
-    $Area.connect("body_exited", self, "room_exit")
+    #$Area.connect("body_entered", self, "room_enter")
+    #$Area.connect("body_exited", self, "room_exit")
     
     var index = 0
     for v in _room_info.door:

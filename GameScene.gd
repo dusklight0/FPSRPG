@@ -9,10 +9,13 @@ var _current_scene
 
 
 func _ready():
-    _player = $Player
+    var player_res = load("res://Player/Player.tscn")
+    _player = player_res.instance()
     _player.global_transform.origin = Vector3(0, 0, -60)
+    add_child(_player)
     
-    change_scene("res://Rooms/Home.tscn")
+    #change_scene("res://Rooms/Home.tscn")
+    change_scene("res://Rooms/Dungeon.tscn")
         
         
 func change_scene(path):
@@ -76,4 +79,4 @@ func update_progress():
 
 func set_new_scene(scene_resource):
     _current_scene = scene_resource.instance()
-    get_node("/root").add_child(_current_scene)
+    add_child(_current_scene)

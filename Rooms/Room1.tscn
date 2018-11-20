@@ -124,13 +124,16 @@ enabled = true
 
 [node name="Objects" type="Spatial" parent="." index="1"]
 
+editor/display_folded = true
+
 [node name="BlockWall" type="StaticBody" parent="Objects" index="0"]
 
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 50, 40 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
-collision_mask = 15
+collision_mask = 11
 friction = 1.0
 bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
@@ -163,11 +166,12 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="BlockWall2" type="StaticBody" parent="Objects" index="1"]
 
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 50, 40 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
-collision_mask = 15
+collision_mask = 11
 friction = 1.0
 bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
@@ -200,11 +204,12 @@ _sections_unfolded = [ "Transform", "material" ]
 
 [node name="BlockWall3" type="StaticBody" parent="Objects" index="2"]
 
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 50, -40 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
-collision_mask = 15
+collision_mask = 11
 friction = 1.0
 bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
@@ -237,11 +242,12 @@ _sections_unfolded = [ "Transform", "material" ]
 
 [node name="BlockWall4" type="StaticBody" parent="Objects" index="3"]
 
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 50, -40 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
-collision_mask = 15
+collision_mask = 11
 friction = 1.0
 bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
@@ -279,7 +285,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -91.5648, 0.98402, 92.8382 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
-collision_mask = 7
+collision_mask = 3
 mode = 0
 mass = 5.0
 friction = 1.0

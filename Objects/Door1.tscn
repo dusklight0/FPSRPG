@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Rooms/Door.gd" type="Script" id=1]
+[ext_resource path="res://Objects/Door.gd" type="Script" id=1]
 
-[sub_resource type="CubeMesh" id=1]
+[sub_resource type="CubeMesh" id=6]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector3( 16, 26, 1 )
@@ -10,7 +10,7 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=7]
 
 render_priority = 0
 flags_transparent = false
@@ -62,17 +62,21 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Albedo" ]
 
-[sub_resource type="BoxShape" id=3]
-
-extents = Vector3( 8, 13, 1 )
-
-[sub_resource type="CubeMesh" id=4]
+[sub_resource type="CubeMesh" id=8]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector3( 2, 2, 1 )
 subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
+
+[sub_resource type="BoxShape" id=9]
+
+extents = Vector3( 8, 13, 1 )
+
+[sub_resource type="BoxShape" id=5]
+
+extents = Vector3( 1, 13, 8 )
 
 [node name="Doors" type="Spatial" index="0"]
 
@@ -83,7 +87,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, -98 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
-collision_mask = 7
+collision_mask = 1
 friction = 1.0
 bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
@@ -93,6 +97,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="MeshInstance" type="MeshInstance" parent="DoorD" index="0"]
 
+editor/display_folded = true
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -102,18 +107,12 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 1 )
+mesh = SubResource( 6 )
 skeleton = NodePath("..")
-material/0 = SubResource( 2 )
+material/0 = SubResource( 7 )
 _sections_unfolded = [ "Transform", "material" ]
 
-[node name="CollisionShape" type="CollisionShape" parent="DoorD" index="1"]
-
-shape = SubResource( 3 )
-disabled = false
-_sections_unfolded = [ "Transform" ]
-
-[node name="MeshInstance2" type="MeshInstance" parent="DoorD" index="2"]
+[node name="MeshInstance2" type="MeshInstance" parent="DoorD/MeshInstance" index="0"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
 layers = 1
@@ -125,12 +124,18 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 4 )
+mesh = SubResource( 8 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
 
-[node name="MovePos" type="Position3D" parent="DoorD" index="3"]
+[node name="CollisionShape" type="CollisionShape" parent="DoorD" index="1"]
+
+shape = SubResource( 9 )
+disabled = false
+_sections_unfolded = [ "Transform" ]
+
+[node name="MovePos" type="Position3D" parent="DoorD" index="2"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13, -20 )
 _sections_unfolded = [ "Transform" ]
@@ -138,11 +143,11 @@ _sections_unfolded = [ "Transform" ]
 [node name="DoorU" type="StaticBody" parent="." index="1"]
 
 editor/display_folded = true
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 13, 98 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 98 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
-collision_mask = 7
+collision_mask = 1
 friction = 1.0
 bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
@@ -152,6 +157,8 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="MeshInstance" type="MeshInstance" parent="DoorU" index="0"]
 
+editor/display_folded = true
+transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 0, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -161,18 +168,12 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 1 )
+mesh = SubResource( 6 )
 skeleton = NodePath("..")
-material/0 = SubResource( 2 )
-_sections_unfolded = [ "Transform", "material" ]
+material/0 = SubResource( 7 )
+_sections_unfolded = [ "material" ]
 
-[node name="CollisionShape" type="CollisionShape" parent="DoorU" index="1"]
-
-shape = SubResource( 3 )
-disabled = false
-_sections_unfolded = [ "Transform" ]
-
-[node name="MeshInstance2" type="MeshInstance" parent="DoorU" index="2"]
+[node name="MeshInstance2" type="MeshInstance" parent="DoorU/MeshInstance" index="0"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
 layers = 1
@@ -184,24 +185,30 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 4 )
+mesh = SubResource( 8 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
 
-[node name="MovePos" type="Position3D" parent="DoorU" index="3"]
+[node name="CollisionShape" type="CollisionShape" parent="DoorU" index="1"]
 
-transform = Transform( -1, 0, 8.74228e-008, 0, 1, 0, -8.74228e-008, 0, -1, 0, -13, -20 )
+shape = SubResource( 9 )
+disabled = false
+_sections_unfolded = [ "Transform" ]
+
+[node name="MovePos" type="Position3D" parent="DoorU" index="2"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13, 20 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="DoorL" type="StaticBody" parent="." index="2"]
 
 editor/display_folded = true
-transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, 98, 13, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 98, 13, 0 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
-collision_mask = 7
+collision_mask = 1
 friction = 1.0
 bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
@@ -211,6 +218,8 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="MeshInstance" type="MeshInstance" parent="DoorL" index="0"]
 
+editor/display_folded = true
+transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, 0, 0, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -220,18 +229,12 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 1 )
+mesh = SubResource( 6 )
 skeleton = NodePath("..")
-material/0 = SubResource( 2 )
+material/0 = SubResource( 7 )
 _sections_unfolded = [ "Transform", "material" ]
 
-[node name="CollisionShape" type="CollisionShape" parent="DoorL" index="1"]
-
-shape = SubResource( 3 )
-disabled = false
-_sections_unfolded = [ "Transform" ]
-
-[node name="MeshInstance2" type="MeshInstance" parent="DoorL" index="2"]
+[node name="MeshInstance2" type="MeshInstance" parent="DoorL/MeshInstance" index="0"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
 layers = 1
@@ -243,24 +246,29 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 4 )
+mesh = SubResource( 8 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
 
-[node name="MovePos" type="Position3D" parent="DoorL" index="3"]
+[node name="CollisionShape" type="CollisionShape" parent="DoorL" index="1"]
 
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0, -13, -20 )
+shape = SubResource( 5 )
+disabled = false
+_sections_unfolded = [ "Transform" ]
+
+[node name="MovePos" type="Position3D" parent="DoorL" index="2"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -13, 0 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="DoorR" type="StaticBody" parent="." index="3"]
 
-editor/display_folded = true
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, -98, 13, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -98, 13, 0 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
-collision_mask = 7
+collision_mask = 1
 friction = 1.0
 bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
@@ -270,6 +278,8 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="MeshInstance" type="MeshInstance" parent="DoorR" index="0"]
 
+editor/display_folded = true
+transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0, 0, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -279,18 +289,12 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 1 )
+mesh = SubResource( 6 )
 skeleton = NodePath("..")
-material/0 = SubResource( 2 )
+material/0 = SubResource( 7 )
 _sections_unfolded = [ "Transform", "material" ]
 
-[node name="CollisionShape" type="CollisionShape" parent="DoorR" index="1"]
-
-shape = SubResource( 3 )
-disabled = false
-_sections_unfolded = [ "Transform" ]
-
-[node name="MeshInstance2" type="MeshInstance" parent="DoorR" index="2"]
+[node name="MeshInstance2" type="MeshInstance" parent="DoorR/MeshInstance" index="0"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
 layers = 1
@@ -302,14 +306,19 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 4 )
+mesh = SubResource( 8 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
 
-[node name="MovePos" type="Position3D" parent="DoorR" index="3"]
+[node name="CollisionShape" type="CollisionShape" parent="DoorR" index="1"]
 
-transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, 0, -13, -20 )
+shape = SubResource( 5 )
+disabled = false
 _sections_unfolded = [ "Transform" ]
+
+[node name="MovePos" type="Position3D" parent="DoorR" index="2"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -13, 0 )
 
 
