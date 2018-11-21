@@ -19,8 +19,8 @@ func _ready():
     _spawn_points = $SpawnPoints
     _navigation = $Navigation    
     
-    #$Area.connect("body_entered", self, "room_enter")
-    #$Area.connect("body_exited", self, "room_exit")
+    $Area.connect("body_entered", self, "room_enter")
+    $Area.connect("body_exited", self, "room_exit")
     
     var index = 0
     for v in _room_info.door:

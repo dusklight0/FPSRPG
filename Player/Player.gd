@@ -1,11 +1,10 @@
 extends KinematicBody
 
 const GRAVITY = -24.8
-const MAX_SPEED = 40
-const JUMP_SPEED = 18
+const MAX_SPEED = 80
 const ACCEL= 4.5
 
-const MAX_SPRINT_SPEED = 60
+const MAX_SPRINT_SPEED = 120
 const SPRINT_ACCEL = 20
 const DEACCEL= 16
 const MAX_SLOPE_ANGLE = 40
@@ -101,11 +100,6 @@ func process_input(delta):
 
     _dir += -cam_xform.basis.z.normalized() * input_movement_vector.y
     _dir += cam_xform.basis.x.normalized() * input_movement_vector.x
-    
-    # Jumping
-#    if is_on_floor():
-#        if Input.is_action_just_pressed("movement_jump"):
-#            vel.y = JUMP_SPEED
     
     # Sprinting
     _is_spriting = Input.is_action_pressed("movement_sprint")

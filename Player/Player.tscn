@@ -49,9 +49,9 @@ axis_lock_angular_y = false
 axis_lock_angular_z = false
 collision/safe_margin = 0.001
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision" ]
+_sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="BodyCollisionShape" type="CollisionShape" parent="." index="0"]
+[node name="CollisionShape" type="CollisionShape" parent="." index="0"]
 
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 6, 0 )
 shape = SubResource( 1 )
@@ -60,6 +60,7 @@ _sections_unfolded = [ "Pause", "Transform", "Visibility" ]
 
 [node name="RotationHelper" type="Spatial" parent="." index="1"]
 
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0 )
 _sections_unfolded = [ "Transform" ]
 
@@ -150,8 +151,11 @@ _sections_unfolded = [ "Spot", "Transform" ]
 
 [node name="GunFirePoints" type="Spatial" parent="RotationHelper" index="3"]
 
+editor/display_folded = true
+
 [node name="RayFire" type="Spatial" parent="RotationHelper/GunFirePoints" index="0"]
 
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Transform", "Visibility" ]
@@ -166,6 +170,7 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="MeleeFire" type="Spatial" parent="RotationHelper/GunFirePoints" index="1"]
 
+editor/display_folded = true
 script = ExtResource( 3 )
 
 [node name="Area" type="Area" parent="RotationHelper/GunFirePoints/MeleeFire" index="0"]

@@ -5,11 +5,9 @@ func _ready():
 
 # U,R,D,L
 func make_dungeon():
-#    make_room("res://Rooms/StartRoom.tscn", [1, 0, 0, 0], false, Vector3(0, 0, 0))
-#    make_room("res://Rooms/Room1.tscn", [0, 0, 1, 1], true, Vector3(0, 0, 210))
-#    make_room("res://Rooms/Room1.tscn", [0, 1, 0, 0], true, Vector3(210, 0, 210))
-
-    make_room("res://Rooms/Room1.tscn", [0, 0, 0, 0], false, Vector3(0, 0, 0))
+    make_room("res://Rooms/StartRoom.tscn", [1, 0, 0, 0], false, Vector3(0, 0, 0))
+    make_room("res://Rooms/Room1.tscn", [0, 0, 1, 1], true, Vector3(0, 0, 210))
+    make_room("res://Rooms/Room1.tscn", [0, 1, 0, 0], true, Vector3(210, 0, 210))
     
     
 func make_room(room_name, door_info, enemy_spawn, room_pos):

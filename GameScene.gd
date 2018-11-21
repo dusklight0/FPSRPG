@@ -14,8 +14,7 @@ func _ready():
     _player.global_transform.origin = Vector3(0, 0, -60)
     add_child(_player)
     
-    #change_scene("res://Rooms/Home.tscn")
-    change_scene("res://Rooms/Dungeon.tscn")
+    change_scene("res://Rooms/Home.tscn")
         
         
 func change_scene(path):
