@@ -12,6 +12,7 @@ var _stop_time = 0.0
 var _bullet
 var _attack_time = 0.0
 var _attack_stop_time = 0.0
+var _enemy_stop_type = 0
 
 var _destroy = false
 
@@ -27,7 +28,6 @@ func _ready():
     var scene_root = get_tree().root.get_children()[0]
     _player = scene_root._player
     _hp_bar = $RotationHelper/Model/HpBar
-    _bullet = load("res://Enemy/EnemyBullet.tscn")
     
     
 func impact_enemy(delta):
@@ -48,12 +48,17 @@ func bullet_hit(damage, bullet_hit_pos):
     _hp -= damage
     _hp_bar.region_rect = Rect2(0, 0, 500 * _hp/_max_hp, 40)
     
-    var enemy_stop = rand_range(0, 100)
-    if enemy_stop < 20 and _stop_time <= 0.0:
-        _stop_time = 0.2
-        _impact_delta = 0.0
-        _hit_dir = (bullet_hit_pos - _player.transform.origin).normalized()
-        _hit_dir.y = 0
+    if _stop_time <= 0.0:
+        _stop_time = 1.0
+        _enemy_stop_type = 0
+    else:
+        var enemy_stop = rand_range(0, 100)
+        if enemy_stop < 20:
+            _stop_time = 1.0
+            _impact_delta = 0.0
+            _hit_dir = (bullet_hit_pos - _player.transform.origin).normalized()
+            _hit_dir.y = 0
+            _enemy_stop_type = 1        
     
     if _hp <= 0:        
         destroy_enemy()
@@ -80,7 +85,8 @@ func _process(delta):
         return
         
     if _stop_time > 0.0:
-        impact_enemy(delta)
+        if _enemy_stop_type == 1:
+            impact_enemy(delta)
         _stop_time -= delta
         return
         
@@ -155,13 +161,8 @@ func attack_enemy(delta):
     _attack_stop_time = 1.5
     _attack_time = 0
     
-    var bullet_instance = _bullet.instance()
-    bullet_instance._direction = (_player.global_transform.origin - self.global_transform.origin).normalized()
+    on_attack_enemy(delta)
     
-    var t = Transform()
-    t.origin = self.global_transform.origin
-    t.origin.y = 10
-    t = t.looking_at(t.origin + bullet_instance._direction, Vector3(0, 1, 0))
-    bullet_instance.set_global_transform(t)
     
-    get_tree().root.add_child(bullet_instance)
+func on_attack_enemy(delta):
+    pass

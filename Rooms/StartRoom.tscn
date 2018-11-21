@@ -8,7 +8,7 @@
 
 extents = Vector3( 100, 50, 100 )
 
-[node name="Room" type="Spatial"]
+[node name="Room" type="Spatial" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -31,7 +31,7 @@ angular_damp = 1.0
 priority = 0.0
 monitoring = true
 monitorable = true
-collision_layer = 16
+collision_layer = 32
 collision_mask = 1
 audio_bus_override = false
 audio_bus_name = "Master"

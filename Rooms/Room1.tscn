@@ -124,23 +124,21 @@ enabled = true
 
 [node name="Objects" type="Spatial" parent="." index="1"]
 
-editor/display_folded = true
-
-[node name="BlockWall" type="StaticBody" parent="Objects" index="0"]
+[node name="BlockWall1" type="StaticBody" parent="Objects" index="0"]
 
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 50, 40 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
-collision_mask = 11
+collision_mask = 27
 friction = 1.0
 bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
 constant_angular_velocity = Vector3( 0, 0, 0 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="MeshInstance" type="MeshInstance" parent="Objects/BlockWall" index="0"]
+[node name="MeshInstance" type="MeshInstance" parent="Objects/BlockWall1" index="0"]
 
 transform = Transform( 1.5, 0, 0, 0, 0.5, 0, 0, 0, 1.5, 0, 0, 0 )
 layers = 1
@@ -157,7 +155,7 @@ skeleton = NodePath("..")
 material/0 = SubResource( 2 )
 _sections_unfolded = [ "Transform", "material" ]
 
-[node name="CollisionShape" type="CollisionShape" parent="Objects/BlockWall" index="1"]
+[node name="CollisionShape" type="CollisionShape" parent="Objects/BlockWall1" index="1"]
 
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
 shape = SubResource( 3 )
@@ -171,7 +169,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 50, 40 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
-collision_mask = 11
+collision_mask = 27
 friction = 1.0
 bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
@@ -209,7 +207,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 50, -40 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
-collision_mask = 11
+collision_mask = 27
 friction = 1.0
 bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
@@ -247,7 +245,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 50, -40 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
-collision_mask = 11
+collision_mask = 27
 friction = 1.0
 bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
@@ -285,7 +283,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -91.5648, 0.98402, 92.8382 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
-collision_mask = 3
+collision_mask = 27
 mode = 0
 mass = 5.0
 friction = 1.0
@@ -346,7 +344,7 @@ angular_damp = 1.0
 priority = 0.0
 monitoring = true
 monitorable = true
-collision_layer = 16
+collision_layer = 32
 collision_mask = 1
 audio_bus_override = false
 audio_bus_name = "Master"

@@ -15,7 +15,7 @@ radius = 1.2
 height = 9.0
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="CubeMesh" id=3]
+[sub_resource type="CubeMesh" id=2]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector3( 2, 2, 2 )
@@ -23,11 +23,11 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="BoxShape" id=4]
+[sub_resource type="BoxShape" id=3]
 
 extents = Vector3( 1.5, 2, 1.5 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 
 size = 40
 use_mipmaps = true
@@ -40,7 +40,7 @@ _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 1
-collision_mask = 6
+collision_mask = 22
 axis_lock_linear_x = false
 axis_lock_linear_y = false
 axis_lock_linear_z = false
@@ -60,7 +60,6 @@ _sections_unfolded = [ "Pause", "Transform", "Visibility" ]
 
 [node name="RotationHelper" type="Spatial" parent="." index="1"]
 
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0 )
 _sections_unfolded = [ "Transform" ]
 
@@ -85,7 +84,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 skeleton = NodePath("..")
 material/0 = null
 
@@ -101,7 +100,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 skeleton = NodePath("..")
 material/0 = null
 
@@ -151,11 +150,8 @@ _sections_unfolded = [ "Spot", "Transform" ]
 
 [node name="GunFirePoints" type="Spatial" parent="RotationHelper" index="3"]
 
-editor/display_folded = true
-
 [node name="RayFire" type="Spatial" parent="RotationHelper/GunFirePoints" index="0"]
 
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Transform", "Visibility" ]
@@ -170,7 +166,6 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="MeleeFire" type="Spatial" parent="RotationHelper/GunFirePoints" index="1"]
 
-editor/display_folded = true
 script = ExtResource( 3 )
 
 [node name="Area" type="Area" parent="RotationHelper/GunFirePoints/MeleeFire" index="0"]
@@ -189,8 +184,8 @@ angular_damp = 1.0
 priority = 0.0
 monitoring = true
 monitorable = true
-collision_layer = 1
-collision_mask = 2
+collision_layer = 8
+collision_mask = 6
 audio_bus_override = false
 audio_bus_name = "Master"
 reverb_bus_enable = false
@@ -201,7 +196,7 @@ _sections_unfolded = [ "Audio Bus", "Collision", "Reverb Bus", "Transform", "Vis
 
 [node name="CollisionShape" type="CollisionShape" parent="RotationHelper/GunFirePoints/MeleeFire/Area" index="0"]
 
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 disabled = false
 
 [node name="BulletFire" type="Spatial" parent="RotationHelper/GunFirePoints" index="2"]
@@ -296,7 +291,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 text = "Health: 100
 Ammo: 000/000"
 percent_visible = 1.0
