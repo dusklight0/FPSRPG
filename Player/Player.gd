@@ -24,7 +24,6 @@ var _changing_weapon = false
 var _changing_weapon_name = "UNARMED"
 
 var _hp = 100
-var _max_hp = 100
 var _is_spriting = false
 
 # object ref
@@ -233,7 +232,7 @@ func on_attacked(damage, bullet_hit_pos):
         return
         
     _hp -= damage
-    _ui_hp_bar.rect_size = Vector2(700 * _hp/_max_hp, 20)
+    _ui_hp_bar.value = _hp
     
     if _hp <= 0:
         print('-------- game over')

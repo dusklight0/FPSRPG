@@ -4,12 +4,15 @@ var _room
 var _camera
 var _player
 var _hp_pos
-var _enemy_speed = 12
 var _hp_bar
 var _ui_layer
+var _lb_damage
+var _lb_damage_anim
+
 var _hp = 100
 var _hp_visible_time = 0.0
 
+var _enemy_speed = 12
 var _stop_time = 0.0
 
 var _bullet
@@ -31,9 +34,13 @@ func _ready():
     var scene_root = get_tree().root.get_children()[0]
     _player = scene_root._player
     _hp_bar = $UiInfo/HpBar
+    _lb_damage = $UiInfo/LbDamage
+    _lb_damage_anim = $UiInfo/LbDamage/Anim
     _ui_layer = $UiInfo
     _hp_pos = $HpPos
     _camera = _player.get_node("RotationHelper/Camera")
+    
+    _lb_damage.text = ""
     
     
 func impact_enemy(delta):
@@ -58,12 +65,21 @@ func process_hp_bar(delta):
     
     if _hp_visible_time <= 0.0:
         _hp_bar.hide()
+        
+        
+func hide_damage_label():
+    _lb_damage.hide()
 
 
 func bullet_hit(damage, bullet_hit_pos):
     if _hp <= 0:
         return
         
+    _lb_damage_anim.stop()
+    _lb_damage.text = str(damage)
+    _lb_damage.show()
+    _lb_damage_anim.play("show")
+    
     _hp_visible_time = 3.0
         
     _hp -= damage
