@@ -101,7 +101,7 @@ use_filter = true
 font_data = ExtResource( 2 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[node name="GameScene" type="Spatial"]
+[node name="GameScene" type="Spatial" index="0"]
 
 script = ExtResource( 1 )
 

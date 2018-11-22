@@ -99,21 +99,22 @@ func _process(delta):
             
     if _state & BATTLE:
         on_battle(delta)
+        
+    elif _state & ATTACK:
+        on_attack(delta)
+        
+    elif _state & STOP:
+        on_stop(delta)
+        
+    elif _state & DEAD:
+        on_dead(delta)
+        
+    else:
+        if _state & ATTACKED:
+            on_attecked(delta)
             
-#        ATTACKED:
-#            on_attecked(delta)
-#
-#        ATTACK:
-#            on_attack(delta)
-#
-#        FAINT:
-#            on_faint(delta)
-#
-#        STOP:
-#            on_stop(delta)
-#
-#        DEAD:
-#            on_dead(delta)
+        if _state & FAINT:
+            on_faint(delta)
     
     
 func on_battle(delta):        
