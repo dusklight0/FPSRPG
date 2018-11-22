@@ -29,21 +29,18 @@ func fire_weapon():
     if false == _gun_ray.is_colliding():
         return
         
-    var body = _gun_ray.get_collider()    
-    if body == _player_node:
-        return
-        
-    var collision_point = _gun_ray.get_collision_point()        
+    var body = _gun_ray.get_collider()
+    var shape = _gun_ray.get_collider_shape()
 
-    if _bullet_particle:
-        var particle_node = _bullet_particle.instance()
-        get_tree().root.add_child(particle_node)
-        particle_node.global_translate(collision_point)
-        particle_node.scale = Vector3(2, 2, 2)
-        particle_node.restart()
+#    if _bullet_particle:
+#        var particle_node = _bullet_particle.instance()
+#        get_tree().root.add_child(particle_node)
+#        particle_node.global_translate(collision_point)
+#        particle_node.scale = Vector3(2, 2, 2)
+#        particle_node.restart()
         
     if body.has_method("bullet_hit"):
-        body.bullet_hit(DAMAGE, _gun_ray.get_collision_point())
+        body.bullet_hit(DAMAGE, _gun_ray.get_collision_point(), shape)
         
 
 func equip_weapon():

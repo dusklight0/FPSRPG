@@ -25,7 +25,6 @@ var _navigation_update_time = 0.0
 var _nav_transform = Vector3(0, 0, 0)
 
 var _hit_dir
-var _impact_delta = 0.0
 
 
 func _ready():
@@ -36,22 +35,20 @@ func _ready():
     _ui_info._hp_pos = $HpPos
 
 
-func bullet_hit(damage, bullet_hit_pos):
+func bullet_hit(damage, bullet_hit_pos, shape):
     if _hp <= 0:
         return
         
     _hp -= damage
+    _hit_dir = (bullet_hit_pos - _player.transform.origin).normalized()
+    _hit_dir.y = 0
+    
     _ui_info.on_bullet_hit(damage, _hp)
     
-    on_change_state(ATTACKED, 0.3)
-    
-#    var enemy_stop = rand_range(0, 100)
-#        if enemy_stop < 20:
-#            _stop_time = 1.0
-#            _impact_delta = 0.0
-#            _hit_dir = (bullet_hit_pos - _player.transform.origin).normalized()
-#            _hit_dir.y = 0
-#            _enemy_stop_type = 1    
+    if shape <= 0:
+        on_change_state(FAINT, 3.0)
+    else:
+        on_change_state(ATTACKED, 0.3)
     
     if _hp <= 0:
         on_change_state(DEAD)
@@ -61,7 +58,7 @@ func on_change_state(state, state_time = 0.0):
     if _state == DEAD:
         return
         
-    if _state == FAINT:
+    if _state == FAINT and _state_time > 0.0:
         if state == ATTACKED:
             _state |= state
             
@@ -88,6 +85,7 @@ func update_state(delta):
             on_change_state(BATTLE)
             
             
+# diside attack way
 func update_attack(delta):
     pass
     
@@ -127,22 +125,30 @@ func on_battle(delta):
     
     
 func on_attecked(delta):
-    _state_time -= delta
-    
+    _state_time -= delta    
     if _state_time <= 0.0:
         on_change_state(BATTLE)
+        return false
+        
+    return true
     
     
 func on_attack(delta):    
-    attack_enemy(delta)
-    
-    
-func attack_enemy(delta):
-    pass
+    _state_time -= delta    
+    if _state_time <= 0.0:
+        on_change_state(BATTLE)
+        return false
+        
+    return true
 
 
 func on_faint(delta):
-    pass
+    _state_time -= delta    
+    if _state_time <= 0.0:
+        on_change_state(BATTLE)
+        return false
+        
+    return true
 
 
 func on_stop(delta):
@@ -153,7 +159,7 @@ func on_dead(delta):
     if _state == DEAD:
         return
         
-    queue_free()    
+    queue_free()
 
 
 func process_movement(delta):

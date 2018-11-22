@@ -2,16 +2,25 @@ extends "res://Enemy/Enemy.gd"
 
 var _bullet
 var _attack_time = 0.0
+var _action_attacked = false
 
 
 func _ready():
     _bullet = load("res://Enemy/EnemyBullet.tscn")
     
     
-func on_faint_enemy(delta):
-    _state_time -= delta
-    if _state_time <= 0.0:
-        on_change_state(BATTLE)
+func on_attecked(delta):
+    if .on_attecked(delta) == false:
+        return
+        
+    if _action_attacked == true:
+        return
+        
+    _action_attacked = false
+    
+    
+func on_faint(delta):
+    if .on_faint(delta) == false:
         return
     
 #    move_and_slide(_hit_dir * 40, Vector3(0, 1 ,0), 0.05, 4, deg2rad(40))
@@ -30,13 +39,11 @@ func update_attack(delta):
         on_change_state(ATTACK, 2.0)
     
     
-func attack_enemy(delta):
-    if _bullet == null:
+func on_attack(delta):
+    if .on_attack(delta) == false:
         return
         
-    _state_time -= delta
-    if _state_time <= 0.0:
-        on_change_state(BATTLE)
+    if _bullet == null:
         return
         
     if _attack_time <= 0.0:
