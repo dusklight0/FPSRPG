@@ -38,11 +38,11 @@ func make_enemys():
     if _room_info.enemy_spawn == false:
         return
         
-    var enemy = load("Enemy/EnemyScene.tscn")    
+    var enemy = load("Enemy/EnemyScene.tscn")
     for spawn_point in _spawn_points.get_children():
         var spawn_point_pos = spawn_point.transform.origin
 
-        for v in range(rand_range(spawn_point._min_enemy_count, spawn_point._max_enemy_count)):
+        for v in range(spawn_point._enemy_count):
             spawn_point_pos.z += rand_range(-5, 5)
             spawn_point_pos.x += rand_range(-10, 10)
 

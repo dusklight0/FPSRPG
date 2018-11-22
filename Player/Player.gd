@@ -68,8 +68,8 @@ func _ready():
     _current_weapon_name = "UNARMED"
     _changing_weapon_name = "UNARMED"
 
-    _lb_player_status = $Hud/Panel/GunLabel
-    _ui_hp_bar = $Hud/HpBar
+    _lb_player_status = _game_scene.get_node("Hud/Panel/GunLabel")
+    _ui_hp_bar = _game_scene.get_node("Hud/HpBar")
     
     _lb_player_status.text = _current_weapon_name
     
@@ -143,19 +143,6 @@ func process_input(delta):
                 fire_bullet()
 #                if animation_manager.current_state == current_weapon.IDLE_ANIM_NAME:
 #                    animation_manager.set_animation(current_weapon.FIRE_ANIM_NAME)
-
-    if Input.is_action_just_pressed("action_use"):
-        on_input_use()
-
-
-func on_input_use():    
-    _gun_ray.force_raycast_update()
-    if false == _gun_ray.is_colliding():
-        return
-        
-    var body = _gun_ray.get_collider()    
-    if body.has_method("on_action_use"):
-        body.on_action_use()
 
 
 func process_changing_weapons(delta):

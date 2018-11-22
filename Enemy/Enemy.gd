@@ -1,11 +1,14 @@
 extends KinematicBody
 
 var _room
+var _camera
 var _player
+var _hp_pos
 var _enemy_speed = 12
 var _hp_bar
+var _ui_layer
 var _hp = 100
-var _max_hp = 100
+var _hp_visible_time = 0.0
 
 var _stop_time = 0.0
 
@@ -27,7 +30,10 @@ var _impact_delta = 0.0
 func _ready():
     var scene_root = get_tree().root.get_children()[0]
     _player = scene_root._player
-    _hp_bar = $RotationHelper/Model/HpBar
+    _hp_bar = $UiInfo/HpBar
+    _ui_layer = $UiInfo
+    _hp_pos = $HpPos
+    _camera = _player.get_node("RotationHelper/Camera")
     
     
 func impact_enemy(delta):
@@ -39,14 +45,29 @@ func impact_enemy(delta):
         self.transform.origin.y = lerp(1.0, 0.0, (_impact_delta * 100)/200)
         
     _impact_delta += delta
+    
+    
+func process_hp_bar(delta):
+    if _hp_visible_time <= 0.0:
+        return
+        
+    _hp_visible_time -= delta
+    _ui_layer.transform.origin = _camera.unproject_position(_hp_pos.global_transform.origin)
+    
+    _hp_bar.show()
+    
+    if _hp_visible_time <= 0.0:
+        _hp_bar.hide()
 
 
 func bullet_hit(damage, bullet_hit_pos):
     if _hp <= 0:
         return
         
+    _hp_visible_time = 3.0
+        
     _hp -= damage
-    _hp_bar.region_rect = Rect2(0, 0, 500 * _hp/_max_hp, 40)
+    _hp_bar.value = _hp
     
     if _stop_time <= 0.0:
         _stop_time = 1.0
@@ -83,6 +104,8 @@ func _process(delta):
         
     if _room._player_enter == false:
         return
+        
+    process_hp_bar(delta)
         
     if _stop_time > 0.0:
         if _enemy_stop_type == 1:

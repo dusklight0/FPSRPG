@@ -1,12 +1,12 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Res/floor1.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://Res/rock1.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://Res/rock2.obj" type="ArrayMesh" id=3]
-[ext_resource path="res://Objects/Tree.gd" type="Script" id=4]
-[ext_resource path="res://Res/sn_tree.obj" type="ArrayMesh" id=5]
-[ext_resource path="res://Res/sn_tree_rope.obj" type="ArrayMesh" id=6]
-[ext_resource path="res://Res/tree_house.obj" type="ArrayMesh" id=7]
+[ext_resource path="res://Res/sn_tree.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://Res/sn_tree_rope.obj" type="ArrayMesh" id=5]
+[ext_resource path="res://Res/tree_house.obj" type="ArrayMesh" id=6]
+[ext_resource path="res://Objects/TreeDoor.gd" type="Script" id=7]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -91,7 +91,7 @@ albedo_color = Color( 0.214844, 0.178757, 0.178757, 1 )
 metallic = 0.0
 metallic_specular = 0.5
 metallic_texture_channel = 0
-roughness = 0.0
+roughness = 0.4
 roughness_texture_channel = 0
 emission_enabled = false
 normal_enabled = false
@@ -114,6 +114,7 @@ uv2_triplanar = false
 uv2_triplanar_sharpness = 1.0
 proximity_fade_enable = false
 distance_fade_enable = false
+_sections_unfolded = [ "Roughness" ]
 
 [sub_resource type="MultiMesh" id=4]
 
@@ -202,7 +203,7 @@ albedo_color = Color( 0.335938, 0.309313, 0.271637, 1 )
 metallic = 0.0
 metallic_specular = 0.5
 metallic_texture_channel = 0
-roughness = 0.0
+roughness = 0.4
 roughness_texture_channel = 0
 emission_enabled = false
 normal_enabled = false
@@ -225,7 +226,7 @@ uv2_triplanar = false
 uv2_triplanar_sharpness = 1.0
 proximity_fade_enable = false
 distance_fade_enable = false
-_sections_unfolded = [ "Albedo" ]
+_sections_unfolded = [ "Albedo", "Roughness" ]
 
 [sub_resource type="MultiMesh" id=7]
 
@@ -451,7 +452,7 @@ albedo_color = Color( 0.378906, 0.353409, 0.28566, 1 )
 metallic = 0.0
 metallic_specular = 0.5
 metallic_texture_channel = 0
-roughness = 0.0
+roughness = 0.4
 roughness_texture_channel = 0
 emission_enabled = false
 normal_enabled = false
@@ -787,7 +788,11 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Albedo" ]
 
-[node name="Home" type="Spatial" index="0"]
+[sub_resource type="BoxShape" id=25]
+
+extents = Vector3( 10, 10, 10 )
+
+[node name="Home" type="Spatial"]
 
 [node name="Ground" type="StaticBody" parent="." index="0"]
 
@@ -997,7 +1002,7 @@ light_bake_mode = 1
 light_cull_mask = -1
 shadow_enabled = true
 shadow_color = Color( 0, 0, 0, 1 )
-shadow_bias = 8.0
+shadow_bias = 7.0
 shadow_contact = 0.0
 shadow_reverse_cull_face = false
 editor_only = false
@@ -1007,7 +1012,30 @@ omni_shadow_mode = 1
 omni_shadow_detail = 1
 _sections_unfolded = [ "Light", "Omni", "Shadow" ]
 
-[node name="Tree" type="StaticBody" parent="." index="4"]
+[node name="BackLight" type="OmniLight" parent="." index="4"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -32.0235, 0 )
+layers = 1
+light_color = Color( 0.367188, 0.639709, 0.734375, 1 )
+light_energy = 0.5
+light_indirect_energy = 1.0
+light_negative = false
+light_specular = 0.5
+light_bake_mode = 1
+light_cull_mask = -1
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_bias = 8.0
+shadow_contact = 0.0
+shadow_reverse_cull_face = false
+editor_only = false
+omni_range = 150.0
+omni_attenuation = 1.0
+omni_shadow_mode = 1
+omni_shadow_detail = 1
+_sections_unfolded = [ "Light", "Omni", "Shadow" ]
+
+[node name="Tree" type="StaticBody" parent="." index="5"]
 
 editor/display_folded = true
 input_ray_pickable = true
@@ -1018,7 +1046,6 @@ friction = 1.0
 bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
 constant_angular_velocity = Vector3( 0, 0, 0 )
-script = ExtResource( 4 )
 _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="Tree" index="0"]
@@ -1039,7 +1066,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = ExtResource( 5 )
+mesh = ExtResource( 4 )
 skeleton = NodePath("..")
 material/0 = SubResource( 18 )
 _sections_unfolded = [ "Transform", "material" ]
@@ -1055,7 +1082,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = ExtResource( 6 )
+mesh = ExtResource( 5 )
 skeleton = NodePath("..")
 material/0 = SubResource( 19 )
 material/1 = SubResource( 20 )
@@ -1076,7 +1103,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = ExtResource( 7 )
+mesh = ExtResource( 6 )
 skeleton = NodePath("..")
 material/0 = SubResource( 24 )
 _sections_unfolded = [ "Transform", "material" ]
@@ -1103,5 +1130,37 @@ omni_attenuation = 1.0
 omni_shadow_mode = 1
 omni_shadow_detail = 1
 _sections_unfolded = [ "Light", "Omni" ]
+
+[node name="Area" type="Area" parent="Tree" index="4"]
+
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.72502, -27.1564 )
+input_ray_pickable = false
+input_capture_on_drag = false
+space_override = 0
+gravity_point = false
+gravity_distance_scale = 0.0
+gravity_vec = Vector3( 0, -1, 0 )
+gravity = 9.8
+linear_damp = 0.1
+angular_damp = 1.0
+priority = 0.0
+monitoring = true
+monitorable = true
+collision_layer = 4
+collision_mask = 1
+audio_bus_override = false
+audio_bus_name = "Master"
+reverb_bus_enable = false
+reverb_bus_name = "Master"
+reverb_bus_amount = 0.0
+reverb_bus_uniformity = 0.0
+script = ExtResource( 7 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape" type="CollisionShape" parent="Tree/Area" index="0"]
+
+shape = SubResource( 25 )
+disabled = false
 
 

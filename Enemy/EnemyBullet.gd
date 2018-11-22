@@ -24,14 +24,7 @@ func _process(delta):
 func collided(body):
     if _hit_something:
         return
-        
-    var body_name = body.get_name()
-    
-    print('------>', body_name)
-    
-    if body_name.find("Enemy") > 0:
-        return
-        
+          
     if body.has_method("on_attacked"):
         body.on_attacked(_bullet_damage, self.global_transform.origin)
         
