@@ -1,19 +1,23 @@
 extends KinematicBody
 
+enum {
+    IDLE = 1 << 0, 
+    BATTLE = 1 << 1, 
+    STOP = 1 << 2, 
+    ATTACK = 1 << 3, 
+    ATTACKED = 1 << 4, 
+    FAINT = 1 << 5, 
+    DEAD = 1 << 6
+    }
+
 var _room
 var _player
 var _ui_info
 
 var _hp = 100
+var _state = IDLE
+var _state_time = 0.0
 var _enemy_speed = 12
-
-var _bullet
-var _stop_time = 0.0
-var _attack_time = 0.0
-var _attack_stop_time = 0.0
-var _enemy_stop_type = 0
-
-var _destroy = false
 
 var _navigation
 var _path = []
@@ -23,23 +27,13 @@ var _nav_transform = Vector3(0, 0, 0)
 var _hit_dir
 var _impact_delta = 0.0
 
+
 func _ready():
     var scene_root = get_tree().root.get_children()[0]
     _player = scene_root._player
     
     _ui_info = $UiInfo
     _ui_info._hp_pos = $HpPos
-    
-    
-func impact_enemy(delta):
-    move_and_slide(_hit_dir * 40, Vector3(0, 1 ,0), 0.05, 4, deg2rad(40))
-    
-    if _impact_delta < 0.07:
-        self.transform.origin.y = lerp(0.0, 1.0, (_impact_delta * 100)/70)
-    else:
-        self.transform.origin.y = lerp(1.0, 0.0, (_impact_delta * 100)/200)
-        
-    _impact_delta += delta
 
 
 func bullet_hit(damage, bullet_hit_pos):
@@ -49,59 +43,80 @@ func bullet_hit(damage, bullet_hit_pos):
     _hp -= damage
     _ui_info.on_bullet_hit(damage, _hp)
     
-    if _stop_time <= 0.0:
-        _stop_time = 1.0
-        _enemy_stop_type = 0
-    else:
-        var enemy_stop = rand_range(0, 100)
-        if enemy_stop < 20:
-            _stop_time = 1.0
-            _impact_delta = 0.0
-            _hit_dir = (bullet_hit_pos - _player.transform.origin).normalized()
-            _hit_dir.y = 0
-            _enemy_stop_type = 1        
+    on_change_state(ATTACKED, 0.3)
     
-    if _hp <= 0:        
-        destroy_enemy()
+#    var enemy_stop = rand_range(0, 100)
+#        if enemy_stop < 20:
+#            _stop_time = 1.0
+#            _impact_delta = 0.0
+#            _hit_dir = (bullet_hit_pos - _player.transform.origin).normalized()
+#            _hit_dir.y = 0
+#            _enemy_stop_type = 1    
+    
+    if _hp <= 0:
+        on_change_state(DEAD)
     
     
-func destroy_enemy():
-    _destroy = true
-    queue_free()    
+func on_change_state(state, state_time = 0.0):
+    if _state == DEAD:
+        return
+        
+    if _state == FAINT:
+        if state == ATTACKED:
+            _state |= state
+            
+        else:
+            return
+            
+    _state = state
+    _state_time = state_time
     
     
-func update_path():
-    var begin = _navigation.get_closest_point(self.transform.origin)
-    var end = _navigation.get_closest_point(_player.transform.origin - _nav_transform)
-    var p =_navigation.get_simple_path(begin, end, true)
-    _path = Array(p)
-    _path.invert()
+func update_state(delta):
+    if _room._player_enter == false:
+        on_change_state(IDLE)
+        
+    elif _state == IDLE and _room._player_enter == true:
+        on_change_state(BATTLE)
+        
+    elif _state == BATTLE or _state == STOP:
+        var distance = self.transform.origin.distance_to(_player.transform.origin - _nav_transform)    
+        if _state == BATTLE and distance < 50:
+            on_change_state(STOP)
+        
+        else:
+            on_change_state(BATTLE)
+            
+            
+func update_attack(delta):
+    pass
     
     
 func _process(delta):
-    if _destroy:
-        return
-        
-    if _room._player_enter == false:
-        return
-        
-    if _stop_time > 0.0:
-        if _enemy_stop_type == 1:
-            impact_enemy(delta)
-        _stop_time -= delta
-        return
-        
-    attack_enemy(delta)
-
-    if _attack_stop_time > 0.0:
-        _attack_stop_time -= delta
-        return
-        
-    var distance = self.transform.origin.distance_to(_player.transform.origin - _nav_transform)    
-    if distance < 50:
-        lookat_player()
-        return
-        
+    update_state(delta)
+    if _state == BATTLE or _state == STOP:
+        update_attack(delta)
+            
+    if _state & BATTLE:
+        on_battle(delta)
+            
+#        ATTACKED:
+#            on_attecked(delta)
+#
+#        ATTACK:
+#            on_attack(delta)
+#
+#        FAINT:
+#            on_faint(delta)
+#
+#        STOP:
+#            on_stop(delta)
+#
+#        DEAD:
+#            on_dead(delta)
+    
+    
+func on_battle(delta):        
     _navigation_update_time += delta
     if _navigation_update_time > 0.5:
         update_path()
@@ -110,10 +125,36 @@ func _process(delta):
     process_movement(delta)
     
     
-func lookat_player():
+func on_attecked(delta):
+    _state_time -= delta
+    
+    if _state_time <= 0.0:
+        on_change_state(BATTLE)
+    
+    
+func on_attack(delta):    
+    attack_enemy(delta)
+    
+    
+func attack_enemy(delta):
+    pass
+
+
+func on_faint(delta):
+    pass
+
+
+func on_stop(delta):
     look_at(_player.transform.origin, Vector3(0, 1, 0))
     
-    
+
+func on_dead(delta):
+    if _state == DEAD:
+        return
+        
+    queue_free()    
+
+
 func process_movement(delta):
     if _path.size() > 1:
         var to_walk = delta * _enemy_speed
@@ -144,26 +185,10 @@ func process_movement(delta):
         if _path.size() < 2:
             _path = []
     
-    
-func attack_enemy(delta):
-    if _destroy:
-        return
-        
-    if _bullet == null:
-        return
-        
-    if _attack_stop_time > 0.0:
-        return
-        
-    _attack_time += delta
-    if _attack_time < rand_range(2, 5):
-        return
-        
-    _attack_stop_time = 1.5
-    _attack_time = 0
-    
-    on_attack_enemy(delta)
-    
-    
-func on_attack_enemy(delta):
-    pass
+
+func update_path():
+    var begin = _navigation.get_closest_point(self.transform.origin)
+    var end = _navigation.get_closest_point(_player.transform.origin - _nav_transform)
+    var p =_navigation.get_simple_path(begin, end, true)
+    _path = Array(p)
+    _path.invert()
