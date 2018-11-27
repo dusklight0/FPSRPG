@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://GameScene.gd" type="Script" id=1]
 [ext_resource path="res://NotoSans-Regular.ttf" type="DynamicFontData" id=2]
@@ -85,14 +85,6 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Tonemap" ]
 
-[sub_resource type="DynamicFont" id=2]
-
-size = 40
-use_mipmaps = true
-use_filter = false
-font_data = ExtResource( 2 )
-_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
-
 [sub_resource type="DynamicFont" id=3]
 
 size = 42
@@ -168,7 +160,7 @@ tracks/4/keys = {
 "values": [ true, false ]
 }
 
-[node name="GameScene" type="Spatial" index="0"]
+[node name="GameScene" type="Spatial"]
 
 script = ExtResource( 1 )
 
@@ -190,49 +182,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 _sections_unfolded = [ "Theme" ]
 
-[node name="Panel" type="Panel" parent="Hud" index="0"]
-
-editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 920.0
-margin_right = 370.0
-margin_bottom = 1080.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-_sections_unfolded = [ "Rect" ]
-
-[node name="GunLabel" type="Label" parent="Hud/Panel" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 20.0
-margin_right = 380.0
-margin_bottom = 155.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = SubResource( 2 )
-text = "Health: 100
-Ammo: 000/000"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
-
-[node name="UseKey" type="Label" parent="Hud" index="1"]
+[node name="UseKey" type="Label" parent="Hud" index="0"]
 
 visible = false
 anchor_left = 0.5
@@ -257,7 +207,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="CrossHair" type="TextureRect" parent="Hud" index="2"]
+[node name="CrossHair" type="TextureRect" parent="Hud" index="1"]
 
 anchor_left = 0.5
 anchor_top = 0.5
@@ -277,7 +227,7 @@ texture = ExtResource( 3 )
 stretch_mode = 0
 _sections_unfolded = [ "Anchor", "Rect" ]
 
-[node name="HpBar" type="TextureProgress" parent="Hud" index="3"]
+[node name="HpBar" type="TextureProgress" parent="Hud" index="2"]
 
 anchor_left = 0.5
 anchor_top = 1.0
@@ -308,7 +258,7 @@ radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = true
 _sections_unfolded = [ "Rect", "Textures" ]
 
-[node name="HitMark" type="Control" parent="Hud" index="4"]
+[node name="HitMark" type="Control" parent="Hud" index="3"]
 
 editor/display_folded = true
 visible = false

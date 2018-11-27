@@ -4,6 +4,8 @@ var _bullet
 var _attack_time = 0.0
 var _action_attacked = false
 
+var _aiming_range = 3.0
+
 
 func _ready():
     _bullet = load("res://Enemy/EnemyBullet.tscn")
@@ -48,9 +50,11 @@ func on_attack(delta):
         
     if _attack_time <= 0.0:
         return
+    
+    var target_pos = _player.global_transform.origin + Vector3(rand_range(-_aiming_range, _aiming_range), rand_range(-_aiming_range, _aiming_range), rand_range(-_aiming_range, _aiming_range))
         
     var bullet_instance = _bullet.instance()
-    bullet_instance._direction = (_player.global_transform.origin - self.global_transform.origin).normalized()
+    bullet_instance._direction = (target_pos - self.global_transform.origin).normalized()
     
     var t = Transform()
     t.origin = self.global_transform.origin

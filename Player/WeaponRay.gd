@@ -21,13 +21,13 @@ func _process(delta):
 
 func fire_weapon():
     if _last_attack_rate > 0.0:
-        return
+        return false
         
     _last_attack_rate = _attack_rate
         
     _gun_ray.force_raycast_update()
     if false == _gun_ray.is_colliding():
-        return
+        return true
         
     var body = _gun_ray.get_collider()
     var shape = _gun_ray.get_collider_shape()
@@ -41,6 +41,8 @@ func fire_weapon():
         
     if body.has_method("bullet_hit"):
         body.bullet_hit(DAMAGE, _gun_ray.get_collision_point(), shape)
+        
+    return true
         
 
 func equip_weapon():

@@ -9,19 +9,11 @@ const SPRINT_ACCEL = 20
 const DEACCEL= 16
 const MAX_SLOPE_ANGLE = 40
 
-const WEAPON_NUMBER_TO_NAME = {0:"UNARMED", 1:"MELEE", 2:"BULLET", 3:"RAY"}
-const WEAPON_NAME_TO_NUMBER = {"UNARMED":0, "MELEE":1, "BULLET":2, "RAY":3}
-
 # player infos
 var _vel = Vector3()
 var _dir = Vector3()
 
 var _mouse_sensitivity = 0.1
-
-var _current_weapon_name = "UNARMED"
-var _weapons = {"UNARMED":null, "MELEE":null, "BULLET":null, "RAY":null}
-var _changing_weapon = false
-var _changing_weapon_name = "UNARMED"
 
 var _hp = 100
 var _is_spriting = false
@@ -29,13 +21,12 @@ var _is_spriting = false
 # object ref
 var _camera
 var _rotation_helper
-var _gun_model
+var _gun
+var _gun_anim
 var _gun_ray
 
 # ui ref
-var _lb_player_status
 var _ui_hp_bar
-
 var _game_scene
 
 
@@ -44,38 +35,23 @@ func _ready():
     
     _camera = $RotationHelper/Camera
     _rotation_helper = $RotationHelper
-    _gun_model = $RotationHelper/Model/BulletGun
-    _gun_model.hide()
+    _gun_anim = $RotationHelper/Model/RHand/AnimationPlayer
     
     _gun_ray = $RotationHelper/GunFirePoints/RayFire/RayCast
 
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
     
-    _weapons["MELEE"] = $RotationHelper/GunFirePoints/MeleeFire
-    _weapons["BULLET"] = $RotationHelper/GunFirePoints/BulletFire
-    _weapons["RAY"] = $RotationHelper/GunFirePoints/RayFire
+    #_weapons["MELEE"] = $RotationHelper/GunFirePoints/MeleeFire
+    #_weapons["BULLET"] = $RotationHelper/GunFirePoints/BulletFire
+    _gun = $RotationHelper/GunFirePoints/RayFire
 
     var gun_aim_point_pos = $RotationHelper/GunFirePoints.global_transform.origin
-
-    for weapon in _weapons:
-        var weapon_node = _weapons[weapon]
-        if weapon_node != null:
-            weapon_node._player_node = self
-            #weapon_node.look_at(gun_aim_point_pos, Vector3(0, 1, 0))
-            #weapon_node.rotate_object_local(Vector3(0, 1, 0), deg2rad(180))
-
-    _current_weapon_name = "UNARMED"
-    _changing_weapon_name = "UNARMED"
-
-    _lb_player_status = _game_scene.get_node("Hud/Panel/GunLabel")
-    _ui_hp_bar = _game_scene.get_node("Hud/HpBar")
     
-    _lb_player_status.text = _current_weapon_name
+    _ui_hp_bar = _game_scene.get_node("Hud/HpBar")
     
     
 func _process(delta):
     process_input(delta)
-    process_changing_weapons(delta)
     
     
 func _physics_process(delta):
@@ -113,78 +89,9 @@ func process_input(delta):
 #        else:
 #            Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
             
-    # Changing weapons.
-    var weapon_change_number = WEAPON_NAME_TO_NUMBER[_current_weapon_name]
-
-    if Input.is_key_pressed(KEY_1):
-        weapon_change_number = 0
-    if Input.is_key_pressed(KEY_2):
-        weapon_change_number = 1
-    if Input.is_key_pressed(KEY_3):
-        weapon_change_number = 2
-    if Input.is_key_pressed(KEY_4):
-        weapon_change_number = 3
-
-#    if Input.is_action_just_pressed("shift_weapon_positive"):
-#        weapon_change_number += 1
-#    if Input.is_action_just_pressed("shift_weapon_negative"):
-#        weapon_change_number -= 1
-
-    weapon_change_number = clamp(weapon_change_number, 0, WEAPON_NUMBER_TO_NAME.size()-1)
-
-    if _changing_weapon == false:
-        if WEAPON_NUMBER_TO_NAME[weapon_change_number] != _current_weapon_name:
-            _changing_weapon_name = WEAPON_NUMBER_TO_NAME[weapon_change_number]
-            _changing_weapon = true
-            
     # Firing the weapons
     if Input.is_action_pressed("fire"):
-        if _changing_weapon == false:
-            var current_weapon = _weapons[_current_weapon_name]
-            if current_weapon != null:
-                fire_bullet()
-#                if animation_manager.current_state == current_weapon.IDLE_ANIM_NAME:
-#                    animation_manager.set_animation(current_weapon.FIRE_ANIM_NAME)
-
-
-func process_changing_weapons(delta):
-    if _changing_weapon == false:
-        return
-
-    var weapon_unequipped = false
-    var current_weapon = _weapons[_current_weapon_name]
-
-    if current_weapon == null:
-        weapon_unequipped = true
-    else:
-        if current_weapon._is_weapon_enabled == true:
-            weapon_unequipped = current_weapon.unequip_weapon()
-        else:
-            weapon_unequipped = true
-
-    if weapon_unequipped == true:
-        var weapon_equiped = false
-        var weapon_to_equip = _weapons[_changing_weapon_name]
-
-        if weapon_to_equip == null:
-            weapon_equiped = true
-        else:
-            if weapon_to_equip._is_weapon_enabled == false:
-                weapon_equiped = weapon_to_equip.equip_weapon()
-            else:
-                weapon_equiped = true
-
-        if weapon_equiped == true:
-            _changing_weapon = false
-            _current_weapon_name = _changing_weapon_name
-            _changing_weapon_name = ""
-            
-            if _current_weapon_name == "BULLET" or _current_weapon_name == "RAY":
-                _gun_model.show()
-            else:
-                _gun_model.hide()
-            
-            _lb_player_status.text = _current_weapon_name
+        fire_bullet()
     
 
 func process_movement(delta):
@@ -224,10 +131,8 @@ func _input(event):
         
 
 func fire_bullet():
-    if _changing_weapon == true:
-        return
-
-    _weapons[_current_weapon_name].fire_weapon()
+    if _gun.fire_weapon():
+        _gun_anim.play("Shoot")
     
     
 func on_attacked(damage, bullet_hit_pos):

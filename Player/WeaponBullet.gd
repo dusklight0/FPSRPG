@@ -11,7 +11,7 @@ var _attack_rate = 0.5
 var _last_attack_rate = 0.0
 
 func _ready():
-    _fire_pos = get_parent().get_parent().get_node("Model/BulletGun/FirePos")
+    _fire_pos = $FirePos
     
     
 func _process(delta):
@@ -36,7 +36,6 @@ func fire_weapon():
     
 
 func equip_weapon():
-    _fire_pos = get_parent().get_parent().get_node("Model/BulletGun/FirePos")
     _is_weapon_enabled = true
     return true
 #	if player_node.animation_manager.current_state == IDLE_ANIM_NAME:
