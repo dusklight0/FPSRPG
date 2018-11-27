@@ -1,6 +1,6 @@
 extends Spatial
 
-const DAMAGE = 4
+const DAMAGE = 50
 
 var _is_weapon_enabled = false
 var _player_node = null

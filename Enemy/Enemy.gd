@@ -7,7 +7,8 @@ enum {
     ATTACK = 1 << 3, 
     ATTACKED = 1 << 4, 
     FAINT = 1 << 5, 
-    DEAD = 1 << 6
+    DEAD = 1 << 6,
+    DESTROY = 1 << 7,
     }
 
 var _room
@@ -25,11 +26,13 @@ var _navigation_update_time = 0.0
 var _nav_transform = Vector3(0, 0, 0)
 
 var _hit_dir
+var _hit_mark_anim
 
 
 func _ready():
     var scene_root = get_tree().root.get_children()[0]
     _player = scene_root._player
+    _hit_mark_anim = scene_root.get_node("Hud/HitMark/HitMarkAnim")
     
     _ui_info = $UiInfo
     _ui_info._hp_pos = $HpPos
@@ -39,31 +42,37 @@ func bullet_hit(damage, bullet_hit_pos, shape):
     if _hp <= 0:
         return
         
-    _hp -= damage
     _hit_dir = (bullet_hit_pos - _player.transform.origin).normalized()
     _hit_dir.y = 0
     
-    _ui_info.on_bullet_hit(damage, _hp)
+    var final_damage = damage
     
     if shape <= 0:
+        final_damage = damage * 2
         on_change_state(FAINT, 3.0)
     else:
         on_change_state(ATTACKED, 0.3)
+        
+    _hp -= final_damage
+    _ui_info.on_bullet_hit(final_damage, _hp)
+    
+    _hit_mark_anim.play("Hit")
     
     if _hp <= 0:
-        on_change_state(DEAD)
+        on_change_state(DEAD, 1.0)
     
     
 func on_change_state(state, state_time = 0.0):
-    if _state == DEAD:
+    if _state == DESTROY:
         return
         
-    if _state == FAINT and _state_time > 0.0:
-        if state == ATTACKED:
-            _state |= state
-            
-        else:
-            return
+    if state != DEAD and state != DESTROY:
+        if _state == FAINT and _state_time > 0.0:
+            if state == ATTACKED:
+                _state |= state
+                
+            else:
+                return
             
     _state = state
     _state_time = state_time
@@ -90,7 +99,10 @@ func update_attack(delta):
     pass
     
     
-func _process(delta):
+func _physics_process(delta):
+    if _state == DESTROY:
+        return
+    
     update_state(delta)
     if _state == BATTLE or _state == STOP:
         update_attack(delta)
@@ -156,9 +168,14 @@ func on_stop(delta):
     
 
 func on_dead(delta):
-    if _state == DEAD:
+    _state_time -= delta
+    if _state_time <= 0.0:
+        on_change_state(DESTROY)
+        on_destroy()
         return
         
+        
+func on_destroy():
     queue_free()
 
 
