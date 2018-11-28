@@ -19,7 +19,7 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="SpatialMaterial" id=7]
+[sub_resource type="SpatialMaterial" id=3]
 
 render_priority = 0
 flags_transparent = false
@@ -71,7 +71,7 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Albedo" ]
 
-[sub_resource type="CubeMesh" id=3]
+[sub_resource type="CubeMesh" id=4]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector3( 0.5, 0.2, 0.2 )
@@ -79,7 +79,7 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=5]
 
 render_priority = 0
 flags_transparent = false
@@ -131,9 +131,8 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Albedo" ]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 
-resource_name = "Shoot"
 length = 0.2
 loop = false
 step = 0.1
@@ -150,7 +149,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 6.23994, 0, 0 ), Vector3( 0, 0, 0 ) ]
 }
 
-[sub_resource type="BoxShape" id=4]
+[sub_resource type="BoxShape" id=7]
 
 extents = Vector3( 1.5, 2, 1.5 )
 
@@ -207,7 +206,7 @@ lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
 mesh = SubResource( 2 )
 skeleton = NodePath("..")
-material/0 = SubResource( 7 )
+material/0 = SubResource( 3 )
 _sections_unfolded = [ "Transform", "material" ]
 
 [node name="MeshInstance" type="MeshInstance" parent="RotationHelper/Model/RHand/Hand" index="0"]
@@ -222,9 +221,9 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 3 )
+mesh = SubResource( 4 )
 skeleton = NodePath("..")
-material/0 = SubResource( 7 )
+material/0 = SubResource( 3 )
 _sections_unfolded = [ "material" ]
 
 [node name="MeshInstance2" type="MeshInstance" parent="RotationHelper/Model/RHand/Hand" index="1"]
@@ -240,9 +239,9 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 3 )
+mesh = SubResource( 4 )
 skeleton = NodePath("..")
-material/0 = SubResource( 7 )
+material/0 = SubResource( 3 )
 _sections_unfolded = [ "material" ]
 
 [node name="MeshInstance3" type="MeshInstance" parent="RotationHelper/Model/RHand/Hand/MeshInstance2" index="0"]
@@ -257,9 +256,9 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 3 )
+mesh = SubResource( 4 )
 skeleton = NodePath("..")
-material/0 = SubResource( 7 )
+material/0 = SubResource( 3 )
 _sections_unfolded = [ "material" ]
 
 [node name="MeshInstance3" type="MeshInstance" parent="RotationHelper/Model/RHand/Hand" index="2"]
@@ -275,9 +274,9 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 3 )
+mesh = SubResource( 4 )
 skeleton = NodePath("..")
-material/0 = SubResource( 7 )
+material/0 = SubResource( 3 )
 _sections_unfolded = [ "material" ]
 
 [node name="MeshInstance3" type="MeshInstance" parent="RotationHelper/Model/RHand/Hand/MeshInstance3" index="0"]
@@ -292,9 +291,9 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 3 )
+mesh = SubResource( 4 )
 skeleton = NodePath("..")
-material/0 = SubResource( 7 )
+material/0 = SubResource( 3 )
 _sections_unfolded = [ "material" ]
 
 [node name="MeshInstance4" type="MeshInstance" parent="RotationHelper/Model/RHand/Hand" index="3"]
@@ -310,9 +309,9 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 3 )
+mesh = SubResource( 4 )
 skeleton = NodePath("..")
-material/0 = SubResource( 7 )
+material/0 = SubResource( 3 )
 _sections_unfolded = [ "material" ]
 
 [node name="MeshInstance3" type="MeshInstance" parent="RotationHelper/Model/RHand/Hand/MeshInstance4" index="0"]
@@ -327,9 +326,9 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 3 )
+mesh = SubResource( 4 )
 skeleton = NodePath("..")
-material/0 = SubResource( 7 )
+material/0 = SubResource( 3 )
 _sections_unfolded = [ "material" ]
 
 [node name="MeshInstance5" type="MeshInstance" parent="RotationHelper/Model/RHand/Hand" index="4"]
@@ -345,9 +344,9 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 3 )
+mesh = SubResource( 4 )
 skeleton = NodePath("..")
-material/0 = SubResource( 7 )
+material/0 = SubResource( 3 )
 _sections_unfolded = [ "material" ]
 
 [node name="MeshInstance3" type="MeshInstance" parent="RotationHelper/Model/RHand/Hand/MeshInstance5" index="0"]
@@ -362,9 +361,9 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 3 )
+mesh = SubResource( 4 )
 skeleton = NodePath("..")
-material/0 = SubResource( 7 )
+material/0 = SubResource( 3 )
 _sections_unfolded = [ "material" ]
 
 [node name="Fan" type="Spatial" parent="RotationHelper/Model/RHand" index="1"]
@@ -387,7 +386,7 @@ lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
 mesh = SubResource( 2 )
 skeleton = NodePath("..")
-material/0 = SubResource( 6 )
+material/0 = SubResource( 5 )
 _sections_unfolded = [ "Transform", "material" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RotationHelper/Model/RHand" index="2"]
@@ -397,7 +396,7 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/Shoot = SubResource( 5 )
+anims/Shoot = SubResource( 6 )
 blend_times = [  ]
 
 [node name="Camera" type="Camera" parent="RotationHelper" index="1"]
@@ -411,7 +410,7 @@ v_offset = 0.0
 doppler_tracking = 0
 projection = 0
 current = true
-fov = 60.0
+fov = 70.0
 size = 1.0
 near = 0.05
 far = 1000.0
@@ -493,7 +492,7 @@ _sections_unfolded = [ "Audio Bus", "Collision", "Reverb Bus", "Transform", "Vis
 
 [node name="CollisionShape" type="CollisionShape" parent="RotationHelper/GunFirePoints/MeleeFire/Area" index="0"]
 
-shape = SubResource( 4 )
+shape = SubResource( 7 )
 disabled = false
 
 [node name="BulletFire" type="Spatial" parent="RotationHelper/GunFirePoints" index="2"]

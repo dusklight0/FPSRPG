@@ -52,9 +52,6 @@ func _ready():
     
 func _process(delta):
     process_input(delta)
-    
-    
-func _physics_process(delta):
     process_movement(delta)
     
 

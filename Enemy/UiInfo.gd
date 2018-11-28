@@ -8,6 +8,7 @@ var _lb_damage
 var _lb_damage_anim
 
 var _hp_visible_time = 0.0
+var _ui_behind_camera = true
 
 
 func _ready():
@@ -21,13 +22,27 @@ func _ready():
     
     
 func _process(delta):
+    _ui_behind_camera = _camera.is_position_behind(_hp_pos.global_transform.origin)
+    
+    if _ui_behind_camera:
+        _lb_damage.hide()
+    else:
+        _lb_damage.show()
+        
+    hp_bar_process(delta)
+        
+        
+func hp_bar_process(delta):
     if _hp_visible_time <= 0.0:
         return
         
     _hp_visible_time -= delta
     self.transform.origin = _camera.unproject_position(_hp_pos.global_transform.origin)
     
-    _hp_bar.show()
+    if _ui_behind_camera:
+        _hp_bar.hide()
+    else:
+        _hp_bar.show()
     
     if _hp_visible_time <= 0.0:
         _hp_bar.hide()

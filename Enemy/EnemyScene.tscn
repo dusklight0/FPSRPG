@@ -3,16 +3,16 @@
 [ext_resource path="res://Enemy/EnemyScene.gd" type="Script" id=1]
 [ext_resource path="res://Enemy/UiInfo.tscn" type="PackedScene" id=2]
 
-[sub_resource type="BoxShape" id=6]
+[sub_resource type="BoxShape" id=1]
 
 extents = Vector3( 2, 2, 2 )
 
-[sub_resource type="CapsuleShape" id=1]
+[sub_resource type="CapsuleShape" id=2]
 
 radius = 4.0
 height = 5.0
 
-[sub_resource type="CubeMesh" id=2]
+[sub_resource type="CubeMesh" id=3]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector3( 4, 4, 4 )
@@ -20,7 +20,7 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="SphereMesh" id=3]
+[sub_resource type="SphereMesh" id=4]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 radius = 1.0
@@ -29,7 +29,7 @@ radial_segments = 64
 rings = 32
 is_hemisphere = false
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=5]
 
 render_priority = 0
 flags_transparent = false
@@ -84,7 +84,7 @@ uv2_triplanar_sharpness = 1.0
 proximity_fade_enable = false
 distance_fade_enable = false
 
-[sub_resource type="CubeMesh" id=5]
+[sub_resource type="CubeMesh" id=6]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector3( 6, 12, 6 )
@@ -92,7 +92,7 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[node name="Enemy" type="KinematicBody" index="0"]
+[node name="Enemy" type="KinematicBody"]
 
 input_ray_pickable = true
 input_capture_on_drag = false
@@ -111,14 +111,14 @@ _sections_unfolded = [ "Axis Lock", "Collision", "Transform", "Visibility", "col
 [node name="HeadCollisionShape" type="CollisionShape" parent="." index="0"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, 0 )
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
 [node name="BodyCollisionShape" type="CollisionShape" parent="." index="1"]
 
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 6, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 disabled = false
 _sections_unfolded = [ "Transform", "Visibility" ]
 
@@ -144,7 +144,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 2 )
+mesh = SubResource( 3 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform", "material" ]
@@ -161,9 +161,9 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 3 )
+mesh = SubResource( 4 )
 skeleton = NodePath("..")
-material/0 = SubResource( 4 )
+material/0 = SubResource( 5 )
 _sections_unfolded = [ "Transform", "material" ]
 
 [node name="EyeRight" type="MeshInstance" parent="RotationHelper/Model/Head" index="1"]
@@ -178,9 +178,9 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 3 )
+mesh = SubResource( 4 )
 skeleton = NodePath("..")
-material/0 = SubResource( 4 )
+material/0 = SubResource( 5 )
 _sections_unfolded = [ "Transform", "material" ]
 
 [node name="Body" type="MeshInstance" parent="RotationHelper/Model" index="1"]
@@ -195,7 +195,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 5 )
+mesh = SubResource( 6 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform", "material" ]
@@ -206,5 +206,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 0 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="UiInfo" parent="." index="4" instance=ExtResource( 2 )]
+
+_sections_unfolded = [ "Pause" ]
 
 
