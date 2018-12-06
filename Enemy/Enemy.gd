@@ -63,8 +63,6 @@ func bullet_hit(damage, bullet_hit_pos, shape):
     
     
 func on_change_state(state, state_time = 0.0):
-    return
-    
     if _state == DESTROY:
         return
         

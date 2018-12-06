@@ -24,6 +24,7 @@ var _rotation_helper
 var _gun
 var _gun_anim
 var _gun_ray
+var _ani_player
 
 # ui ref
 var _ui_hp_bar
@@ -48,6 +49,9 @@ func _ready():
     var gun_aim_point_pos = $RotationHelper/GunFirePoints.global_transform.origin
     
     _ui_hp_bar = _game_scene.get_node("Hud/HpBar")
+    
+    _ani_player = $"RotationHelper/Model/AnimationPlayer"
+    _ani_player.play("Equip")
     
     
 func _process(delta):
@@ -129,7 +133,7 @@ func _input(event):
 
 func fire_bullet():
     if _gun.fire_weapon():
-        _gun_anim.play("Shoot")
+        _ani_player.play("Shoot")
     
     
 func on_attacked(damage, bullet_hit_pos):

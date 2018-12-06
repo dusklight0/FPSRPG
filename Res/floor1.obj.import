@@ -15,3 +15,4 @@ dest_files=[ "res://.import/floor1.obj-1166c793a4665aee31dd58f0e316df22.mesh", "
 
 generate_tangents=true
 scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true
