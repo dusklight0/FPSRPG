@@ -15,3 +15,4 @@ dest_files=[ "res://.import/tree_house.obj-a38fc6acef7c7bd9f0c8265f6df9d743.mesh
 
 generate_tangents=true
 scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

@@ -3,9 +3,10 @@ extends Spatial
 const DAMAGE = 50
 
 var _is_weapon_enabled = false
-var _player_node = null
 var _gun_ray
-var _bullet_particle
+var _player
+var _bullet_particle = preload("res://Effect/bullet_mark.scn")
+var _soul_effect = preload("res://Effect/SoulEffect.tscn")
 
 var _attack_rate = 0.5
 var _last_attack_rate = 0.0
@@ -31,23 +32,34 @@ func fire_weapon():
         
     var body = _gun_ray.get_collider()
     var shape = _gun_ray.get_collider_shape()
+    var hit_point = _gun_ray.get_collision_point()
 
-#    if _bullet_particle:
-#        var particle_node = _bullet_particle.instance()
-#        get_tree().root.add_child(particle_node)
-#        particle_node.global_translate(collision_point)
-#        particle_node.scale = Vector3(2, 2, 2)
-#        particle_node.restart()
+    if _bullet_particle:
+        var particle_node = _bullet_particle.instance()
+        get_tree().root.add_child(particle_node)
+        particle_node.global_translate(hit_point)
+        particle_node.scale = Vector3(2, 2, 2)
+        particle_node.restart()
         
     if body.has_method("bullet_hit"):
-        body.bullet_hit(DAMAGE, _gun_ray.get_collision_point(), shape)
+        if body.bullet_hit(DAMAGE, _gun_ray.get_collision_point(), shape):
+            show_hit_effect(shape, hit_point)
         
     return true
+    
+    
+func show_hit_effect(shape, hit_point):
+    var soul_effect = _soul_effect.instance()
+    get_tree().root.add_child(soul_effect)
+    soul_effect._player = _player
+    soul_effect._bezier_point = Vector3(0, 1, 0)
+    soul_effect._bezier_value = _player.global_transform.origin.distance_to(hit_point) / 2.0
+    soul_effect._max_bezier_value = soul_effect._bezier_value
+    soul_effect.global_translate(hit_point)
         
 
 func equip_weapon():
     _is_weapon_enabled = true
-    _bullet_particle = load("res://Effect/bullet_mark.scn")
     return true
 #	if player_node.animation_manager.current_state == IDLE_ANIM_NAME:
 #		is_weapon_enabled = true

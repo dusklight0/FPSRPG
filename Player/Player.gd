@@ -39,6 +39,9 @@ func _ready():
     _gun_anim = $RotationHelper/Model/RHand/AnimationPlayer
     
     _gun_ray = $RotationHelper/GunFirePoints/RayFire/RayCast
+    
+    var weapon_ray = $RotationHelper/GunFirePoints/RayFire
+    weapon_ray._player = self
 
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
     

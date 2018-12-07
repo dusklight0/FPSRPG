@@ -40,7 +40,7 @@ func _ready():
 
 func bullet_hit(damage, bullet_hit_pos, shape):
     if _hp <= 0:
-        return
+        return false
         
     _hit_dir = (bullet_hit_pos - _player.transform.origin).normalized()
     _hit_dir.y = 0
@@ -60,6 +60,8 @@ func bullet_hit(damage, bullet_hit_pos, shape):
     
     if _hp <= 0:
         on_change_state(DEAD, 1.0)
+        
+    return true
     
     
 func on_change_state(state, state_time = 0.0):
