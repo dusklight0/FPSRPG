@@ -16,6 +16,7 @@ var _dir = Vector3()
 var _mouse_sensitivity = 0.1
 
 var _hp = 100
+var _max_hp = 100
 var _is_spriting = false
 
 # object ref
@@ -28,6 +29,7 @@ var _ani_player
 
 # ui ref
 var _ui_hp_bar
+var _ui_shield_bar
 var _game_scene
 
 
@@ -52,6 +54,7 @@ func _ready():
     var gun_aim_point_pos = $RotationHelper/GunFirePoints.global_transform.origin
     
     _ui_hp_bar = _game_scene.get_node("Hud/HpBar")
+    _ui_shield_bar = _game_scene.get_node("Hud/ShieldBar")
     
     _ani_player = $"RotationHelper/Model/AnimationPlayer"
     _ani_player.play("Equip")
@@ -137,14 +140,28 @@ func _input(event):
 func fire_bullet():
     if _gun.fire_weapon():
         _ani_player.play("Shoot")
+        
+        
+func update_hp_ui():
+    _ui_hp_bar.value = _hp
+    if _hp > _max_hp:
+        _ui_shield_bar.value = _hp - _max_hp
+        _ui_shield_bar.show()
+    else:
+        _ui_shield_bar.hide()
+        
+        
+func on_hp_absorb(damage):
+    _hp += damage
+    update_hp_ui()
     
     
 func on_attacked(damage, bullet_hit_pos):
     if _hp <= 0:
         return
-        
+    
     _hp -= damage
-    _ui_hp_bar.value = _hp
+    update_hp_ui()
     
     if _hp <= 0:
         print('-------- game over')

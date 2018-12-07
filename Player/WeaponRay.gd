@@ -41,20 +41,25 @@ func fire_weapon():
         particle_node.scale = Vector3(2, 2, 2)
         particle_node.restart()
         
+    show_absorb_effect(shape, hit_point)
+        
     if body.has_method("bullet_hit"):
         if body.bullet_hit(DAMAGE, _gun_ray.get_collision_point(), shape):
-            show_hit_effect(shape, hit_point)
+            show_absorb_effect(shape, hit_point)
+            _player.on_hp_absorb(DAMAGE * 0.1)
         
     return true
     
     
-func show_hit_effect(shape, hit_point):
+func show_absorb_effect(shape, hit_point):
+    var distance = _player.global_transform.origin.distance_to(hit_point)
     var soul_effect = _soul_effect.instance()
     get_tree().root.add_child(soul_effect)
     soul_effect._player = _player
     soul_effect._bezier_point = Vector3(0, 1, 0)
-    soul_effect._bezier_value = _player.global_transform.origin.distance_to(hit_point) / 2.0
+    soul_effect._bezier_value = distance / 2.0
     soul_effect._max_bezier_value = soul_effect._bezier_value
+    soul_effect._speed_accel = distance / 30.0
     soul_effect.global_translate(hit_point)
         
 

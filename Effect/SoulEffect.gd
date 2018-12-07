@@ -4,6 +4,8 @@ const KILL_TIMER = 1
 
 var _player
 var _timer = 0
+var _life_time = 0
+var _speed_accel = 0
 var _effect_speed = 10
 var _bezier_point
 var _bezier_value = 0
@@ -22,7 +24,7 @@ func _process(delta):
     global_translate(direction * _effect_speed * delta)
     
     _bezier_value = lerp(0.0, _max_bezier_value, 1 - (_timer/KILL_TIMER))
-    _effect_speed += 2
+    _effect_speed += _speed_accel
     
     _timer += delta
     if _timer >= KILL_TIMER:
