@@ -7,7 +7,7 @@ var _hp_bar
 var _lb_damage
 var _lb_damage_anim
 
-var _hp_visible_time = 0.0
+var _ui_visible_time = 0.0
 var _ui_behind_camera = true
 
 
@@ -22,30 +22,21 @@ func _ready():
     
     
 func _process(delta):
-    _ui_behind_camera = _camera.is_position_behind(_hp_pos.global_transform.origin)
-    
-    if _ui_behind_camera:
+    if _ui_visible_time <= 0.0:
+        _hp_bar.hide()
         _lb_damage.hide()
-    else:
-        _lb_damage.show()
-        
-    hp_bar_process(delta)
-        
-        
-func hp_bar_process(delta):
-    if _hp_visible_time <= 0.0:
         return
         
-    _hp_visible_time -= delta
+    _ui_visible_time -= delta
+    _ui_behind_camera = _camera.is_position_behind(_hp_pos.global_transform.origin)
     self.transform.origin = _camera.unproject_position(_hp_pos.global_transform.origin)
     
     if _ui_behind_camera:
+        _lb_damage.hide()
         _hp_bar.hide()
     else:
+        _lb_damage.show()
         _hp_bar.show()
-    
-    if _hp_visible_time <= 0.0:
-        _hp_bar.hide()
         
         
 func hide_damage_label():
@@ -59,4 +50,4 @@ func on_bullet_hit(damage, hp):
     _lb_damage_anim.play("show")
     
     _hp_bar.value = hp
-    _hp_visible_time = 3.0
+    _ui_visible_time = 3.0

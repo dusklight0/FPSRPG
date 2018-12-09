@@ -8,6 +8,7 @@ var _aiming_range = 2.0
 
 
 func _ready():
+    _enemy_speed = 18
     _bullet = load("res://Enemy/EnemyBullet.tscn")
     
     
@@ -90,7 +91,7 @@ func on_attack(delta):
         look_at(_player.transform.origin, Vector3(0, 1, 0))
         
         var target_pos = _player.global_transform.origin
-        if rand_range(0, 100) > 30:
+        if rand_range(0, 100) < 30:
             target_pos += Vector3(rand_range(-_aiming_range, _aiming_range), rand_range(-_aiming_range, _aiming_range), rand_range(-_aiming_range, _aiming_range))
             
         var bullet_instance = _bullet.instance()
