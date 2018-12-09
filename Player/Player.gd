@@ -4,8 +4,8 @@ const GRAVITY = -24.8
 const MAX_SPEED = 80
 const ACCEL= 4.5
 
-const MAX_SPRINT_SPEED = 120
-const SPRINT_ACCEL = 20
+const MAX_STEP_SPEED = 150
+const STEP_ACCEL = 150
 const DEACCEL= 16
 const MAX_SLOPE_ANGLE = 40
 
@@ -17,7 +17,8 @@ var _mouse_sensitivity = 0.1
 
 var _hp = 100
 var _max_hp = 100
-var _is_spriting = false
+var _step_time = 0.0
+var _is_step = false
 
 # object ref
 var _camera
@@ -86,8 +87,12 @@ func process_input(delta):
     _dir += -cam_xform.basis.z.normalized() * input_movement_vector.y
     _dir += cam_xform.basis.x.normalized() * input_movement_vector.x
     
-    # Sprinting
-    _is_spriting = Input.is_action_pressed("movement_sprint")
+    if _step_time <= 0.0 and Input.is_action_just_pressed("movement_step"):
+        _step_time = 1.0
+        _is_step = true
+        
+    else:
+        _step_time -= delta
     
     # Capturing/Freeing the cursor
 #    if Input.is_action_just_pressed("ui_cancel"):
@@ -110,12 +115,12 @@ func process_movement(delta):
     var hvel = _vel
     hvel.y = 0
 
-    var target = _dir * MAX_SPEED if false == _is_spriting else _dir * MAX_SPRINT_SPEED
+    var target = _dir * MAX_SPEED if _is_step == false else _dir * MAX_STEP_SPEED
 
     var accel
     if _dir.dot(hvel) > 0:
-        if _is_spriting:
-            accel = SPRINT_ACCEL
+        if _is_step == true:
+            accel = STEP_ACCEL
         else:
             accel = ACCEL
     else:
@@ -125,6 +130,8 @@ func process_movement(delta):
     _vel.x = hvel.x
     _vel.z = hvel.z
     _vel = move_and_slide(_vel, Vector3(0, 1 ,0), 0.05, 4, deg2rad(40))
+    
+    _is_step = false
     
 
 func _input(event):

@@ -55,7 +55,7 @@ func on_hide(delta):
         
     _move_process = true
         
-    if _battle_state_time > 5.0:
+    if _battle_state_time > 3.0:
         on_end_battle_state([BT_HIDE, BT_WAIT, BT_MOVE])
         _move_process = false
     
@@ -67,7 +67,7 @@ func on_run(delta):
         
     _move_process = true
         
-    if _battle_state_time > 5.0:
+    if _battle_state_time > 4.0:
         on_end_battle_state([BT_HIDE, BT_ATTACK])
         _move_process = false
     
