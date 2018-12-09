@@ -1,6 +1,6 @@
 extends Spatial
 
-const DAMAGE = 50
+const DAMAGE = 40
 
 var _is_weapon_enabled = false
 var _gun_ray
@@ -40,8 +40,6 @@ func fire_weapon():
         particle_node.global_translate(hit_point)
         particle_node.scale = Vector3(2, 2, 2)
         particle_node.restart()
-        
-    show_absorb_effect(shape, hit_point)
         
     if body.has_method("bullet_hit"):
         if body.bullet_hit(DAMAGE, _gun_ray.get_collision_point(), shape):

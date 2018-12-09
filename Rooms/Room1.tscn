@@ -42,6 +42,9 @@ flags_use_point_size = false
 flags_world_triplanar = false
 flags_fixed_size = false
 flags_albedo_tex_force_srgb = false
+flags_do_not_receive_shadows = false
+flags_disable_ambient_light = false
+flags_ensure_correct_normals = false
 vertex_color_use_as_albedo = false
 vertex_color_is_srgb = false
 params_diffuse_mode = 1
@@ -52,6 +55,7 @@ params_depth_draw_mode = 0
 params_line_width = 1.0
 params_point_size = 1.0
 params_billboard_mode = 0
+params_billboard_keep_scale = false
 params_grow = false
 params_use_alpha_scissor = false
 albedo_color = Color( 1, 1, 1, 1 )
@@ -81,21 +85,23 @@ uv2_offset = Vector3( 0, 0, 0 )
 uv2_triplanar = false
 uv2_triplanar_sharpness = 1.0
 proximity_fade_enable = false
-distance_fade_enable = false
-_sections_unfolded = [ "Albedo", "Metallic", "Parameters", "Roughness" ]
+distance_fade_mode = 0
 
 [sub_resource type="CapsuleShape" id=3]
 
+margin = 0.04
 radius = 5.0
 height = 100.0
 
 [sub_resource type="BoxShape" id=4]
 
+margin = 0.04
 extents = Vector3( 5, 10, 5 )
 
 [sub_resource type="CubeMesh" id=5]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+flip_faces = false
 size = Vector3( 10, 20, 10 )
 subdivide_width = 0
 subdivide_height = 0
@@ -103,43 +109,35 @@ subdivide_depth = 0
 
 [sub_resource type="BoxShape" id=6]
 
+margin = 0.04
 extents = Vector3( 100, 50, 100 )
 
-[node name="Room" type="Spatial" index="0"]
-
+[node name="Room" type="Spatial"]
 transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, 0, 0, 0 )
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="Navigation" type="Navigation" parent="." index="0"]
-
+[node name="Navigation" type="Navigation" parent="."]
 editor/display_folded = true
 up_vector = Vector3( 0, 1, 0 )
 
-[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation" index="0"]
-
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
 transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0, 0, 0 )
 navmesh = SubResource( 1 )
 enabled = true
 
-[node name="Objects" type="Spatial" parent="." index="1"]
+[node name="Objects" type="Spatial" parent="."]
 
-[node name="BlockWall1" type="StaticBody" parent="Objects" index="0"]
-
+[node name="BlockWall1" type="StaticBody" parent="Objects"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 50, 40 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
 collision_mask = 27
-friction = 1.0
-bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
 constant_angular_velocity = Vector3( 0, 0, 0 )
-_sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="MeshInstance" type="MeshInstance" parent="Objects/BlockWall1" index="0"]
-
+[node name="MeshInstance" type="MeshInstance" parent="Objects/BlockWall1"]
 transform = Transform( 1.5, 0, 0, 0, 0.5, 0, 0, 0, 1.5, 0, 0, 0 )
 layers = 1
 material_override = null
@@ -153,38 +151,28 @@ lod_max_hysteresis = 0.0
 mesh = ExtResource( 2 )
 skeleton = NodePath("..")
 material/0 = SubResource( 2 )
-_sections_unfolded = [ "Transform", "material" ]
 
-[node name="CollisionShape" type="CollisionShape" parent="Objects/BlockWall1" index="1"]
-
+[node name="CollisionShape" type="CollisionShape" parent="Objects/BlockWall1"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
 shape = SubResource( 3 )
 disabled = false
-_sections_unfolded = [ "Transform" ]
 
-[node name="BlockWall2" type="StaticBody" parent="Objects" index="1"]
-
+[node name="BlockWall2" type="StaticBody" parent="Objects"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 50, 40 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
 collision_mask = 27
-friction = 1.0
-bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
 constant_angular_velocity = Vector3( 0, 0, 0 )
-_sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="CollisionShape" type="CollisionShape" parent="Objects/BlockWall2" index="0"]
-
+[node name="CollisionShape" type="CollisionShape" parent="Objects/BlockWall2"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
 shape = SubResource( 3 )
 disabled = false
-_sections_unfolded = [ "Transform" ]
 
-[node name="MeshInstance2" type="MeshInstance" parent="Objects/BlockWall2" index="1"]
-
+[node name="MeshInstance2" type="MeshInstance" parent="Objects/BlockWall2"]
 transform = Transform( 1.5, 0, 0, 0, 0.5, 0, 0, 0, 1.5, 0, 0, 0 )
 layers = 1
 material_override = null
@@ -198,31 +186,23 @@ lod_max_hysteresis = 0.0
 mesh = ExtResource( 2 )
 skeleton = NodePath("..")
 material/0 = SubResource( 2 )
-_sections_unfolded = [ "Transform", "material" ]
 
-[node name="BlockWall3" type="StaticBody" parent="Objects" index="2"]
-
+[node name="BlockWall3" type="StaticBody" parent="Objects"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 50, -40 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
 collision_mask = 27
-friction = 1.0
-bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
 constant_angular_velocity = Vector3( 0, 0, 0 )
-_sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="CollisionShape" type="CollisionShape" parent="Objects/BlockWall3" index="0"]
-
+[node name="CollisionShape" type="CollisionShape" parent="Objects/BlockWall3"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
 shape = SubResource( 3 )
 disabled = false
-_sections_unfolded = [ "Transform" ]
 
-[node name="MeshInstance3" type="MeshInstance" parent="Objects/BlockWall3" index="1"]
-
+[node name="MeshInstance3" type="MeshInstance" parent="Objects/BlockWall3"]
 transform = Transform( 1.5, 0, 0, 0, 0.5, 0, 0, 0, 1.5, 0, 0, 0 )
 layers = 1
 material_override = null
@@ -236,31 +216,23 @@ lod_max_hysteresis = 0.0
 mesh = ExtResource( 2 )
 skeleton = NodePath("..")
 material/0 = SubResource( 2 )
-_sections_unfolded = [ "Transform", "material" ]
 
-[node name="BlockWall4" type="StaticBody" parent="Objects" index="3"]
-
+[node name="BlockWall4" type="StaticBody" parent="Objects"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 50, -40 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 4
 collision_mask = 27
-friction = 1.0
-bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
 constant_angular_velocity = Vector3( 0, 0, 0 )
-_sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="CollisionShape" type="CollisionShape" parent="Objects/BlockWall4" index="0"]
-
+[node name="CollisionShape" type="CollisionShape" parent="Objects/BlockWall4"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
 shape = SubResource( 3 )
 disabled = false
-_sections_unfolded = [ "Transform" ]
 
-[node name="MeshInstance4" type="MeshInstance" parent="Objects/BlockWall4" index="1"]
-
+[node name="MeshInstance4" type="MeshInstance" parent="Objects/BlockWall4"]
 transform = Transform( 1.5, 0, 0, 0, 0.5, 0, 0, 0, 1.5, 0, 0, 0 )
 layers = 1
 material_override = null
@@ -274,10 +246,8 @@ lod_max_hysteresis = 0.0
 mesh = ExtResource( 2 )
 skeleton = NodePath("..")
 material/0 = SubResource( 2 )
-_sections_unfolded = [ "Transform", "material" ]
 
-[node name="TestBox" type="RigidBody" parent="Objects" index="4"]
-
+[node name="TestBox" type="RigidBody" parent="Objects"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -91.5648, 0.98402, 92.8382 )
 input_ray_pickable = true
@@ -286,8 +256,6 @@ collision_layer = 4
 collision_mask = 27
 mode = 0
 mass = 5.0
-friction = 1.0
-bounce = 0.0
 gravity_scale = 3.0
 custom_integrator = false
 continuous_cd = false
@@ -306,15 +274,12 @@ linear_damp = -1.0
 angular_velocity = Vector3( 0, 0, 0 )
 angular_damp = -1.0
 script = ExtResource( 4 )
-_sections_unfolded = [ "Collision" ]
 
-[node name="CollisionShape" type="CollisionShape" parent="Objects/TestBox" index="0"]
-
+[node name="CollisionShape" type="CollisionShape" parent="Objects/TestBox"]
 shape = SubResource( 4 )
 disabled = false
 
-[node name="MeshInstance" type="MeshInstance" parent="Objects/TestBox" index="1"]
-
+[node name="MeshInstance" type="MeshInstance" parent="Objects/TestBox"]
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -328,8 +293,7 @@ mesh = SubResource( 5 )
 skeleton = NodePath("..")
 material/0 = null
 
-[node name="Area" type="Area" parent="." index="2"]
-
+[node name="Area" type="Area" parent="."]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0 )
 input_ray_pickable = false
@@ -352,15 +316,12 @@ reverb_bus_enable = false
 reverb_bus_name = "Master"
 reverb_bus_amount = 0.0
 reverb_bus_uniformity = 0.0
-_sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="CollisionShape" type="CollisionShape" parent="Area" index="0"]
-
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 6 )
 disabled = false
 
-[node name="RoomLight" type="OmniLight" parent="." index="3"]
-
+[node name="RoomLight" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 70, 0 )
 layers = 1
 light_color = Color( 0.546875, 0.534525, 0.467834, 1 )
@@ -380,45 +341,32 @@ omni_range = 130.0
 omni_attenuation = 2.0
 omni_shadow_mode = 1
 omni_shadow_detail = 1
-_sections_unfolded = [ "Light", "Omni", "Shadow", "Transform" ]
 
-[node name="SpawnPoints" type="Spatial" parent="." index="4"]
-
+[node name="SpawnPoints" type="Spatial" parent="."]
 editor/display_folded = true
 
-[node name="EnemySpawn1" type="Position3D" parent="SpawnPoints" index="0"]
-
+[node name="EnemySpawn1" type="Position3D" parent="SpawnPoints"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 60 )
 script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-_min_enemy_count = 5
-_max_enemy_count = 8
-_boss_enable = null
+_min_enemy_count = 2
+_max_enemy_count = 5
 
-[node name="EnemySpawn2" type="Position3D" parent="SpawnPoints" index="1"]
-
+[node name="EnemySpawn2" type="Position3D" parent="SpawnPoints"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 0, 60 )
 script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 _min_enemy_count = 2
 _max_enemy_count = 5
-_boss_enable = null
 
-[node name="EnemySpawn3" type="Position3D" parent="SpawnPoints" index="2"]
-
+[node name="EnemySpawn3" type="Position3D" parent="SpawnPoints"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -70, 0, 60 )
 script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
 _min_enemy_count = 2
 _max_enemy_count = 5
-_boss_enable = null
 
-[node name="ItemBox" parent="." index="5" instance=ExtResource( 6 )]
-
+[node name="ItemBox" parent="." instance=ExtResource( 6 )]
 transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 29.3556, 0, 92.7567 )
 
-[node name="Walls" parent="." index="6" instance=ExtResource( 7 )]
+[node name="Walls" parent="." instance=ExtResource( 7 )]
 
-[node name="Doors" parent="." index="7" instance=ExtResource( 8 )]
-
+[node name="Doors" parent="." instance=ExtResource( 8 )]
 

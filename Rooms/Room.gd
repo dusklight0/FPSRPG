@@ -4,6 +4,7 @@ var _spawn_points
 
 var _navigation
 var _doors = []
+var _block_objects = []
 
 var _player_enter = false
 
@@ -17,7 +18,8 @@ var _room_info = {
 func _ready():
     _doors = [$Doors/DoorU, $Doors/DoorR, $Doors/DoorD, $Doors/DoorL]
     _spawn_points = $SpawnPoints
-    _navigation = $Navigation    
+    _navigation = $Navigation
+    _block_objects = $Objects    
     
     $Area.connect("body_entered", self, "room_enter")
     $Area.connect("body_exited", self, "room_exit")

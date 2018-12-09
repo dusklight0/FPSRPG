@@ -60,7 +60,7 @@ func _ready():
     _ani_player.play("Equip")
     
     
-func _process(delta):
+func _physics_process(delta):
     process_input(delta)
     process_movement(delta)
     
