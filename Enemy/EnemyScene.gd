@@ -2,8 +2,7 @@ extends "res://Enemy/Enemy.gd"
 
 var _bullet
 var _attack_time = 0.0
-var _action_attacked = false
-
+var _attack_count = 0
 var _aiming_range = 2.0
 
 
@@ -87,7 +86,8 @@ func on_move(delta):
     
     
 func on_attack(delta):
-    if _battle_state_time <= 0.0:
+    _attack_time += delta
+    if _attack_count < 3 and _attack_time > 0.5:
         look_at(_player.transform.origin, Vector3(0, 1, 0))
         
         var target_pos = _player.global_transform.origin
@@ -104,6 +104,11 @@ func on_attack(delta):
         bullet_instance.set_global_transform(t)
         
         get_tree().root.add_child(bullet_instance)
+        
+        _attack_time = 0.0
+        _attack_count += 1
     
     if _battle_state_time > 3.0:
+        _attack_time = 0.0
+        _attack_count = 0
         on_end_battle_state([BT_HIDE, BT_WAIT, BT_MOVE])
