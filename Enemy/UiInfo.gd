@@ -21,7 +21,7 @@ func _ready():
     _lb_damage_anim = $LbDamage/Anim
     
     
-func _process(delta):
+func _physics_process(delta):
     if _ui_visible_time <= 0.0:
         _hp_bar.hide()
         _lb_damage.hide()

@@ -67,7 +67,7 @@ uv2_triplanar_sharpness = 1.0
 proximity_fade_enable = false
 distance_fade_mode = 0
 
-[sub_resource type="SpatialMaterial" id=8]
+[sub_resource type="SpatialMaterial" id=3]
 
 render_priority = 0
 flags_transparent = true
@@ -122,20 +122,20 @@ uv2_triplanar_sharpness = 1.0
 proximity_fade_enable = false
 distance_fade_mode = 0
 
-[sub_resource type="Curve" id=6]
+[sub_resource type="Curve" id=4]
 
 min_value = 0.0
 max_value = 1.0
 bake_resolution = 100
 _data = [ Vector2( 0, 0.9928 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.5584, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=7]
+[sub_resource type="CurveTexture" id=5]
 
 flags = 4
 width = 1024
-curve = SubResource( 6 )
+curve = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticlesMaterial" id=6]
 
 render_priority = 0
 trail_divisor = 1
@@ -162,7 +162,7 @@ angle = 0.0
 angle_random = 0.0
 scale = 1.0
 scale_random = 0.0
-scale_curve = SubResource( 7 )
+scale_curve = SubResource( 5 )
 color = Color( 1, 1, 1, 1 )
 hue_variation = 0.0
 hue_variation_random = 0.0
@@ -172,7 +172,7 @@ anim_offset = 0.0
 anim_offset_random = 0.0
 anim_loop = false
 
-[sub_resource type="SphereMesh" id=4]
+[sub_resource type="SphereMesh" id=7]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 flip_faces = false
@@ -182,7 +182,7 @@ radial_segments = 12
 rings = 12
 is_hemisphere = false
 
-[sub_resource type="SphereMesh" id=9]
+[sub_resource type="SphereMesh" id=8]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 flip_faces = false
@@ -192,7 +192,7 @@ radial_segments = 12
 rings = 12
 is_hemisphere = false
 
-[sub_resource type="SpatialMaterial" id=10]
+[sub_resource type="SpatialMaterial" id=9]
 
 render_priority = 0
 flags_transparent = false
@@ -270,7 +270,7 @@ material/0 = SubResource( 2 )
 
 [node name="Particles" type="Particles" parent="."]
 layers = 1
-material_override = SubResource( 8 )
+material_override = SubResource( 3 )
 cast_shadow = 0
 extra_cull_margin = 0.0
 use_in_baked_light = false
@@ -291,9 +291,9 @@ fract_delta = true
 visibility_aabb = AABB( -4, -4, -4, 8, 8, 8 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 3 )
+process_material = SubResource( 6 )
 draw_passes = 1
-draw_pass_1 = SubResource( 4 )
+draw_pass_1 = SubResource( 7 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="."]
 layers = 1
@@ -305,7 +305,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 9 )
+mesh = SubResource( 8 )
 skeleton = NodePath("..")
-material/0 = SubResource( 10 )
+material/0 = SubResource( 9 )
 

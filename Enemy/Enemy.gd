@@ -102,7 +102,7 @@ func update_state(delta):
         on_change_state(BATTLE)
 
  
-func _process(delta):
+func _physics_process(delta):
     update_state(delta)
     
     if _state & DEAD:
@@ -120,6 +120,8 @@ func _process(delta):
             
         if _state & FAINT:
             on_faint(delta)
+            
+    move_process(delta)
     
     
 #--------------------- Main State ------------------------
@@ -213,7 +215,7 @@ func on_end_battle_state(states):
 
 #--------------------- Movement ------------------------
 
-func _physics_process(delta):
+func move_process(delta):
     if _move_process == false:
         return
         

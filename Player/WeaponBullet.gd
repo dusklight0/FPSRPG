@@ -14,7 +14,7 @@ func _ready():
     _fire_pos = $FirePos
     
     
-func _process(delta):
+func _physics_process(delta):
     if _last_attack_rate > 0.0:
         _last_attack_rate -= delta
     

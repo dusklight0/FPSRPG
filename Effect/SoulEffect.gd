@@ -15,7 +15,7 @@ func _ready():
     pass
 
 
-func _process(delta):
+func _physics_process(delta):
     if _max_bezier_value <= 0:
         return
     
