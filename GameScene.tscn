@@ -1,14 +1,35 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://GameScene.gd" type="Script" id=1]
 [ext_resource path="res://NotoSans-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://imgs/dot.png" type="Texture" id=3]
 
+[sub_resource type="ProceduralSky" id=10]
+
+radiance_size = 4
+sky_top_color = Color( 0.192157, 0.25098, 0.305882, 1 )
+sky_horizon_color = Color( 0.152941, 0.176471, 0.192157, 1 )
+sky_curve = 0.09
+sky_energy = 1.0
+ground_bottom_color = Color( 0.156863, 0.184314, 0.211765, 1 )
+ground_horizon_color = Color( 0.423529, 0.396078, 0.372549, 1 )
+ground_curve = 0.02
+ground_energy = 1.0
+sun_color = Color( 0.294118, 0.345098, 0.466667, 1 )
+sun_latitude = 35.0
+sun_longitude = 0.0
+sun_angle_min = 1.0
+sun_angle_max = 100.0
+sun_curve = 0.05
+sun_energy = 16.0
+texture_size = 2
+
 [sub_resource type="Environment" id=1]
 
-background_mode = 1
+background_mode = 2
+background_sky = SubResource( 10 )
 background_sky_custom_fov = 0.0
-background_color = Color( 0.509804, 0.54902, 0.588235, 1 )
+background_color = Color( 0.231373, 0.278431, 0.329412, 1 )
 background_energy = 1.0
 background_canvas_max_layer = 0
 ambient_light_color = Color( 0.156863, 0.156863, 0.156863, 1 )
