@@ -57,8 +57,8 @@ func _ready():
     _ui_hp_bar = _game_scene.get_node("Hud/HpBar")
     _ui_shield_bar = _game_scene.get_node("Hud/ShieldBar")
     
-    #_ani_player = $"RotationHelper/Model/AnimationPlayer"
-    #_ani_player.play("Equip")
+    _ani_player = $"RotationHelper/Model/AnimationPlayer"
+    _ani_player.play("Equip")
     
     
 func _physics_process(delta):
@@ -146,8 +146,7 @@ func _input(event):
 
 func fire_bullet():
     if _gun.fire_weapon():
-        pass
-        #_ani_player.play("Shoot")
+        _ani_player.play("Shoot")
         
         
 func update_hp_ui():

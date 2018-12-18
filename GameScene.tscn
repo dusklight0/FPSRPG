@@ -6,23 +6,23 @@
 
 [sub_resource type="ProceduralSky" id=1]
 
-radiance_size = 4
+radiance_size = 2
 sky_top_color = Color( 0.192157, 0.25098, 0.305882, 1 )
-sky_horizon_color = Color( 0.152941, 0.176471, 0.192157, 1 )
-sky_curve = 0.09
+sky_horizon_color = Color( 0, 0, 0, 1 )
+sky_curve = 0.199722
 sky_energy = 1.0
-ground_bottom_color = Color( 0.156863, 0.184314, 0.211765, 1 )
-ground_horizon_color = Color( 0.423529, 0.396078, 0.372549, 1 )
+ground_bottom_color = Color( 0, 0, 0, 1 )
+ground_horizon_color = Color( 0, 0, 0, 1 )
 ground_curve = 0.02
 ground_energy = 1.0
-sun_color = Color( 0.294118, 0.345098, 0.466667, 1 )
+sun_color = Color( 0.247059, 0.290196, 0.313726, 1 )
 sun_latitude = 35.0
 sun_longitude = 0.0
 sun_angle_min = 1.0
 sun_angle_max = 100.0
 sun_curve = 0.05
 sun_energy = 16.0
-texture_size = 2
+texture_size = 0
 
 [sub_resource type="Environment" id=2]
 
@@ -35,9 +35,9 @@ background_canvas_max_layer = 0
 ambient_light_color = Color( 0.156863, 0.156863, 0.156863, 1 )
 ambient_light_energy = 0.05
 ambient_light_sky_contribution = 0.0
-fog_enabled = false
-fog_color = Color( 0.5, 0.6, 0.7, 1 )
-fog_sun_color = Color( 1, 0.9, 0.7, 1 )
+fog_enabled = true
+fog_color = Color( 0.239216, 0.27451, 0.309804, 1 )
+fog_sun_color = Color( 0, 0, 0, 1 )
 fog_sun_amount = 0.0
 fog_depth_enabled = true
 fog_depth_begin = 10.0
@@ -62,7 +62,7 @@ ss_reflections_fade_in = 0.15
 ss_reflections_fade_out = 2.0
 ss_reflections_depth_tolerance = 0.2
 ss_reflections_roughness = true
-ssao_enabled = true
+ssao_enabled = false
 ssao_radius = 1.0
 ssao_intensity = 1.0
 ssao_radius2 = 0.0
@@ -74,16 +74,16 @@ ssao_color = Color( 0, 0, 0, 1 )
 ssao_quality = 0
 ssao_blur = 3
 ssao_edge_sharpness = 4.0
-dof_blur_far_enabled = false
-dof_blur_far_distance = 10.0
+dof_blur_far_enabled = true
+dof_blur_far_distance = 300.0
 dof_blur_far_transition = 5.0
-dof_blur_far_amount = 0.1
-dof_blur_far_quality = 1
-dof_blur_near_enabled = false
+dof_blur_far_amount = 0.05
+dof_blur_far_quality = 0
+dof_blur_near_enabled = true
 dof_blur_near_distance = 2.0
 dof_blur_near_transition = 1.0
 dof_blur_near_amount = 0.1
-dof_blur_near_quality = 1
+dof_blur_near_quality = 0
 glow_enabled = false
 glow_levels/1 = false
 glow_levels/2 = false
@@ -115,7 +115,7 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="Gradient" id=4]
 
-offsets = PoolRealArray( 0, 0.99187, 1 )
+offsets = PoolRealArray( 0, 0.995146, 1 )
 colors = PoolColorArray( 0, 0, 0, 0.313726, 0, 0, 0, 0.313726, 0, 0, 0, 0.509804 )
 
 [sub_resource type="GradientTexture" id=5]
@@ -126,8 +126,8 @@ width = 1024
 
 [sub_resource type="Gradient" id=6]
 
-offsets = PoolRealArray( 0, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1 )
+offsets = PoolRealArray( 0, 0.5, 1 )
+colors = PoolColorArray( 0.862745, 0.862745, 0.862745, 1, 0.652344, 0.652344, 0.652344, 1, 0.862745, 0.862745, 0.862745, 1 )
 
 [sub_resource type="GradientTexture" id=7]
 
@@ -219,7 +219,6 @@ script = ExtResource( 1 )
 environment = SubResource( 2 )
 
 [node name="Hud" type="Control" parent="."]
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -281,7 +280,7 @@ anchor_bottom = 1.0
 margin_left = -300.0
 margin_top = -1000.0
 margin_right = 300.0
-margin_bottom = -980.0
+margin_bottom = -986.0
 rect_pivot_offset = Vector2( 300, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -316,7 +315,7 @@ anchor_bottom = 1.0
 margin_left = -300.0
 margin_top = -1000.0
 margin_right = 300.0
-margin_bottom = -980.0
+margin_bottom = -986.0
 rect_pivot_offset = Vector2( 300, 0 )
 rect_clip_content = false
 mouse_filter = 1
