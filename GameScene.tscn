@@ -8,7 +8,7 @@
 
 background_mode = 1
 background_sky_custom_fov = 0.0
-background_color = Color( 0, 0, 0, 1 )
+background_color = Color( 0.509804, 0.54902, 0.588235, 1 )
 background_energy = 1.0
 background_canvas_max_layer = 0
 ambient_light_color = Color( 0.156863, 0.156863, 0.156863, 1 )
@@ -30,7 +30,7 @@ fog_height_curve = 1.0
 tonemap_mode = 0
 tonemap_exposure = 1.0
 tonemap_white = 1.0
-auto_exposure_enabled = true
+auto_exposure_enabled = false
 auto_exposure_scale = 0.3
 auto_exposure_min_luma = 0.05
 auto_exposure_max_luma = 8.0
