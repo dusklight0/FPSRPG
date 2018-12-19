@@ -13,103 +13,29 @@
 
 vertices = PoolVector3Array( 100, 0, -75, 75, 0, -75, 100, 0, -100, 75, 0, -100, 0, 0, -75, -25, 0, -75, 0, 0, -100, -25, 0, -100, 0, 0, 25, -25, 0, 25, 0, 0, 0, -25, 0, 0, 100, 0, 25, 75, 0, 25, 100, 0, 0, 75, 0, 0, 31.25, 0, 25, 25, 0, 25, 37.5, 0, 25, 43.75, 0, 25, 50, 0, 25, 50, 0, 0, 25, 0, 0, 50, 0, 75, 25, 0, 75, 50, 0, 50, 43.75, 0, 50, 37.5, 0, 50, 31.25, 0, 50, 25, 0, 50, 100, 0, 75, 75, 0, 75, 100, 0, 50, 75, 0, 50, -50, 0, 25, -75, 0, 25, -50, 0, 0, -75, 0, 0, -50, 0, 75, -75, 0, 75, -50, 0, 50, -75, 0, 50, 0, 0, 75, -25, 0, 75, 0, 0, 50, -25, 0, 50, -50, 0, -75, -75, 0, -75, -50, 0, -100, -75, 0, -100, -50, 0, -25, -75, 0, -25, -50, 0, -31.25, -50, 0, -37.5, -50, 0, -43.75, -50, 0, -50, -75, 0, -50, 0, 0, -25, -25, 0, -25, 0, 0, -50, -25, 0, -50, -25, 0, -43.75, -25, 0, -37.5, -25, 0, -31.25, 50, 0, -75, 25, 0, -75, 50, 0, -100, 25, 0, -100, 100, 0, -25, 75, 0, -25, 100, 0, -50, 75, 0, -50, 50, 0, -25, 50, 0, -50, 50, 0, -43.75, 50, 0, -37.5, 50, 0, -31.25, 25, 0, -25, 25, 0, -31.25, 25, 0, -37.5, 25, 0, -43.75, 25, 0, -50, 43.75, 0, -25, 37.5, 0, -25, 31.25, 0, -25, 31.25, 0, -50, 37.5, 0, -50, 43.75, 0, -50, -31.25, 0, -43.75, -31.25, 0, -50, -31.25, 0, -25, -37.5, 0, -25, -43.75, 0, -25, -100, 0, -25, -100, 0, -50, -100, 0, 0, -100, 0, -75, -100, 0, -100, -31.25, 0, 50, -37.5, 0, 50, -43.75, 0, 50, -25, 0, 100, -50, 0, 100, 0, 0, 100, -100, 0, 75, -100, 0, 50, -75, 0, 100, -100, 0, 100, -100, 0, 25, -50, 0, 43.75, -50, 0, 37.5, -50, 0, 31.25, 75, 0, 100, 50, 0, 100, 100, 0, 100, 25, 0, 100, 25, 0, 43.75, 25, 0, 37.5, 25, 0, 31.25, 50, 0, 31.25, 43.75, 0, 31.25, 50, 0, 37.5, 50, 0, 43.75, -43.75, 0, 25, -37.5, 0, 25, -31.25, 0, 25, -25, 0, 31.25, -31.25, 0, 31.25, -25, 0, 37.5, -25, 0, 43.75, -43.75, 0, -50, -37.5, 0, -50, -37.5, 0, -31.25, -43.75, 0, -31.25, -37.5, 0, -33.1563, -39.9688, 0, -32.5, -43.7188, 0, -33.5, -31.25, 0, -31.25, -31.25, 0, -37.5, -33.1563, 0, -37.5, -33.5, 0, -36.25, -36.25, 0, -33.5, -46.4688, 0, -36.2188, -46.8125, 0, -37.5, -46.4688, 0, -43.7188, -43.75, 0, -46.4688, -47.4688, 0, -39.9688, -39.9688, 0, -47.4688, -37.5, 0, -46.8125, -36.25, 0, -46.4688, -33.5, 0, -43.7188, -32.5, 0, -39.9688, -37.5, 0, 31.25, -43.75, 0, 31.25, -31.25, 0, 43.75, -31.25, 0, 37.5, 37.5, 0, 31.25, 31.25, 0, 31.25, 33.5, 0, 43.75, 31.25, 0, 43.75, 32.5, 0, 40, 33.1563, 0, 37.5, 31.25, 0, 37.5, 33.5, 0, -43.7188, 31.25, 0, -43.75, 36.2188, 0, -46.4688, 37.5, 0, -46.8125, 37.5, 0, -31.25, 31.25, 0, -31.25, 37.5, 0, -33.1563, 36.25, 0, -33.5, 33.5, 0, -36.2188, 33.1563, 0, -37.5, 31.25, 0, -37.5, 43.75, 0, -31.25, 46.8125, 0, -37.5, 46.4688, 0, -36.25, 43.7188, 0, -33.5, 39.9688, 0, -32.5, 32.5, 0, -39.9688, 43.7188, 0, 46.4688, 39.9688, 0, 47.4688, 37.5, 0, 46.8125, 46.4688, 0, 43.7188, 36.25, 0, 46.4688, 33.5, 0, 36.25, 36.2188, 0, 33.5, 37.5, 0, 33.1563, -33.5, 0, 43.7188, -36.25, 0, 46.4688, -37.5, 0, 46.8125, -46.4688, 0, 43.75, -47.4688, 0, 40, -46.8125, 0, 37.5, -43.7188, 0, 46.4688, -39.9688, 0, 47.4688, -46.4688, 0, 36.25, -43.75, 0, 33.5, -39.9688, 0, 32.5, -37.5, 0, 33.1563, -32.5, 0, 39.9688, -33.1563, 0, 37.5, -36.25, 0, 33.5, -33.5, 0, 36.25, 46.4688, 0, -43.7188, 43.7188, 0, -46.4688, 47.4688, 0, -39.9688, 39.9688, 0, -47.4688, 47.4688, 0, 39.9688, 46.8125, 0, 37.5, 39.9688, 0, 32.5, 43.7188, 0, 33.5, 46.4688, 0, 36.25 )
 polygons = [ PoolIntArray( 0, 1, 2 ), PoolIntArray( 2, 1, 3 ), PoolIntArray( 4, 5, 6 ), PoolIntArray( 6, 5, 7 ), PoolIntArray( 8, 9, 10 ), PoolIntArray( 10, 9, 11 ), PoolIntArray( 12, 13, 14 ), PoolIntArray( 14, 13, 15 ), PoolIntArray( 16, 17, 18 ), PoolIntArray( 18, 17, 19 ), PoolIntArray( 19, 17, 20 ), PoolIntArray( 20, 17, 21 ), PoolIntArray( 21, 17, 22 ), PoolIntArray( 23, 24, 25 ), PoolIntArray( 25, 24, 26 ), PoolIntArray( 26, 24, 27 ), PoolIntArray( 27, 24, 28 ), PoolIntArray( 28, 24, 29 ), PoolIntArray( 30, 31, 32 ), PoolIntArray( 32, 31, 33 ), PoolIntArray( 34, 35, 36 ), PoolIntArray( 36, 35, 37 ), PoolIntArray( 38, 39, 40 ), PoolIntArray( 40, 39, 41 ), PoolIntArray( 42, 43, 44 ), PoolIntArray( 44, 43, 45 ), PoolIntArray( 46, 47, 48 ), PoolIntArray( 48, 47, 49 ), PoolIntArray( 50, 51, 52 ), PoolIntArray( 52, 51, 53 ), PoolIntArray( 53, 51, 54 ), PoolIntArray( 54, 51, 55 ), PoolIntArray( 55, 51, 56 ), PoolIntArray( 57, 58, 59 ), PoolIntArray( 59, 58, 60 ), PoolIntArray( 60, 58, 61 ), PoolIntArray( 61, 58, 62 ), PoolIntArray( 62, 58, 63 ), PoolIntArray( 64, 65, 66 ), PoolIntArray( 66, 65, 67 ), PoolIntArray( 68, 69, 70 ), PoolIntArray( 70, 69, 71 ), PoolIntArray( 69, 72, 71 ), PoolIntArray( 71, 72, 73 ), PoolIntArray( 73, 72, 74 ), PoolIntArray( 74, 72, 75 ), PoolIntArray( 75, 72, 76 ), PoolIntArray( 15, 21, 69 ), PoolIntArray( 69, 21, 72 ), PoolIntArray( 14, 15, 68 ), PoolIntArray( 68, 15, 69 ), PoolIntArray( 77, 57, 78 ), PoolIntArray( 78, 57, 79 ), PoolIntArray( 79, 57, 80 ), PoolIntArray( 80, 57, 81 ), PoolIntArray( 81, 57, 59 ), PoolIntArray( 22, 10, 77 ), PoolIntArray( 77, 10, 57 ), PoolIntArray( 21, 22, 72 ), PoolIntArray( 72, 22, 82 ), PoolIntArray( 82, 22, 83 ), PoolIntArray( 83, 22, 84 ), PoolIntArray( 84, 22, 77 ), PoolIntArray( 65, 4, 67 ), PoolIntArray( 67, 4, 6 ), PoolIntArray( 81, 59, 65 ), PoolIntArray( 65, 59, 4 ), PoolIntArray( 85, 81, 86 ), PoolIntArray( 86, 81, 87 ), PoolIntArray( 87, 81, 73 ), PoolIntArray( 73, 81, 64 ), PoolIntArray( 64, 81, 65 ), PoolIntArray( 61, 88, 60 ), PoolIntArray( 60, 88, 89 ), PoolIntArray( 11, 36, 58 ), PoolIntArray( 58, 36, 90 ), PoolIntArray( 90, 36, 91 ), PoolIntArray( 91, 36, 92 ), PoolIntArray( 92, 36, 50 ), PoolIntArray( 10, 11, 57 ), PoolIntArray( 57, 11, 58 ), PoolIntArray( 51, 93, 56 ), PoolIntArray( 56, 93, 94 ), PoolIntArray( 37, 95, 51 ), PoolIntArray( 51, 95, 93 ), PoolIntArray( 36, 37, 50 ), PoolIntArray( 50, 37, 51 ), PoolIntArray( 47, 96, 49 ), PoolIntArray( 49, 96, 97 ), PoolIntArray( 56, 94, 47 ), PoolIntArray( 47, 94, 96 ), PoolIntArray( 55, 56, 46 ), PoolIntArray( 46, 56, 47 ), PoolIntArray( 43, 38, 45 ), PoolIntArray( 45, 38, 98 ), PoolIntArray( 98, 38, 99 ), PoolIntArray( 99, 38, 100 ), PoolIntArray( 100, 38, 40 ), PoolIntArray( 101, 102, 43 ), PoolIntArray( 43, 102, 38 ), PoolIntArray( 103, 101, 42 ), PoolIntArray( 42, 101, 43 ), PoolIntArray( 39, 104, 41 ), PoolIntArray( 41, 104, 105 ), PoolIntArray( 106, 107, 39 ), PoolIntArray( 39, 107, 104 ), PoolIntArray( 102, 106, 38 ), PoolIntArray( 38, 106, 39 ), PoolIntArray( 35, 108, 37 ), PoolIntArray( 37, 108, 95 ), PoolIntArray( 41, 105, 35 ), PoolIntArray( 35, 105, 108 ), PoolIntArray( 40, 41, 109 ), PoolIntArray( 109, 41, 110 ), PoolIntArray( 110, 41, 111 ), PoolIntArray( 111, 41, 34 ), PoolIntArray( 34, 41, 35 ), PoolIntArray( 31, 23, 33 ), PoolIntArray( 33, 23, 25 ), PoolIntArray( 112, 113, 31 ), PoolIntArray( 31, 113, 23 ), PoolIntArray( 114, 112, 30 ), PoolIntArray( 30, 112, 31 ), PoolIntArray( 24, 42, 29 ), PoolIntArray( 29, 42, 44 ), PoolIntArray( 115, 103, 24 ), PoolIntArray( 24, 103, 42 ), PoolIntArray( 113, 115, 23 ), PoolIntArray( 23, 115, 24 ), PoolIntArray( 17, 8, 22 ), PoolIntArray( 22, 8, 10 ), PoolIntArray( 29, 44, 116 ), PoolIntArray( 116, 44, 117 ), PoolIntArray( 117, 44, 118 ), PoolIntArray( 118, 44, 17 ), PoolIntArray( 17, 44, 8 ), PoolIntArray( 119, 120, 20 ), PoolIntArray( 20, 120, 19 ), PoolIntArray( 13, 20, 15 ), PoolIntArray( 15, 20, 21 ), PoolIntArray( 33, 25, 13 ), PoolIntArray( 13, 25, 20 ), PoolIntArray( 20, 25, 119 ), PoolIntArray( 119, 25, 121 ), PoolIntArray( 121, 25, 122 ), PoolIntArray( 32, 33, 12 ), PoolIntArray( 12, 33, 13 ), PoolIntArray( 123, 34, 124 ), PoolIntArray( 124, 34, 125 ), PoolIntArray( 125, 34, 9 ), PoolIntArray( 9, 34, 11 ), PoolIntArray( 11, 34, 36 ), PoolIntArray( 126, 127, 9 ), PoolIntArray( 9, 127, 125 ), PoolIntArray( 44, 45, 8 ), PoolIntArray( 8, 45, 9 ), PoolIntArray( 9, 45, 126 ), PoolIntArray( 126, 45, 128 ), PoolIntArray( 128, 45, 129 ), PoolIntArray( 5, 46, 7 ), PoolIntArray( 7, 46, 48 ), PoolIntArray( 130, 55, 131 ), PoolIntArray( 131, 55, 89 ), PoolIntArray( 89, 55, 60 ), PoolIntArray( 60, 55, 5 ), PoolIntArray( 5, 55, 46 ), PoolIntArray( 59, 60, 4 ), PoolIntArray( 4, 60, 5 ), PoolIntArray( 1, 64, 3 ), PoolIntArray( 3, 64, 66 ), PoolIntArray( 71, 73, 1 ), PoolIntArray( 1, 73, 64 ), PoolIntArray( 70, 71, 0 ), PoolIntArray( 0, 71, 1 ), PoolIntArray( 132, 133, 134 ), PoolIntArray( 134, 133, 135 ), PoolIntArray( 135, 133, 136 ), PoolIntArray( 63, 137, 62 ), PoolIntArray( 62, 137, 138 ), PoolIntArray( 137, 132, 138 ), PoolIntArray( 138, 132, 139 ), PoolIntArray( 139, 132, 140 ), PoolIntArray( 140, 132, 141 ), PoolIntArray( 141, 132, 134 ), PoolIntArray( 90, 91, 137 ), PoolIntArray( 137, 91, 132 ), PoolIntArray( 58, 90, 63 ), PoolIntArray( 63, 90, 137 ), PoolIntArray( 133, 52, 136 ), PoolIntArray( 136, 52, 142 ), PoolIntArray( 142, 52, 143 ), PoolIntArray( 143, 52, 53 ), PoolIntArray( 92, 50, 133 ), PoolIntArray( 133, 50, 52 ), PoolIntArray( 91, 92, 132 ), PoolIntArray( 132, 92, 133 ), PoolIntArray( 144, 54, 145 ), PoolIntArray( 145, 54, 130 ), PoolIntArray( 130, 54, 55 ), PoolIntArray( 143, 53, 146 ), PoolIntArray( 146, 53, 144 ), PoolIntArray( 144, 53, 54 ), PoolIntArray( 62, 138, 61 ), PoolIntArray( 61, 138, 88 ), PoolIntArray( 147, 145, 148 ), PoolIntArray( 148, 145, 131 ), PoolIntArray( 131, 145, 130 ), PoolIntArray( 149, 148, 150 ), PoolIntArray( 150, 148, 88 ), PoolIntArray( 88, 148, 89 ), PoolIntArray( 89, 148, 131 ), PoolIntArray( 151, 150, 139 ), PoolIntArray( 139, 150, 138 ), PoolIntArray( 138, 150, 88 ), PoolIntArray( 152, 153, 124 ), PoolIntArray( 124, 153, 123 ), PoolIntArray( 129, 154, 128 ), PoolIntArray( 128, 154, 155 ), PoolIntArray( 156, 157, 18 ), PoolIntArray( 18, 157, 16 ), PoolIntArray( 158, 159, 160 ), PoolIntArray( 160, 159, 161 ), PoolIntArray( 161, 159, 162 ), PoolIntArray( 163, 164, 165 ), PoolIntArray( 165, 164, 166 ), PoolIntArray( 166, 164, 86 ), PoolIntArray( 86, 164, 85 ), PoolIntArray( 167, 168, 169 ), PoolIntArray( 169, 168, 170 ), PoolIntArray( 170, 168, 171 ), PoolIntArray( 171, 168, 172 ), PoolIntArray( 172, 168, 173 ), PoolIntArray( 76, 174, 75 ), PoolIntArray( 75, 174, 175 ), PoolIntArray( 175, 174, 176 ), PoolIntArray( 176, 174, 177 ), PoolIntArray( 174, 167, 177 ), PoolIntArray( 177, 167, 178 ), PoolIntArray( 178, 167, 169 ), PoolIntArray( 82, 83, 174 ), PoolIntArray( 174, 83, 167 ), PoolIntArray( 72, 82, 76 ), PoolIntArray( 76, 82, 174 ), PoolIntArray( 168, 78, 173 ), PoolIntArray( 173, 78, 79 ), PoolIntArray( 84, 77, 168 ), PoolIntArray( 168, 77, 78 ), PoolIntArray( 83, 84, 167 ), PoolIntArray( 167, 84, 168 ), PoolIntArray( 164, 80, 85 ), PoolIntArray( 85, 80, 81 ), PoolIntArray( 173, 79, 164 ), PoolIntArray( 164, 79, 80 ), PoolIntArray( 172, 173, 179 ), PoolIntArray( 179, 173, 163 ), PoolIntArray( 163, 173, 164 ), PoolIntArray( 26, 27, 180 ), PoolIntArray( 180, 27, 181 ), PoolIntArray( 181, 27, 182 ), PoolIntArray( 25, 26, 122 ), PoolIntArray( 122, 26, 183 ), PoolIntArray( 183, 26, 180 ), PoolIntArray( 159, 116, 162 ), PoolIntArray( 162, 116, 117 ), PoolIntArray( 28, 29, 159 ), PoolIntArray( 159, 29, 116 ), PoolIntArray( 27, 28, 182 ), PoolIntArray( 182, 28, 184 ), PoolIntArray( 184, 28, 158 ), PoolIntArray( 158, 28, 159 ), PoolIntArray( 157, 118, 16 ), PoolIntArray( 16, 118, 17 ), PoolIntArray( 162, 117, 157 ), PoolIntArray( 157, 117, 118 ), PoolIntArray( 161, 162, 185 ), PoolIntArray( 185, 162, 186 ), PoolIntArray( 186, 162, 187 ), PoolIntArray( 187, 162, 156 ), PoolIntArray( 156, 162, 157 ), PoolIntArray( 98, 99, 154 ), PoolIntArray( 154, 99, 188 ), PoolIntArray( 188, 99, 189 ), PoolIntArray( 189, 99, 190 ), PoolIntArray( 45, 98, 129 ), PoolIntArray( 129, 98, 154 ), PoolIntArray( 191, 109, 192 ), PoolIntArray( 192, 109, 193 ), PoolIntArray( 193, 109, 110 ), PoolIntArray( 100, 40, 194 ), PoolIntArray( 194, 40, 191 ), PoolIntArray( 191, 40, 109 ), PoolIntArray( 99, 100, 190 ), PoolIntArray( 190, 100, 195 ), PoolIntArray( 195, 100, 194 ), PoolIntArray( 153, 111, 123 ), PoolIntArray( 123, 111, 34 ), PoolIntArray( 193, 110, 196 ), PoolIntArray( 196, 110, 197 ), PoolIntArray( 197, 110, 153 ), PoolIntArray( 153, 110, 111 ), PoolIntArray( 127, 152, 125 ), PoolIntArray( 125, 152, 124 ), PoolIntArray( 128, 155, 126 ), PoolIntArray( 126, 155, 127 ), PoolIntArray( 120, 156, 19 ), PoolIntArray( 19, 156, 18 ), PoolIntArray( 198, 197, 199 ), PoolIntArray( 199, 197, 152 ), PoolIntArray( 152, 197, 153 ), PoolIntArray( 200, 201, 188 ), PoolIntArray( 188, 201, 154 ), PoolIntArray( 154, 201, 155 ), PoolIntArray( 202, 199, 203 ), PoolIntArray( 203, 199, 201 ), PoolIntArray( 201, 199, 155 ), PoolIntArray( 155, 199, 127 ), PoolIntArray( 127, 199, 152 ), PoolIntArray( 204, 205, 74 ), PoolIntArray( 74, 205, 73 ), PoolIntArray( 73, 205, 87 ), PoolIntArray( 206, 204, 175 ), PoolIntArray( 175, 204, 75 ), PoolIntArray( 75, 204, 74 ), PoolIntArray( 207, 166, 205 ), PoolIntArray( 205, 166, 87 ), PoolIntArray( 87, 166, 86 ), PoolIntArray( 208, 209, 183 ), PoolIntArray( 183, 209, 122 ), PoolIntArray( 122, 209, 121 ), PoolIntArray( 210, 187, 211 ), PoolIntArray( 211, 187, 120 ), PoolIntArray( 120, 187, 156 ), PoolIntArray( 212, 211, 209 ), PoolIntArray( 209, 211, 121 ), PoolIntArray( 121, 211, 119 ), PoolIntArray( 119, 211, 120 ) ]
-sample_partition_type/sample_partition_type = 0
-cell/size = 0.3
-cell/height = 0.2
-agent/height = 2.0
-agent/radius = 0.6
-agent/max_climb = 0.9
-agent/max_slope = 45.0
-region/min_size = 8.0
-region/merge_size = 20.0
-edge/max_length = 12.0
-edge/max_error = 1.3
-polygon/verts_per_poly = 6.0
-detail/sample_distance = 6.0
-detail/sample_max_error = 1.0
-filter/low_hanging_obstacles = false
-filter/ledge_spans = false
-filter/filter_walkable_low_height_spans = false
 
 [sub_resource type="SpatialMaterial" id=2]
 
-render_priority = 0
-flags_transparent = false
-flags_unshaded = false
-flags_vertex_lighting = false
-flags_no_depth_test = false
-flags_use_point_size = false
-flags_world_triplanar = false
-flags_fixed_size = false
-flags_albedo_tex_force_srgb = false
-flags_do_not_receive_shadows = false
-flags_disable_ambient_light = false
-flags_ensure_correct_normals = false
-vertex_color_use_as_albedo = false
-vertex_color_is_srgb = false
 params_diffuse_mode = 1
-params_specular_mode = 0
-params_blend_mode = 0
-params_cull_mode = 0
-params_depth_draw_mode = 0
-params_line_width = 1.0
-params_point_size = 1.0
-params_billboard_mode = 0
-params_billboard_keep_scale = false
-params_grow = false
-params_use_alpha_scissor = false
-albedo_color = Color( 1, 1, 1, 1 )
 albedo_texture = ExtResource( 3 )
-metallic = 0.0
 metallic_specular = 0.1
-metallic_texture_channel = 0
 roughness = 0.4
-roughness_texture_channel = 0
-emission_enabled = false
-normal_enabled = false
-rim_enabled = false
-clearcoat_enabled = false
-anisotropy_enabled = false
-ao_enabled = false
-depth_enabled = false
-subsurf_scatter_enabled = false
-transmission_enabled = false
-refraction_enabled = false
-detail_enabled = false
-uv1_scale = Vector3( 1, 1, 1 )
-uv1_offset = Vector3( 0, 0, 0 )
-uv1_triplanar = false
-uv1_triplanar_sharpness = 1.0
-uv2_scale = Vector3( 1, 1, 1 )
-uv2_offset = Vector3( 0, 0, 0 )
-uv2_triplanar = false
-uv2_triplanar_sharpness = 1.0
-proximity_fade_enable = false
-distance_fade_mode = 0
 
 [sub_resource type="CapsuleShape" id=3]
 
-margin = 0.04
 radius = 5.0
 height = 100.0
 
 [sub_resource type="BoxShape" id=4]
 
-margin = 0.04
 extents = Vector3( 5, 10, 5 )
 
 [sub_resource type="CubeMesh" id=5]
 
-custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
-flip_faces = false
 size = Vector3( 10, 20, 10 )
-subdivide_width = 0
-subdivide_height = 0
-subdivide_depth = 0
 
 [sub_resource type="BoxShape" id=6]
 
-margin = 0.04
 extents = Vector3( 100, 50, 100 )
 
 [node name="Room" type="Spatial"]
@@ -118,229 +44,107 @@ script = ExtResource( 1 )
 
 [node name="Navigation" type="Navigation" parent="."]
 editor/display_folded = true
-up_vector = Vector3( 0, 1, 0 )
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
 transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0, 0, 0 )
 navmesh = SubResource( 1 )
-enabled = true
 
 [node name="Objects" type="Spatial" parent="."]
 
 [node name="BlockWall1" type="StaticBody" parent="Objects"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 50, 40 )
-input_ray_pickable = true
-input_capture_on_drag = false
 collision_layer = 4
 collision_mask = 27
-constant_linear_velocity = Vector3( 0, 0, 0 )
-constant_angular_velocity = Vector3( 0, 0, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Objects/BlockWall1"]
 transform = Transform( 1.5, 0, 0, 0, 0.5, 0, 0, 0, 1.5, 0, 0, 0 )
-layers = 1
-material_override = null
-cast_shadow = 1
-extra_cull_margin = 0.0
-use_in_baked_light = false
-lod_min_distance = 0.0
-lod_min_hysteresis = 0.0
-lod_max_distance = 0.0
-lod_max_hysteresis = 0.0
 mesh = ExtResource( 2 )
-skeleton = NodePath("..")
 material/0 = SubResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Objects/BlockWall1"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
 shape = SubResource( 3 )
-disabled = false
 
 [node name="BlockWall2" type="StaticBody" parent="Objects"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 50, 40 )
-input_ray_pickable = true
-input_capture_on_drag = false
 collision_layer = 4
 collision_mask = 27
-constant_linear_velocity = Vector3( 0, 0, 0 )
-constant_angular_velocity = Vector3( 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Objects/BlockWall2"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
 shape = SubResource( 3 )
-disabled = false
 
 [node name="MeshInstance2" type="MeshInstance" parent="Objects/BlockWall2"]
 transform = Transform( 1.5, 0, 0, 0, 0.5, 0, 0, 0, 1.5, 0, 0, 0 )
-layers = 1
-material_override = null
-cast_shadow = 1
-extra_cull_margin = 0.0
-use_in_baked_light = false
-lod_min_distance = 0.0
-lod_min_hysteresis = 0.0
-lod_max_distance = 0.0
-lod_max_hysteresis = 0.0
 mesh = ExtResource( 2 )
-skeleton = NodePath("..")
 material/0 = SubResource( 2 )
 
 [node name="BlockWall3" type="StaticBody" parent="Objects"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 50, -40 )
-input_ray_pickable = true
-input_capture_on_drag = false
 collision_layer = 4
 collision_mask = 27
-constant_linear_velocity = Vector3( 0, 0, 0 )
-constant_angular_velocity = Vector3( 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Objects/BlockWall3"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
 shape = SubResource( 3 )
-disabled = false
 
 [node name="MeshInstance3" type="MeshInstance" parent="Objects/BlockWall3"]
 transform = Transform( 1.5, 0, 0, 0, 0.5, 0, 0, 0, 1.5, 0, 0, 0 )
-layers = 1
-material_override = null
-cast_shadow = 1
-extra_cull_margin = 0.0
-use_in_baked_light = false
-lod_min_distance = 0.0
-lod_min_hysteresis = 0.0
-lod_max_distance = 0.0
-lod_max_hysteresis = 0.0
 mesh = ExtResource( 2 )
-skeleton = NodePath("..")
 material/0 = SubResource( 2 )
 
 [node name="BlockWall4" type="StaticBody" parent="Objects"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 50, -40 )
-input_ray_pickable = true
-input_capture_on_drag = false
 collision_layer = 4
 collision_mask = 27
-constant_linear_velocity = Vector3( 0, 0, 0 )
-constant_angular_velocity = Vector3( 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Objects/BlockWall4"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
 shape = SubResource( 3 )
-disabled = false
 
 [node name="MeshInstance4" type="MeshInstance" parent="Objects/BlockWall4"]
 transform = Transform( 1.5, 0, 0, 0, 0.5, 0, 0, 0, 1.5, 0, 0, 0 )
-layers = 1
-material_override = null
-cast_shadow = 1
-extra_cull_margin = 0.0
-use_in_baked_light = false
-lod_min_distance = 0.0
-lod_min_hysteresis = 0.0
-lod_max_distance = 0.0
-lod_max_hysteresis = 0.0
 mesh = ExtResource( 2 )
-skeleton = NodePath("..")
 material/0 = SubResource( 2 )
 
 [node name="TestBox" type="RigidBody" parent="Objects"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -91.5648, 0.98402, 92.8382 )
-input_ray_pickable = true
-input_capture_on_drag = false
 collision_layer = 4
 collision_mask = 27
-mode = 0
 mass = 5.0
 gravity_scale = 3.0
-custom_integrator = false
-continuous_cd = false
-contacts_reported = 0
-contact_monitor = false
-sleeping = false
 can_sleep = false
-axis_lock_linear_x = false
-axis_lock_linear_y = false
-axis_lock_linear_z = false
-axis_lock_angular_x = false
-axis_lock_angular_y = false
-axis_lock_angular_z = false
-linear_velocity = Vector3( 0, 0, 0 )
-linear_damp = -1.0
-angular_velocity = Vector3( 0, 0, 0 )
-angular_damp = -1.0
 script = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Objects/TestBox"]
 shape = SubResource( 4 )
-disabled = false
 
 [node name="MeshInstance" type="MeshInstance" parent="Objects/TestBox"]
-layers = 1
-material_override = null
-cast_shadow = 1
-extra_cull_margin = 0.0
-use_in_baked_light = false
-lod_min_distance = 0.0
-lod_min_hysteresis = 0.0
-lod_max_distance = 0.0
-lod_max_hysteresis = 0.0
 mesh = SubResource( 5 )
-skeleton = NodePath("..")
 material/0 = null
 
 [node name="Area" type="Area" parent="."]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0 )
-input_ray_pickable = false
-input_capture_on_drag = false
-space_override = 0
-gravity_point = false
-gravity_distance_scale = 0.0
-gravity_vec = Vector3( 0, -1, 0 )
-gravity = 9.8
-linear_damp = 0.1
-angular_damp = 1.0
-priority = 0.0
-monitoring = true
-monitorable = true
 collision_layer = 32
-collision_mask = 1
-audio_bus_override = false
-audio_bus_name = "Master"
-reverb_bus_enable = false
-reverb_bus_name = "Master"
-reverb_bus_amount = 0.0
-reverb_bus_uniformity = 0.0
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 6 )
-disabled = false
 
 [node name="RoomLight" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 70, 0 )
-layers = 1
 light_color = Color( 0.546875, 0.534525, 0.467834, 1 )
-light_energy = 1.0
-light_indirect_energy = 1.0
-light_negative = false
+light_energy = 2.0
 light_specular = 0.6
-light_bake_mode = 1
-light_cull_mask = -1
 shadow_enabled = true
-shadow_color = Color( 0, 0, 0, 1 )
 shadow_bias = 7.0
-shadow_contact = 0.0
-shadow_reverse_cull_face = false
-editor_only = false
 omni_range = 130.0
 omni_attenuation = 2.0
-omni_shadow_mode = 1
-omni_shadow_detail = 1
 
 [node name="SpawnPoints" type="Spatial" parent="."]
 editor/display_folded = true

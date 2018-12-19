@@ -40,6 +40,8 @@ glow_intensity = 0.1
 [sub_resource type="DynamicFont" id=3]
 
 size = 42
+use_mipmaps = false
+use_filter = false
 font_data = ExtResource( 2 )
 
 [sub_resource type="Gradient" id=4]
