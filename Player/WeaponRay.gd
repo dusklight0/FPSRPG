@@ -39,7 +39,7 @@ func fire_weapon():
         get_tree().root.add_child(particle_node)
         particle_node.global_translate(hit_point)
         particle_node.scale = Vector3(2, 2, 2)
-        particle_node.restart()
+        particle_node.set_emitting(true)
         
     if body.has_method("bullet_hit"):
         if body.bullet_hit(DAMAGE, _gun_ray.get_collision_point(), shape):

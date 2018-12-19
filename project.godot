@@ -22,7 +22,6 @@ config/icon="res://icon.png"
 [debug]
 
 settings/stdout/print_fps=true
-settings/stdout/verbose_stdout=true
 
 [display]
 
@@ -113,9 +112,12 @@ movement_step={
 3d_physics/layer_5="EBullet"
 3d_physics/layer_6="Trigger"
 
+[memory]
+
+limits/message_queue/max_size_kb=2048
+
 [rendering]
 
 threads/thread_model=2
 quality/shadows/filter_mode=0
-quality/filters/msaa=1
 environment/default_environment="res://default_env.tres"

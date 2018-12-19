@@ -20,8 +20,8 @@ func on_cri_attacked(delta):
     if .on_cri_attacked(delta) == false:
         return
         
-    if rand_range(0, 100) < 30 and _battle_state != BT_RUN:
-        on_end_battle_state([BT_RUN])
+    if rand_range(0, 100) < 30 and _battle_state != BattleType.BT_RUN:
+        on_end_battle_state([BattleType.BT_RUN])
         
     
 func on_faint(delta):
@@ -42,7 +42,7 @@ func on_wait(delta):
     look_at(_player.transform.origin, Vector3(0, 1, 0))
     
     if _battle_state_time > 1.0:
-        on_end_battle_state([BT_HIDE, BT_ATTACK, BT_MOVE])
+        on_end_battle_state([BattleType.BT_HIDE, BattleType.BT_ATTACK, BattleType.BT_MOVE])
     
     
 func on_hide(delta):
@@ -55,7 +55,7 @@ func on_hide(delta):
     _move_process = true
         
     if _battle_state_time > 3.0:
-        on_end_battle_state([BT_HIDE, BT_WAIT, BT_MOVE])
+        on_end_battle_state([BattleType.BT_HIDE, BattleType.BT_WAIT, BattleType.BT_MOVE])
         _move_process = false
     
     
@@ -67,7 +67,7 @@ func on_run(delta):
     _move_process = true
         
     if _battle_state_time > 4.0:
-        on_end_battle_state([BT_HIDE, BT_ATTACK])
+        on_end_battle_state([BattleType.BT_HIDE, BattleType.BT_ATTACK])
         _move_process = false
     
     
@@ -81,7 +81,7 @@ func on_move(delta):
     
     var distance = self.transform.origin.distance_to(_player.transform.origin - _nav_transform)
     if distance <= rand_range(60, 80):
-        on_end_battle_state([BT_HIDE, BT_WAIT, BT_ATTACK])
+        on_end_battle_state([BattleType.BT_HIDE, BattleType.BT_WAIT, BattleType.BT_ATTACK])
         _move_process = false
     
     
@@ -111,4 +111,4 @@ func on_attack(delta):
     if _battle_state_time > 3.0:
         _attack_time = 0.0
         _attack_count = 0
-        on_end_battle_state([BT_HIDE, BT_WAIT, BT_MOVE])
+        on_end_battle_state([BattleType.BT_HIDE, BattleType.BT_WAIT, BattleType.BT_MOVE])

@@ -22,9 +22,9 @@ var _player
 var _ui_info
 
 var _hp = 100
-var _state = IDLE
+var _state = EnemyState.IDLE
 var _state_time = 0.0
-var _battle_state = BT_WAIT
+var _battle_state = BattleType.BT_WAIT
 var _battle_state_time = 0.0
 var _enemy_speed = 12
 var _change_battle_state = false
@@ -61,14 +61,14 @@ func bullet_hit(damage, bullet_hit_pos, shape):
     
     if shape <= 0:
         final_damage = damage * 2
-        on_change_state(CRI_ATTACKED, 1.0)
+        on_change_state(EnemyState.CRI_ATTACKED, 1.0)
     else:
-        on_change_state(ATTACKED, 0.3)
+        on_change_state(EnemyState.ATTACKED, 0.3)
         
     on_update_hp(final_damage)
     
     if _hp <= 0:
-        on_change_state(DEAD, 1.0)
+        on_change_state(EnemyState.DEAD, 1.0)
         
     return true
     
@@ -81,11 +81,11 @@ func on_update_hp(final_damage):
     
     
 func on_change_state(state, state_time = 0.0):        
-    if _state == DEAD:
+    if _state == EnemyState.DEAD:
         return
         
-    if (_state == FAINT or _state == CRI_ATTACKED or _state == ATTACKED) and \
-        (state == FAINT or state == CRI_ATTACKED or state == ATTACKED):
+    if (_state == EnemyState.FAINT or _state == EnemyState.CRI_ATTACKED or _state == EnemyState.ATTACKED) and \
+        (state == EnemyState.FAINT or state == EnemyState.CRI_ATTACKED or state == EnemyState.ATTACKED):
         _state |= state
         
     else:
@@ -96,29 +96,29 @@ func on_change_state(state, state_time = 0.0):
     
 func update_state(delta):
     if _room._player_enter == false:
-        on_change_state(IDLE)
+        on_change_state(EnemyState.IDLE)
         
-    elif _state == IDLE and _room._player_enter == true:
-        on_change_state(BATTLE)
+    elif _state == EnemyState.IDLE and _room._player_enter == true:
+        on_change_state(EnemyState.BATTLE)
 
  
 func _physics_process(delta):
     update_state(delta)
     
-    if _state & DEAD:
+    if _state & EnemyState.DEAD:
         on_dead(delta)
     
-    elif _state & BATTLE:
+    elif _state & EnemyState.BATTLE:
         on_battle(delta)
         
     else:
-        if _state & ATTACKED:
+        if _state & EnemyState.ATTACKED:
             on_attacked(delta)
             
-        if _state & CRI_ATTACKED:
+        if _state & EnemyState.CRI_ATTACKED:
             on_cri_attacked(delta)
             
-        if _state & FAINT:
+        if _state & EnemyState.FAINT:
             on_faint(delta)
             
     move_process(delta)
@@ -128,19 +128,19 @@ func _physics_process(delta):
 
 func on_battle(delta):
     match _battle_state:
-        BT_WAIT:
+        BattleType.BT_WAIT:
             on_wait(delta)
             
-        BT_HIDE:
+        BattleType.BT_HIDE:
             on_hide(delta)
             
-        BT_RUN:
+        BattleType.BT_RUN:
             on_run(delta)
             
-        BT_ATTACK:
+        BattleType.BT_ATTACK:
             on_attack(delta)
             
-        BT_MOVE:
+        BattleType.BT_MOVE:
             on_move(delta)
             
     if _change_battle_state == false:
@@ -153,7 +153,7 @@ func on_battle(delta):
 func on_attacked(delta):
     _state_time -= delta    
     if _state_time <= 0.0:
-        on_change_state(BATTLE)
+        on_change_state(EnemyState.BATTLE)
         return false
         
     return true
@@ -162,7 +162,7 @@ func on_attacked(delta):
 func on_cri_attacked(delta):
     _state_time -= delta
     if _state_time <= 0.0:
-        on_change_state(BATTLE)
+        on_change_state(EnemyState.BATTLE)
         return false
         
     return true
@@ -171,7 +171,7 @@ func on_cri_attacked(delta):
 func on_faint(delta):
     _state_time -= delta    
     if _state_time <= 0.0:
-        on_change_state(BATTLE)
+        on_change_state(EnemyState.BATTLE)
         return false
         
     return true

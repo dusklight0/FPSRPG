@@ -2,13 +2,13 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/rock_depth.jpg-e5dc97e0fbed4efcd71e58605c326bc8.s3tc.stex"
-path.etc2="res://.import/rock_depth.jpg-e5dc97e0fbed4efcd71e58605c326bc8.etc2.stex"
+path.s3tc="res://.import/mt_df.png-517ce60aa5c492a47f900a1d00a2e5ad.s3tc.stex"
+path.etc2="res://.import/mt_df.png-517ce60aa5c492a47f900a1d00a2e5ad.etc2.stex"
 
 [deps]
 
-source_file="res://imgs/rock_depth.jpg"
-dest_files=[ "res://.import/rock_depth.jpg-e5dc97e0fbed4efcd71e58605c326bc8.s3tc.stex", "res://.import/rock_depth.jpg-e5dc97e0fbed4efcd71e58605c326bc8.etc2.stex" ]
+source_file="res://imgs/mt_df.png"
+dest_files=[ "res://.import/mt_df.png-517ce60aa5c492a47f900a1d00a2e5ad.s3tc.stex", "res://.import/mt_df.png-517ce60aa5c492a47f900a1d00a2e5ad.etc2.stex" ]
 
 [params]
 
@@ -21,7 +21,7 @@ flags/repeat=true
 flags/filter=true
 flags/mipmaps=true
 flags/anisotropic=false
-flags/srgb=2
+flags/srgb=1
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
