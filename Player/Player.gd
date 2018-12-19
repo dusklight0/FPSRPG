@@ -28,6 +28,7 @@ var _gun_anim
 var _gun_ray
 var _ani_player
 var _gun_fire_effect
+var _gun_fire_effect2
 
 # ui ref
 var _ui_hp_bar
@@ -62,6 +63,7 @@ func _ready():
     _ani_player.play("Equip")
     
     _gun_fire_effect = $RotationHelper/Model/Armature/Skeleton/BoneAttachment/Gun/FireEffect
+    _gun_fire_effect2 = $RotationHelper/Model/Armature/Skeleton/BoneAttachment/Gun/FireEffect2
     
     
 func _physics_process(delta):
@@ -150,6 +152,7 @@ func _input(event):
 func fire_bullet():
     if _gun.fire_weapon():
         _gun_fire_effect.set_emitting(true)
+        _gun_fire_effect2.set_emitting(true)
         _ani_player.play("Shoot")
         
         
