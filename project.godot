@@ -118,5 +118,6 @@ limits/message_queue/max_size_kb=2048
 
 [rendering]
 
-quality/filters/msaa=1
+threads/thread_model=2
+quality/shadows/filter_mode=0
 environment/default_environment="res://default_env.tres"

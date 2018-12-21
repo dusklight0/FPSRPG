@@ -209,7 +209,6 @@ shader_param/outline_strength = 3.0
 [node name="Home" type="Spatial"]
 
 [node name="Ground" type="StaticBody" parent="."]
-editor/display_folded = true
 collision_layer = 4
 
 [node name="CollisionShape" type="CollisionShape" parent="Ground"]
@@ -334,7 +333,6 @@ mesh = ExtResource( 8 )
 material/0 = SubResource( 25 )
 
 [node name="MeshInstance3" type="MeshInstance" parent="."]
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -55.096 )
 mesh = SubResource( 26 )
 material/0 = SubResource( 27 )
