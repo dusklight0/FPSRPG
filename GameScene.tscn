@@ -13,6 +13,7 @@ sky_curve = 0.199722
 ground_bottom_color = Color( 0, 0, 0, 1 )
 ground_horizon_color = Color( 0, 0, 0, 1 )
 sun_color = Color( 0.247059, 0.290196, 0.313726, 1 )
+sun_latitude = 140.0
 texture_size = 0
 
 [sub_resource type="Environment" id=2]
@@ -34,14 +35,13 @@ dof_blur_far_distance = 300.0
 dof_blur_far_amount = 0.05
 dof_blur_far_quality = 0
 dof_blur_near_enabled = true
+dof_blur_near_distance = 0.8
 dof_blur_near_quality = 0
 glow_intensity = 0.1
 
 [sub_resource type="DynamicFont" id=3]
 
 size = 42
-use_mipmaps = false
-use_filter = false
 font_data = ExtResource( 2 )
 
 [sub_resource type="Gradient" id=4]

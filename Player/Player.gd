@@ -59,11 +59,11 @@ func _ready():
     _ui_hp_bar = _game_scene.get_node("Hud/HpBar")
     _ui_shield_bar = _game_scene.get_node("Hud/ShieldBar")
     
-    _ani_player = $"RotationHelper/Model/AnimationPlayer"
-    _ani_player.play("Equip")
+    #_ani_player = $"RotationHelper/Model/AnimationPlayer"
+    #_ani_player.play("Equip")
     
-    _gun_fire_effect = $RotationHelper/Model/Armature/Skeleton/BoneAttachment/Gun/FireEffect
-    _gun_fire_effect2 = $RotationHelper/Model/Armature/Skeleton/BoneAttachment/Gun/FireEffect2
+    _gun_fire_effect = $RotationHelper/Model/Gun/FireEffect
+    _gun_fire_effect2 = $RotationHelper/Model/Gun/FireEffect2
     
     
 func _physics_process(delta):
@@ -153,7 +153,7 @@ func fire_bullet():
     if _gun.fire_weapon():
         _gun_fire_effect.set_emitting(true)
         _gun_fire_effect2.set_emitting(true)
-        _ani_player.play("Shoot")
+        #_ani_player.play("Shoot")
         
         
 func update_hp_ui():
